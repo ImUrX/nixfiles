@@ -11,7 +11,7 @@ in
       enable = mkEnableOption "Enables and configures git";
       name = mkOption rec {
         type = types.str;
-        default = "ImUrX";
+        default = "Uriel";
         description = "Username to use with git";
         example = default;
       };
@@ -41,6 +41,9 @@ in
             pull = {
               rebase = true;
               # ff = "only";
+            };
+            commit = {
+              gpgSign = true;
             };
             init.defaultBranch = "main";
             # Rewrite unencrypted git://github.com URLs to the encrypted version which isn't deprecated

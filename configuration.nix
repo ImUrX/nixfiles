@@ -22,6 +22,7 @@
     ./modules/java.nix
     ./modules/rust.nix
     ./modules/obs.nix
+    ./modules/yubikey.nix
   ];
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Use the systemd-boot EFI boot loader.
@@ -177,6 +178,8 @@
   uri.java.enable = true;
   uri.javascript.enable = true;
   uri.obs.enable = true;
+  # 指
+  uri.yubi.enable = true;
   programs.adb.enable = true;
   programs.nix-ld.enable = true;
   programs.gamemode.enable = true;
@@ -229,6 +232,7 @@
     vulkan-tools
     sidequest
     distrobox
+    pavucontrol
 
     # wine-staging (version with experimental features)
     wineWowPackages.staging
@@ -261,10 +265,6 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
 
   # List services that you want to enable:
 
