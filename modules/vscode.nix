@@ -34,6 +34,7 @@ in
               # Rust
               matklad.rust-analyzer
               tamasfe.even-better-toml
+              serayuzgur.crates
             ]
             ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
               {

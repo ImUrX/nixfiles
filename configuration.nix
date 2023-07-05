@@ -124,6 +124,7 @@
       pipx
       gimp
       aegisub
+      r2modman
     ];
 
     home.sessionVariables = {
