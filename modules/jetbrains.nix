@@ -17,6 +17,7 @@ in
           jetbrains.rider
           jetbrains.idea-ultimate
           jetbrains.clion
+          android-studio
         ];
       };
     };
