@@ -24,6 +24,22 @@
     ./modules/obs.nix
     ./modules/yubikey.nix
   ];
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      jetbrains =
+        prev.jetbrains
+        // {
+          idea-ultimate = prev.jetbrains.idea-ultimate.overrideAttrs (old: {
+            version = "2023.2";
+            src = prev.fetchurl {
+              url = "https://download.jetbrains.com/idea/ideaIU-232.8453.116.tar.gz";
+              hash = "sha256-sxWHm0o+U2VeFYgCzHvtNXgU2Y6AYdu0o0Q1C1Gnfqc=";
+            };
+          });
+        };
+    })
+  ];
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
