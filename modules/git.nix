@@ -30,7 +30,7 @@ in
           package = pkgs.gitFull;
           lfs.enable = true;
           userEmail = cfg.email;
-          userName = "Uriel";
+          userName = cfg.name;
           extraConfig = {
             submodule = {
               recurse = true;
