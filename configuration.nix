@@ -250,6 +250,7 @@
     sidequest
     distrobox
     pavucontrol
+    docker-compose
 
     # wine-staging (version with experimental features)
     wineWowPackages.staging
