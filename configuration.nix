@@ -141,6 +141,7 @@
       gimp
       aegisub
       r2modman
+      unityhub
     ];
 
     home.sessionVariables = {
