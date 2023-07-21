@@ -45,6 +45,12 @@ in
             commit = {
               gpgSign = true;
             };
+            http = {
+              postBuffer = 2097152000;
+            };
+            https = {
+              postBuffer = 2097152000;
+            };
             init.defaultBranch = "main";
             # Rewrite unencrypted git://github.com URLs to the encrypted version which isn't deprecated
             ${''url "git@github.com:"''} = {insteadOf = "git://github.com/";};
