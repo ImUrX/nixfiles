@@ -20,12 +20,12 @@
   #hardware.cpu.amd.updateMicrocode = true;
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/7751ca45-685d-4e33-985a-d8b27b792703";
+    device = "/dev/disk/by-uuid/f66eca28-c5e9-4a9d-ba5d-17d9cb43d42a";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/D0F4-B9ED";
+    device = "/dev/disk/by-uuid/985D-9B8A";
     fsType = "vfat";
   };
 

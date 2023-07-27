@@ -242,6 +242,8 @@
     wl-mirror
     wl-color-picker
     gnomeExtensions.appindicator
+    gnome.gnome-tweaks
+    nvtop
     easyeffects
     gnomeExtensions.easyeffects-preset-selector
     remmina
