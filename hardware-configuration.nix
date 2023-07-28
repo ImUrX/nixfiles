@@ -53,6 +53,11 @@
   # To enable Vulkan support for 32-bit applications, also add:
   hardware.opengl.driSupport32Bit = true;
 
+  hardware.opengl = {
+    extraPackages = with pkgs; [mangohud];
+    extraPackages32 = with pkgs; [mangohud];
+  };
+
   # Force radv
   environment.variables.AMD_VULKAN_ICD = "RADV";
 }
