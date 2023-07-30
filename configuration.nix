@@ -33,8 +33,8 @@
           idea-ultimate = prev.jetbrains.idea-ultimate.overrideAttrs (old: {
             version = "2023.2";
             src = prev.fetchurl {
-              url = "https://download.jetbrains.com/idea/ideaIU-232.8453.116.tar.gz";
-              hash = "sha256-sxWHm0o+U2VeFYgCzHvtNXgU2Y6AYdu0o0Q1C1Gnfqc=";
+              url = "https://download.jetbrains.com/idea/ideaIU-2023.2.tar.gz";
+              hash = "sha256-05hZlVfMcy/R9Y84EE182jXjJuTNOUJFqDWOAvuIeLM=";
             };
           });
         };
@@ -257,6 +257,7 @@
     distrobox
     pavucontrol
     docker-compose
+    distrobox
 
     # wine-staging (version with experimental features)
     wineWowPackages.staging
