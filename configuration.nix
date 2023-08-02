@@ -104,6 +104,7 @@
     imports = [inputs.nix-doom-emacs.hmModule];
 
     home.packages = with pkgs; [
+      blender
       thunderbird
       discord
       anydesk
