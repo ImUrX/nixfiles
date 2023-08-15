@@ -31,6 +31,7 @@ in
               dbaeumer.vscode-eslint
               esbenp.prettier-vscode
               bradlc.vscode-tailwindcss
+              mskelton.npm-outdated
               # Rust
               matklad.rust-analyzer
               tamasfe.even-better-toml
