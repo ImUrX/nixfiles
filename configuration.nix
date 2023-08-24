@@ -142,6 +142,14 @@
         ];
         xkb-options = ["terminate:ctrl_alt_bksp"];
       };
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+
+        # `gnome-extensions list` for a list
+        enabled-extensions = [
+          "appindicatorsupport@rgcjonas.gmail.com"
+        ];
+      };
     };
 
     xdg.enable = true;
