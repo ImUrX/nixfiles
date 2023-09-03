@@ -14,7 +14,7 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
-  boot.initrd.kernelModules = ["amdgpu"];
+  # boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
   #hardware.cpu.amd.updateMicrocode = true;
@@ -48,16 +48,17 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   ### AMD STUFF
-  hardware.opengl.driSupport = true;
-
-  # To enable Vulkan support for 32-bit applications, also add:
-  hardware.opengl.driSupport32Bit = true;
-
   hardware.opengl = {
-    extraPackages = with pkgs; [mangohud];
-    extraPackages32 = with pkgs; [mangohud];
+    # Mesa
+    enable = true;
+    extraPackages = with pkgs; [mangohud amdvlk];
+    extraPackages32 = with pkgs; [mangohud driversi686Linux.amdvlk];
+
+    # Vulkan
+    driSupport = true;
+    driSupport32Bit = true;
   };
 
   # Force radv
-  environment.variables.AMD_VULKAN_ICD = "RADV";
+  # environment.variables.AMD_VULKAN_ICD = "RADV";
 }

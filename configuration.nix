@@ -54,13 +54,34 @@
   #.x.enable = true;
   programs.xwayland.enable = true;
   services.xserver.enable = true;
-  services.xserver.videoDrivers = ["amdgpu"];
+  # services.xserver.videoDrivers = ["amdgpu"];
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.gdm.wayland = true;
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.displayManager.defaultSession = "gnome";
+
+  systemd.services."user@1000".serviceConfig.LimitNOFILE = "32768";
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      item = "nofile";
+      type = "-";
+      value = "32768";
+    }
+    {
+      domain = "*";
+      item = "memlock";
+      type = "-";
+      value = "32768";
+    }
+  ];
+
+  # Enable KDE
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.displayManager.defaultSession = "plasmawayland";
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -127,6 +148,7 @@
       aegisub
       r2modman
       unityhub
+      imv
     ];
 
     home.sessionVariables = {
@@ -152,10 +174,13 @@
       };
     };
 
+    # qt.platformTheme = "kde";
+
     xdg.enable = true;
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
+        "image" = ["imv.desktop"];
         "video" = ["mpv.desktop"];
         "text/html" = ["firefox.desktop"];
         "x-scheme-handler/http" = ["firefox.desktop"];
@@ -201,6 +226,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    radeontop
     libreoffice-qt
     firefox-wayland
     chromium
