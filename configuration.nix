@@ -57,31 +57,31 @@
   # services.xserver.videoDrivers = ["amdgpu"];
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.wayland = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager.defaultSession = "gnome";
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.displayManager.gdm.wayland = true;
+  # services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.defaultSession = "gnome";
 
-  systemd.services."user@1000".serviceConfig.LimitNOFILE = "32768";
-  security.pam.loginLimits = [
-    {
-      domain = "*";
-      item = "nofile";
-      type = "-";
-      value = "32768";
-    }
-    {
-      domain = "*";
-      item = "memlock";
-      type = "-";
-      value = "32768";
-    }
-  ];
+  # systemd.services."user@1000".serviceConfig.LimitNOFILE = "32768";
+  # security.pam.loginLimits = [
+  #   {
+  #     domain = "*";
+  #     item = "nofile";
+  #     type = "-";
+  #     value = "32768";
+  #   }
+  #   {
+  #     domain = "*";
+  #     item = "memlock";
+  #     type = "-";
+  #     value = "32768";
+  #   }
+  # ];
 
   # Enable KDE
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
-  # services.xserver.displayManager.defaultSession = "plasmawayland";
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager.defaultSession = "plasmawayland";
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -155,26 +155,26 @@
       MESA_DISK_CACHE_SINGLE_FILE = "1";
     };
 
-    dconf.settings = {
-      "org/gnome/desktop/input-sources" = {
-        show-all-sources = true;
-        sources = [
-          (lib.hm.gvariant.mkTuple ["xkb" "us+altgr-intl"])
-          (lib.hm.gvariant.mkTuple ["xkb" "latam"])
-        ];
-        xkb-options = ["terminate:ctrl_alt_bksp"];
-      };
-      "org/gnome/shell" = {
-        disable-user-extensions = false;
+    # dconf.settings = {
+    #   "org/gnome/desktop/input-sources" = {
+    #     show-all-sources = true;
+    #     sources = [
+    #       (lib.hm.gvariant.mkTuple ["xkb" "us+altgr-intl"])
+    #       (lib.hm.gvariant.mkTuple ["xkb" "latam"])
+    #     ];
+    #     xkb-options = ["terminate:ctrl_alt_bksp"];
+    #   };
+    #   "org/gnome/shell" = {
+    #     disable-user-extensions = false;
 
-        # `gnome-extensions list` for a list
-        enabled-extensions = [
-          "appindicatorsupport@rgcjonas.gmail.com"
-        ];
-      };
-    };
+    #     # `gnome-extensions list` for a list
+    #     enabled-extensions = [
+    #       "appindicatorsupport@rgcjonas.gmail.com"
+    #     ];
+    #   };
+    # };
 
-    # qt.platformTheme = "kde";
+    qt.platformTheme = "kde";
 
     xdg.enable = true;
     xdg.mimeApps = {
@@ -221,7 +221,20 @@
   uri.yubi.enable = true;
   programs.adb.enable = true;
   programs.nix-ld.enable = true;
-  programs.gamemode.enable = true;
+  programs.gamemode = {
+    enable = true;
+    settings = {
+      general = {
+        renice = 10;
+      };
+
+      gpu = {
+        apply_gpu_optimisations = "accept-responsibility";
+        gpu_device = 0;
+        amd_performance_level = "high";
+      };
+    };
+  };
   # programs.git.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -323,9 +336,11 @@
   networking.firewall.enable = false;
 
   # this file is not created and it's required for networkmanager ipsec
-  environment.etc."ipsec.secrets".text = ''
-    include ipsec.d/ipsec.nm-l2tp.secrets
-  '';
+  environment.etc = {
+    "ipsec.secrets".text = ''
+      include ipsec.d/ipsec.nm-l2tp.secrets
+    '';
+  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

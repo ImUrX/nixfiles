@@ -12,7 +12,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
   # boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelModules = ["kvm-amd"];
@@ -60,5 +60,5 @@
   };
 
   # Force radv
-  # environment.variables.AMD_VULKAN_ICD = "RADV";
+  environment.variables.AMD_VULKAN_ICD = "RADV";
 }
