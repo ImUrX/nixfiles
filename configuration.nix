@@ -82,6 +82,7 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.displayManager.defaultSession = "plasmawayland";
+  programs.dconf.enable = true;
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -149,7 +150,11 @@
       r2modman
       unityhub
       imv
+      dotnet-sdk_7
+      mono
     ];
+
+    services.easyeffects.enable = true;
 
     home.sessionVariables = {
       MESA_DISK_CACHE_SINGLE_FILE = "1";
@@ -280,8 +285,6 @@
     gnomeExtensions.appindicator
     gnome.gnome-tweaks
     nvtop
-    easyeffects
-    gnomeExtensions.easyeffects-preset-selector
     remmina
     vulkan-headers
     vulkan-loader

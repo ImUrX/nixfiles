@@ -61,4 +61,6 @@
 
   # Force radv
   environment.variables.AMD_VULKAN_ICD = "RADV";
+  environment.variables.EXILED_References = "/home/uri/referenciasdelicht";
+  environment.variables.SL_REFERENCES = "/home/uri/referenciasdelicht";
 }
