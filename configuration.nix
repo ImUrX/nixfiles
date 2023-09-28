@@ -240,6 +240,10 @@
       };
     };
   };
+
+  # Apple
+  services.usbmuxd.enable = true;
+
   # programs.git.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -308,6 +312,10 @@
         # List library dependencies here
       ];
     })
+
+    # Apple
+    libimobiledevice
+    ifuse # optional, to mount using 'ifuse'
   ];
 
   services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
