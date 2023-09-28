@@ -17,7 +17,7 @@ in
       };
       email = mkOption rec {
         type = types.str;
-        default = "urielfontan2002@gmail.com";
+        default = "imurx@proton.me";
         description = "Email to use with git";
         example = default;
       };
