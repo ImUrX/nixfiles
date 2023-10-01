@@ -152,6 +152,7 @@
       imv
       dotnet-sdk_7
       mono
+      xivlauncher
     ];
 
     services.easyeffects.enable = true;
@@ -190,6 +191,7 @@
         "text/html" = ["firefox.desktop"];
         "x-scheme-handler/http" = ["firefox.desktop"];
         "x-scheme-handler/https" = ["firefox.desktop"];
+        "x-scheme-handler/humble" = ["Humble-scheme-handler.desktop"];
       };
     };
 
@@ -324,9 +326,7 @@
   xdg = {
     portal = {
       enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-      ];
+      xdgOpenUsePortal = true;
       # gtkUsePortal = true;
     };
   };
@@ -339,6 +339,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.fwupd.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
