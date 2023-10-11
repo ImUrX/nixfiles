@@ -78,6 +78,11 @@
   #   }
   # ];
 
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
+    "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
+  ];
+
   # Enable KDE
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
@@ -126,7 +131,7 @@
     imports = [inputs.nix-doom-emacs.hmModule];
 
     home.packages = with pkgs; [
-      blender
+      blender-hip
       thunderbird
       discord
       anydesk
@@ -300,6 +305,7 @@
     pavucontrol
     docker-compose
     distrobox
+    epiphany
 
     # wine-staging (version with experimental features)
     wineWowPackages.staging
@@ -318,6 +324,9 @@
     # Apple
     libimobiledevice
     ifuse # optional, to mount using 'ifuse'
+
+    rocminfo
+    rocm-smi
   ];
 
   services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];

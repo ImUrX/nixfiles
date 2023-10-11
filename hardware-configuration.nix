@@ -51,7 +51,7 @@
   hardware.opengl = {
     # Mesa
     enable = true;
-    extraPackages = with pkgs; [mangohud amdvlk];
+    extraPackages = with pkgs; [mangohud amdvlk rocm-opencl-icd];
     extraPackages32 = with pkgs; [mangohud driversi686Linux.amdvlk];
 
     # Vulkan
