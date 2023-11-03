@@ -14,6 +14,7 @@
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
+    pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
   };
 
   # Outputs can be anything, but the wiki + some commands define their own

@@ -79,7 +79,7 @@
   # ];
 
   systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.hip}"
+    # "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
     "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
   ];
 
@@ -257,7 +257,7 @@
   environment.systemPackages = with pkgs; [
     radeontop
     libreoffice-qt
-    firefox-wayland
+    (firefox-wayland.override {nativeMessagingHosts = [inputs.pipewire-screenaudio.packages.${pkgs.system}.default];})
     chromium
     vim-full # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
@@ -325,8 +325,8 @@
     libimobiledevice
     ifuse # optional, to mount using 'ifuse'
 
-    rocminfo
-    rocm-smi
+    rocmPackages.rocminfo
+    rocmPackages.rocm-smi
   ];
 
   services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
