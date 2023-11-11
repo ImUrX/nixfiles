@@ -2,9 +2,11 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }: let
   cfg = config.uri.vscode;
+  extensions = inputs.nix-vscode-extensions.extensions.${pkgs.system};
 in
   with lib; {
     options.uri.vscode = {
@@ -28,6 +30,7 @@ in
               editorconfig.editorconfig
               oderwat.indent-rainbow
               davidanson.vscode-markdownlint
+              redhat.vscode-yaml
               # Javascript
               dbaeumer.vscode-eslint
               esbenp.prettier-vscode
@@ -38,20 +41,13 @@ in
               tamasfe.even-better-toml
               serayuzgur.crates
             ]
-            ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-              {
-                name = "vscode-fluent";
-                publisher = "macabeus";
-                version = "1.0.0";
-                sha256 = "814e374452e9e9e99896893ad1c1de2dae2486285a668f985c66ef25eb08a9f2";
-              }
-              {
-                name = "flatbuffers";
-                publisher = "gaborv";
-                version = "0.1.0";
-                sha256 = "dd6b26d628ade5e0b99e32c52db1a184060d6299c0589afbe0e96c46042a0acb";
-              }
-            ];
+            ++ (with extensions.open-vsx; [
+              floxay.vscode-flatbuffers
+              tauri-apps.tauri-vscode
+            ])
+            ++ (with extensions.vscode-marketplace; [
+              macabeus.vscode-fluent
+            ]);
         };
       };
     };

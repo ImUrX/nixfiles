@@ -158,6 +158,7 @@
       dotnet-sdk_7
       mono
       xivlauncher
+      alsa-scarlett-gui
     ];
 
     services.easyeffects.enable = true;

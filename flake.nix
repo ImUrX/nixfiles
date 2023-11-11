@@ -15,6 +15,7 @@
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
     pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
   # Outputs can be anything, but the wiki + some commands define their own
