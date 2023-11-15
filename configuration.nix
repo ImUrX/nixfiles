@@ -120,6 +120,12 @@
     extraGroups = ["wheel" "input" "adbusers" "plugdev" "docker" "dialout"]; # Enable ‘sudo’ for the user.
   };
 
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   security.polkit.enable = true;
 
   home-manager.users.uri = {
@@ -198,6 +204,7 @@
         "x-scheme-handler/http" = ["firefox.desktop"];
         "x-scheme-handler/https" = ["firefox.desktop"];
         "x-scheme-handler/humble" = ["Humble-scheme-handler.desktop"];
+        "x-scheme-handler/ror2mm" = ["r2modman.desktop"];
       };
     };
 
@@ -294,8 +301,8 @@
     wev
     wl-mirror
     wl-color-picker
-    gnomeExtensions.appindicator
-    gnome.gnome-tweaks
+    # gnomeExtensions.appindicator
+    # gnome.gnome-tweaks
     nvtop
     remmina
     vulkan-headers
@@ -315,6 +322,7 @@
     # native wayland support (unstable)
     wineWowPackages.waylandFull
     dxvk
+    protontricks
 
     (lutris.override {
       extraLibraries = pkgs: [
