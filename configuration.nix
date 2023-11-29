@@ -265,7 +265,12 @@
   environment.systemPackages = with pkgs; [
     radeontop
     libreoffice-qt
-    (firefox-wayland.override {nativeMessagingHosts = [inputs.pipewire-screenaudio.packages.${pkgs.system}.default];})
+    (firefox-wayland.override {
+      nativeMessagingHosts = [
+        inputs.pipewire-screenaudio.packages.${pkgs.system}.default
+        pkgs.plasma5Packages.plasma-browser-integration
+      ];
+    })
     chromium
     vim-full # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
