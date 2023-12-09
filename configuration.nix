@@ -334,6 +334,7 @@
         # List library dependencies here
       ];
     })
+    heroic
 
     # Apple
     libimobiledevice

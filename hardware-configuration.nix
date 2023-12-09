@@ -15,8 +15,8 @@
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
   # boot.initrd.kernelModules = ["amdgpu"];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
+  boot.kernelModules = ["kvm-amd" "v4l2loopback"];
+  boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
   boot.extraModprobeConfig = ''
     options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1
   '';
