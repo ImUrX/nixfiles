@@ -165,6 +165,8 @@
       mono
       xivlauncher
       alsa-scarlett-gui
+      protonvpn-gui
+      protonvpn-cli
     ];
 
     services.easyeffects.enable = true;
