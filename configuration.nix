@@ -136,6 +136,13 @@
     home.stateVersion = "23.05";
     # imports = [inputs.nix-doom-emacs.hmModule];
 
+    systemd.user.targets.tray = {
+      Unit = {
+        Description = "Home Manager System Tray";
+        Requires = ["graphical-session-pre.target"];
+      };
+    };
+
     home.packages = with pkgs; [
       blender-hip
       thunderbird
@@ -166,9 +173,17 @@
       mono
       xivlauncher
       alsa-scarlett-gui
+      syncthingtray-minimal
     ];
 
     services.easyeffects.enable = true;
+
+    services.syncthing = {
+      enable = true;
+      tray = {
+        enable = true;
+      };
+    };
 
     home.sessionVariables = {
       MESA_DISK_CACHE_SINGLE_FILE = "1";
@@ -206,6 +221,8 @@
         "x-scheme-handler/https" = ["firefox.desktop"];
         "x-scheme-handler/humble" = ["Humble-scheme-handler.desktop"];
         "x-scheme-handler/ror2mm" = ["r2modman.desktop"];
+        "x-scheme-handler/termius" = ["Termius.desktop"];
+        "x-scheme-handler/ssh" = ["ktelnetservice5.desktop"];
       };
     };
 
