@@ -10,7 +10,7 @@
     };
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +24,6 @@
     self,
     nixpkgs,
     home-manager,
-    nix-doom-emacs,
     alejandra,
     ...
   } @ inputs: {

@@ -134,7 +134,7 @@
     ...
   }: {
     home.stateVersion = "23.05";
-    imports = [inputs.nix-doom-emacs.hmModule];
+    # imports = [inputs.nix-doom-emacs.hmModule];
 
     home.packages = with pkgs; [
       blender-hip
@@ -158,15 +158,14 @@
       pipx
       gimp
       aegisub
-      r2modman
+      # old electron in EoL
+      # r2modman
       unityhub
       imv
       dotnet-sdk_7
       mono
       xivlauncher
       alsa-scarlett-gui
-      protonvpn-gui
-      protonvpn-cli
     ];
 
     services.easyeffects.enable = true;
@@ -214,20 +213,25 @@
     programs.direnv.enableBashIntegration = true;
     programs.bash.enable = true;
 
-    programs.doom-emacs = {
-      # emacsPackages = with inputs.emacs-overlay.packages.${config.nixpkgs.system};
-      #   emacsPackagesFor emacsGit;
-      enable = true;
-      doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
-      # and packages.el files
-    };
+    # programs.doom-emacs = {
+    #   # emacsPackages = with inputs.emacs-overlay.packages.${config.nixpkgs.system};
+    #   #   emacsPackagesFor emacsGit;
+    #   enable = true;
+    #   doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
+    #   # and packages.el files
+    # };
 
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
     };
+    home.shellAliases = {
+      love = "echo 'Edu: Te amo Uri <3'";
+    };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
   # programs.cnping.enable = true;
 
   services.flatpak.enable = true;
@@ -337,6 +341,7 @@
       ];
     })
     heroic
+    pkgsi686Linux.gperftools
 
     # Apple
     libimobiledevice
