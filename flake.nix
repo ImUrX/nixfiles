@@ -16,6 +16,8 @@
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
     pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
+    aagl.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Outputs can be anything, but the wiki + some commands define their own
@@ -40,6 +42,11 @@
           home-manager.nixosModules.home-manager
           {
             environment.systemPackages = [alejandra.defaultPackage.${system}];
+          }
+          {
+            imports = [aagl.nixosModules.default];
+            nix.settings = aagl.nixConfig; # Set up Cachix
+            programs.anime-game-launcher.enable = true;
           }
           {
             _module.args = {inherit inputs;};
