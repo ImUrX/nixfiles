@@ -27,6 +27,7 @@
     nixpkgs,
     home-manager,
     alejandra,
+    aagl,
     ...
   } @ inputs: {
     # nixosConfigurations is the key that nixos-rebuild looks for.
@@ -44,11 +45,6 @@
             environment.systemPackages = [alejandra.defaultPackage.${system}];
           }
           {
-            imports = [aagl.nixosModules.default];
-            nix.settings = aagl.nixConfig; # Set up Cachix
-            programs.anime-game-launcher.enable = true;
-          }
-          {
             _module.args = {inherit inputs;};
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -56,6 +52,11 @@
 
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
+          }
+          {
+            imports = [aagl.nixosModules.default];
+            nix.settings = aagl.nixConfig; # Setup cachix
+            programs.anime-game-launcher.enable = true;
           }
         ];
       };
