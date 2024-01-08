@@ -11,7 +11,6 @@
   imports = [
     # Include the results of the hardware scan.
     ./modules/nix.nix
-    ./hardware-configuration.nix
     ./modules/sound
     ./fonts.nix
     ./modules/git.nix
@@ -31,8 +30,9 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
 
-  networking.hostName = "uridesk"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
@@ -80,16 +80,14 @@
   #   }
   # ];
 
-  systemd.tmpfiles.rules = [
-    # "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-    "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
-  ];
-
   # Enable KDE
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.displayManager.defaultSession = "plasmawayland";
   programs.dconf.enable = true;
+
+  environment.variables.EXILED_References = "/home/uri/referenciasdelicht";
+  environment.variables.SL_REFERENCES = "/home/uri/referenciasdelicht";
 
   # Configure keymap in X11
   # services.xserver.layout = "us";

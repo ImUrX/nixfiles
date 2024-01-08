@@ -12,8 +12,6 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
   # boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelModules = ["kvm-amd" "v4l2loopback"];
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
@@ -21,6 +19,11 @@
     options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1
   '';
   #hardware.cpu.amd.updateMicrocode = true;
+
+  systemd.tmpfiles.rules = [
+    # "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+    "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
+  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/f66eca28-c5e9-4a9d-ba5d-17d9cb43d42a";
@@ -64,6 +67,5 @@
 
   # Force radv
   environment.variables.AMD_VULKAN_ICD = "RADV";
-  environment.variables.EXILED_References = "/home/uri/referenciasdelicht";
-  environment.variables.SL_REFERENCES = "/home/uri/referenciasdelicht";
+  networking.hostName = "uridesk"; # Define your hostname.
 }
