@@ -26,12 +26,14 @@
 
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
+    sandbox = true;
   };
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
+  virtualisation.waydroid.enable = true;
 
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -182,6 +184,7 @@
       enable = true;
       tray = {
         enable = true;
+        command = "syncthingtray --wait";
       };
     };
 
@@ -223,6 +226,7 @@
         "x-scheme-handler/ror2mm" = ["r2modman.desktop"];
         "x-scheme-handler/termius" = ["Termius.desktop"];
         "x-scheme-handler/ssh" = ["ktelnetservice5.desktop"];
+        "x-scheme-handler/heroic" = ["com.heroicgameslauncher.hgl.desktop"];
       };
     };
 
@@ -292,6 +296,7 @@
       nativeMessagingHosts = [
         inputs.pipewire-screenaudio.packages.${pkgs.system}.default
         pkgs.plasma5Packages.plasma-browser-integration
+        pkgs.fx-cast-bridge
       ];
     })
     chromium
@@ -344,7 +349,7 @@
     epiphany
 
     # wine-staging (version with experimental features)
-    wineWowPackages.staging
+    # wineWowPackages.staging
     # winetricks (all versions)
     winetricks
     # native wayland support (unstable)
