@@ -39,7 +39,7 @@
         system = "x86_64-linux";
         # Import our old system configuration.nix
         modules = [
-          ./hardware-configuration-uridesk
+          ./hardware-configuration-uridesk.nix
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {

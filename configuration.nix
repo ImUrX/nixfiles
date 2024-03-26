@@ -83,9 +83,12 @@
   # ];
 
   # Enable KDE
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.displayManager.defaultSession = "plasmawayland";
+  services.xserver.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+  services.desktopManager.plasma6.enable = true;
+  services.xserver.displayManager.defaultSession = "plasma";
   programs.dconf.enable = true;
 
   environment.variables.EXILED_References = "/home/uri/referenciasdelicht";
@@ -148,7 +151,7 @@
     home.packages = with pkgs; [
       blender-hip
       thunderbird
-      discord
+      vesktop
       anydesk
       termius
       inkscape-with-extensions
@@ -164,7 +167,6 @@
       python3Full
       python310Packages.toml
       python310Packages.aiohttp
-      pipx
       gimp
       aegisub
       # old electron in EoL
@@ -295,7 +297,7 @@
     (firefox-wayland.override {
       nativeMessagingHosts = [
         inputs.pipewire-screenaudio.packages.${pkgs.system}.default
-        pkgs.plasma5Packages.plasma-browser-integration
+        pkgs.kdePackages.plasma-browser-integration
         pkgs.fx-cast-bridge
       ];
     })
@@ -336,7 +338,7 @@
     wl-color-picker
     # gnomeExtensions.appindicator
     # gnome.gnome-tweaks
-    nvtop
+    nvtopPackages.amd
     remmina
     vulkan-headers
     vulkan-loader
@@ -347,6 +349,7 @@
     docker-compose
     distrobox
     epiphany
+    kdePackages.kdeconnect-kde
 
     # wine-staging (version with experimental features)
     # wineWowPackages.staging
