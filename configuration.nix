@@ -350,6 +350,7 @@
     distrobox
     epiphany
     kdePackages.kdeconnect-kde
+    kdePackages.kleopatra
 
     # wine-staging (version with experimental features)
     # wineWowPackages.staging
