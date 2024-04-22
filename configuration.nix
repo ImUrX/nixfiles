@@ -28,6 +28,7 @@
     experimental-features = ["nix-command" "flakes"];
     sandbox = true;
   };
+  nix.optimise.automatic = true;
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -178,6 +179,7 @@
       xivlauncher
       alsa-scarlett-gui
       syncthingtray-minimal
+      cosign
     ];
 
     services.easyeffects.enable = true;
