@@ -11,10 +11,11 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    # emacs-overlay.url = "github:nix-community/emacs-overlay";
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
     pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
+    pipewire-screenaudio.inputs.nixpkgs.follows = "nixpkgs";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     aagl.inputs.nixpkgs.follows = "nixpkgs";
