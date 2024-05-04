@@ -70,7 +70,7 @@ in
             ${''url "git@github.com:"''} = {insteadOf = "git://github.com/";};
 
             maintenance = {
-              repo = "/home/uri/proyects/SlimeVR-Server";
+              repo = "";
             };
           };
         };
