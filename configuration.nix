@@ -157,7 +157,7 @@
       termius
       inkscape-with-extensions
       xorg.xeyes
-      prismlauncher
+      (prismlauncher.override {withWaylandGLFW = true;})
       element-desktop
       mpv
       qbittorrent
@@ -180,6 +180,7 @@
       alsa-scarlett-gui
       syncthingtray-minimal
       cosign
+      openmw
     ];
 
     services.easyeffects.enable = true;
