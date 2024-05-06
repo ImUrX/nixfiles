@@ -121,7 +121,7 @@
       MOZ_ENABLE_WAYLAND = 1;
     };
     home.shellAliases = {
-      love = "echo 'Edu: Te amo Uri <3'";
+      love = "echo 'Uri: Te amo Edu <3'";
     };
   };
 }
