@@ -14,9 +14,6 @@
 
   environment.variables.EXILED_References = "/home/uri/referenciasdelicht";
   environment.variables.SL_REFERENCES = "/home/uri/referenciasdelicht";
-  i18n.defaultLocale = "en_US.UTF-8";
-  # Set your time zone.
-  time.timeZone = "America/Argentina/Buenos_Aires";
 
   home-manager.users.uri = {
     config,

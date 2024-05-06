@@ -16,6 +16,7 @@ in
         jetbrains.rider
         jetbrains.idea-ultimate
         jetbrains.clion
+        jetbrains.rust-rover
         android-studio
       ];
     };

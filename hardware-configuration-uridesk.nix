@@ -65,6 +65,10 @@
     driSupport32Bit = true;
   };
 
+  i18n.defaultLocale = "en_US.UTF-8";
+  # Set your time zone.
+  time.timeZone = "America/Argentina/Buenos_Aires";
+
   # Force radv
   environment.variables.AMD_VULKAN_ICD = "RADV";
   networking.hostName = "uridesk"; # Define your hostname.

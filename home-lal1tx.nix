@@ -11,10 +11,6 @@
     extraGroups = ["wheel" "input" "adbusers" "plugdev" "docker" "dialout"]; # Enable ‘sudo’ for the user.
     initialPassword = "eevee123";
   };
-  i18n.defaultLocale = "es_CL.UTF-8";
-  # Set your time zone.
-  time.timeZone = "America/Santiago";
-  time.hardwareClockInLocalTime = true;
 
   home-manager.users.lal1tx = {
     config,
