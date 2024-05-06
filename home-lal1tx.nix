@@ -116,6 +116,7 @@
       enable = true;
       name = "Lal1tx";
       email = "156338803+lal1tx@users.noreply.github.com";
+      gpg = false;
     };
     uri.vscode.enable = true;
     uri.java.enable = true;
