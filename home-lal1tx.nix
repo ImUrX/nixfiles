@@ -43,7 +43,6 @@
       anydesk
       xorg.xeyes
       r2modman
-      unityhub
       imv
       syncthingtray-minimal
     ];
