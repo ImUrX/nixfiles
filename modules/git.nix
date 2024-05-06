@@ -21,6 +21,12 @@ in
         description = "Email to use with git";
         example = default;
       };
+      gpg = mkOption rec {
+        type = types.bool;
+        default = true;
+        description = "Sign commit with GPG";
+        example = default;
+      };
     };
 
     config = mkIf cfg.enable {
@@ -56,7 +62,7 @@ in
             # ff = "only";
           };
           commit = {
-            gpgSign = true;
+            gpgSign = cfg.gpg;
           };
           http = {
             postBuffer = 2097152000;
