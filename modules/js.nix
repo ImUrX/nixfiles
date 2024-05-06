@@ -12,13 +12,11 @@ in
     };
 
     config = mkIf cfg.enable {
-      home-manager.users.uri = {...}: {
-        home.packages = with pkgs; [
-          deno
-          nodejs
-          node2nix
-          yarn2nix
-        ];
-      };
+      home.packages = with pkgs; [
+        deno
+        nodejs
+        node2nix
+        yarn2nix
+      ];
     };
   }

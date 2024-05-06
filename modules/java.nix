@@ -12,18 +12,16 @@ in
     };
 
     config = mkIf cfg.enable {
-      home-manager.users.uri = {...}: {
-        home.file."jdks/openjdk8".source = pkgs.jdk8;
-        home.file."jdks/openjdk11".source = pkgs.jdk11;
-        home.file."jdks/openjdk17".source = pkgs.jdk17;
-        home.file."jdks/openjdk".source = pkgs.jdk;
+      home.file."jdks/openjdk8".source = pkgs.jdk8;
+      home.file."jdks/openjdk11".source = pkgs.jdk11;
+      home.file."jdks/openjdk17".source = pkgs.jdk17;
+      home.file."jdks/openjdk".source = pkgs.jdk;
 
-        home.packages = with pkgs; [
-          jdk
-          gradle
-          gradle-completion
-          maven
-        ];
-      };
+      home.packages = with pkgs; [
+        jdk
+        gradle
+        gradle-completion
+        maven
+      ];
     };
   }

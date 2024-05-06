@@ -12,19 +12,17 @@ in
     };
 
     config = mkIf cfg.enable {
-      home-manager.users.uri = {...}: {
-        home.packages = with pkgs; [
-          ffmpeg_5-full
-          gst_all_1.gstreamer
-          gst_all_1.gst-plugins-good
-          gst_all_1.gst-vaapi
-        ];
-        programs.obs-studio.enable = true;
-        programs.obs-studio.plugins = with pkgs.obs-studio-plugins; [
-          obs-vkcapture
-          obs-gstreamer
-          obs-pipewire-audio-capture
-        ];
-      };
+      home.packages = with pkgs; [
+        ffmpeg_5-full
+        gst_all_1.gstreamer
+        gst_all_1.gst-plugins-good
+        gst_all_1.gst-vaapi
+      ];
+      programs.obs-studio.enable = true;
+      programs.obs-studio.plugins = with pkgs.obs-studio-plugins; [
+        obs-vkcapture
+        obs-gstreamer
+        obs-pipewire-audio-capture
+      ];
     };
   }
