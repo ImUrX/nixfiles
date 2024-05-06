@@ -39,6 +39,7 @@
     };
 
     home.packages = with pkgs; [
+      netflix
       blender
       anydesk
       xorg.xeyes
