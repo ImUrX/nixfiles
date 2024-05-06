@@ -72,7 +72,7 @@
         system = "x86_64-linux";
         # Import our old system configuration.nix
         modules = [
-          ./hardware-configuration-lal1tx
+          ./hardware-configuration-lal1tx.nix
           ./configuration.nix
           ./home-lal1tx.nix
           home-manager.nixosModules.home-manager
