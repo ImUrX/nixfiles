@@ -12,13 +12,11 @@ in
     };
 
     config = mkIf cfg.enable {
-      home-manager.users.uri = {...}: {
-        home.packages = with pkgs; [
-          jetbrains.rider
-          jetbrains.idea-ultimate
-          jetbrains.clion
-          android-studio
-        ];
-      };
+      home.packages = with pkgs; [
+        jetbrains.rider
+        jetbrains.idea-ultimate
+        jetbrains.clion
+        android-studio
+      ];
     };
   }
