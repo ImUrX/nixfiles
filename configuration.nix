@@ -107,6 +107,7 @@
   hardware.pulseaudio.enable = lib.mkForce false;
   hardware.logitech.wireless.enable = true;
   hardware.logitech.wireless.enableGraphical = true;
+  services.ratbagd.enable = true;
   cookiecutie.sound.pipewire.enable = true;
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput.enable = true;
@@ -162,6 +163,7 @@
         pkgs.fx-cast-bridge
       ];
     })
+    piper
     vesktop
     mpv
     gimp
