@@ -43,6 +43,9 @@
     keyMap = lib.mkForce "us";
     useXkbConfig = true; # use xkbOptions in tty.
   };
+  environment.shellAliases = {
+    "nix-switch" = "sudo nixos-rebuild --flake . switch";
+  };
 
   # Enable the X11 windowing system.
   #.x.enable = true;

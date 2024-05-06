@@ -14,6 +14,7 @@
   i18n.defaultLocale = "es_CL.UTF-8";
   # Set your time zone.
   time.timeZone = "America/Santiago";
+  time.hardwareClockInLocalTime = true;
 
   home-manager.users.lal1tx = {
     config,
@@ -111,7 +112,11 @@
     #   # and packages.el files
     # };
 
-    cookiecutie.git.enable = true;
+    cookiecutie.git = {
+      enable = true;
+      name = "Lal1tx";
+      email = "156338803+lal1tx@users.noreply.github.com";
+    };
     uri.vscode.enable = true;
     uri.java.enable = true;
     uri.javascript.enable = true;
