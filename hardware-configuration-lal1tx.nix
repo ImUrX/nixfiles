@@ -94,6 +94,11 @@
     };
   };
 
+  i18n.defaultLocale = "es_CL.UTF-8";
+  # Set your time zone.
+  time.timeZone = "America/Santiago";
+  time.hardwareClockInLocalTime = true;
+
   # Force radv
   networking.hostName = "lal1tx"; # Define your hostname.
 }
