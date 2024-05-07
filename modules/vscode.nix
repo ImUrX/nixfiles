@@ -39,6 +39,7 @@ in
             matklad.rust-analyzer
             tamasfe.even-better-toml
             serayuzgur.crates
+            vadimcn.vscode-lldb
           ]
           ++ (with extensions.open-vsx; [
             floxay.vscode-flatbuffers
