@@ -35,6 +35,7 @@
     };
 
     home.packages = with pkgs; [
+      audacity
       netflix
       blender
       anydesk
