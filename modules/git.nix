@@ -41,7 +41,7 @@ in
         userName = cfg.name;
 
         lfs.enable = true;
-        difftastic.enable = true;
+        # difftastic.enable = true;
 
         aliases = {};
 
