@@ -220,6 +220,8 @@
     epiphany
     kdePackages.kdeconnect-kde
     kdePackages.kleopatra
+    # LSP for Nix
+    nil
 
     # wine-staging (version with experimental features)
     # wineWowPackages.staging
