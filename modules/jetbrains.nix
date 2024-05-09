@@ -13,11 +13,9 @@ in
 
     config = mkIf cfg.enable {
       home.packages = with pkgs; [
-        jetbrains.rider
+        #jetbrains.rider
         jetbrains.idea-ultimate
-        jetbrains.clion
-        jetbrains.rust-rover
-        android-studio
+        #jetbrains.clion
       ];
     };
   }

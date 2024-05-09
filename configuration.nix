@@ -238,7 +238,6 @@
       ];
     })
     heroic
-    pkgsi686Linux.gperftools
 
     # Apple
     libimobiledevice
