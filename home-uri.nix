@@ -49,12 +49,10 @@
       element-desktop
       flatpak-builder
       python3Full
-      python310Packages.toml
-      python310Packages.aiohttp
-      aegisub
+      python311Packages.toml
+      python311Packages.aiohttp
       # old electron in EoL
       r2modman
-      unityhub
       imv
       dotnet-sdk_7
       mono

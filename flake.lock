@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1713629865,
-        "narHash": "sha256-fsSuh5ZYGYninYR68obMaSqKxnxEnCHIJJFc6igjHGw=",
+        "lastModified": 1715274588,
+        "narHash": "sha256-4q9bLgSF3GIMLCVl/iVWkv/7r8FCxSgObZkRxzv0p/8=",
         "owner": "ezKEa",
         "repo": "aagl-gtk-on-nix",
-        "rev": "b6c28cf87a7a055ffaad410f36852a7b2a9161ff",
+        "rev": "ad89cb7bf30cefd1d2c3202aba1997a9697ab895",
         "type": "github"
       },
       "original": {
@@ -139,11 +139,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1714341119,
-        "narHash": "sha256-HP+7WsRrJKg4d6Xc5pzX0BgD8w9QNmtB7755iaNHzVI=",
+        "lastModified": 1715077503,
+        "narHash": "sha256-AfHQshzLQfUqk/efMtdebHaQHqVntCMjhymQzVFLes0=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "c002bc08c8ea6c87198f3024e8bfd6fdb1c90c9e",
+        "rev": "6e277d9566de9976f47228dd8c580b97488734d4",
         "type": "github"
       },
       "original": {
@@ -159,11 +159,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1714267526,
-        "narHash": "sha256-92vUWmEZgINBgC2uT39Ihpbc/Ok86iOT2DjPrmrnFnA=",
+        "lastModified": 1715217683,
+        "narHash": "sha256-xr0rPyije/zNj/L1kw1DI/O7CNmd0eQw2ePBFM2Id4g=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "6be0c88ffc813c82a6d3c99129c5cdaed5499468",
+        "rev": "bd7ff7845868d9238e6365dbd61bec13b4d1dee6",
         "type": "github"
       },
       "original": {
@@ -190,11 +190,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1714253743,
-        "narHash": "sha256-mdTQw2XlariysyScCv2tTE45QSU9v/ezLcHJ22f0Nxc=",
+        "lastModified": 1715087517,
+        "narHash": "sha256-CLU5Tsg24Ke4+7sH8azHWXKd0CFd4mhLWfhYgUiDBpQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "58a1abdbae3217ca6b702f03d3b35125d88a2994",
+        "rev": "b211b392b8486ee79df6cdfb1157ad2133427a29",
         "type": "github"
       },
       "original": {
@@ -211,11 +211,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1713029490,
-        "narHash": "sha256-ibqB15qM4Ygo+OkyrqVWUDzRUW7k/kOYnhOeBXRpU8U=",
+        "lastModified": 1715248396,
+        "narHash": "sha256-3er5F6A2liPktiKkQfjIoBX6YB9KD9wFuyhQ0dxGfXw=",
         "owner": "IceDBorn",
         "repo": "pipewire-screenaudio",
-        "rev": "9cd177c34e7cb3b0ac11d613f555e83ccf7b1b58",
+        "rev": "9c9ad3491dcdd3a535d76ac85433ac5325621eb4",
         "type": "github"
       },
       "original": {
