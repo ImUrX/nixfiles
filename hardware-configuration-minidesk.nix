@@ -22,22 +22,17 @@
 
   systemd.tmpfiles.rules = [
     # "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-    "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
+    # "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
   ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/f66eca28-c5e9-4a9d-ba5d-17d9cb43d42a";
+    device = "/dev/disk/by-label/nixos";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/985D-9B8A";
+    device = "/dev/disk/by-label/boot";
     fsType = "vfat";
-  };
-
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/004a816f-9715-4515-9dac-ca261aa2e7d9";
-    fsType = "ext4";
   };
 
   swapDevices = [];
@@ -57,8 +52,8 @@
   hardware.opengl = {
     # Mesa
     enable = true;
-    extraPackages = with pkgs; [mangohud amdvlk rocm-opencl-icd];
-    extraPackages32 = with pkgs; [mangohud driversi686Linux.amdvlk];
+    extraPackages = with pkgs; [mangohud];
+    extraPackages32 = with pkgs; [mangohud];
 
     # Vulkan
     driSupport = true;
@@ -70,6 +65,5 @@
   time.timeZone = "Europe/Amsterdam";
 
   # Force radv
-  environment.variables.AMD_VULKAN_ICD = "RADV";
   networking.hostName = "uridesk"; # Define your hostname.
 }
