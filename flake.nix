@@ -29,6 +29,11 @@
     anyrun.inputs.nixpkgs.follows = "nixpkgs";
 
     ags.url = "github:Aylur/ags";
+
+    more-waita = {
+      url = "github:somepaulo/MoreWaita";
+      flake = false;
+    };
   };
 
   # Outputs can be anything, but the wiki + some commands define their own
@@ -93,6 +98,7 @@
             _module.args = {inherit inputs;};
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
             # home-manager.users.uri = import ./home.nix
 
             # Optionally, use home-manager.extraSpecialArgs to pass

@@ -187,6 +187,7 @@
     dig
     asciinema
     ripgrep # a better grep
+    zip
     unzip
     ncdu_1 # _2 only supports modern microarchs
     fd # a better find
