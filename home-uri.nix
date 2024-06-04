@@ -15,6 +15,8 @@
   environment.variables.EXILED_References = "/home/uri/referenciasdelicht";
   environment.variables.SL_REFERENCES = "/home/uri/referenciasdelicht";
 
+  programs.hyprland.enable = true;
+
   home-manager.users.uri = {
     config,
     lib,
@@ -28,6 +30,7 @@
       ./modules/java.nix
       ./modules/rust.nix
       ./modules/obs.nix
+      ./modules/hyprland.nix
     ];
 
     home.stateVersion = "23.05";
@@ -51,7 +54,6 @@
       python3Full
       python311Packages.toml
       python311Packages.aiohttp
-      # old electron in EoL
       r2modman
       imv
       dotnet-sdk_7
@@ -61,6 +63,7 @@
       syncthingtray-minimal
       cosign
       openmw
+      vintagestory
     ];
 
     services.arrpc.enable = true;
@@ -135,6 +138,7 @@
     uri.java.enable = true;
     uri.javascript.enable = true;
     uri.obs.enable = true;
+    uri.hyprland.enable = true;
 
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;

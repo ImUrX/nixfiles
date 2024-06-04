@@ -8,17 +8,27 @@
       # closest you can get to following the equivalent channel with flakes.
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     # emacs-overlay.url = "github:nix-community/emacs-overlay";
     alejandra.url = "github:kamadorueda/alejandra/3.0.0";
     alejandra.inputs.nixpkgs.follows = "nixpkgs";
+
     pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
     pipewire-screenaudio.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     aagl.inputs.nixpkgs.follows = "nixpkgs";
+
+    anyrun.url = "github:Kirottu/anyrun";
+    anyrun.inputs.nixpkgs.follows = "nixpkgs";
+
+    ags.url = "github:Aylur/ags";
   };
 
   # Outputs can be anything, but the wiki + some commands define their own
@@ -65,7 +75,7 @@
           }
         ];
       };
-      uridesk = nixpkgs.lib.nixosSystem rec {
+      minidesk = nixpkgs.lib.nixosSystem rec {
         # A lot of times online you will see the use of flake-utils + a
         # function which iterates over many possible systems. My system
         # is x86_64-linux, so I'm only going to define that

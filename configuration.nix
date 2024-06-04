@@ -76,12 +76,12 @@
   # ];
 
   # Enable KDE
-  services.xserver.displayManager.sddm = {
+  services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
   };
   services.desktopManager.plasma6.enable = true;
-  services.xserver.displayManager.defaultSession = "plasma";
+  services.displayManager.defaultSession = "plasma";
   programs.dconf.enable = true;
 
   # Configure keymap in X11
@@ -98,7 +98,7 @@
   ];
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
   };
 
   # Enable sound.
@@ -110,7 +110,7 @@
   services.ratbagd.enable = true;
   cookiecutie.sound.pipewire.enable = true;
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
   virtualisation.docker.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

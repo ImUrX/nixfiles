@@ -35,7 +35,12 @@
     fsType = "vfat";
   };
 
-  swapDevices = [];
+  swapDevices = [
+    {
+      device = "/dev/disk/by-label/swap";
+      # randomEncryption.enable = true;
+    }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -65,5 +70,5 @@
   time.timeZone = "Europe/Amsterdam";
 
   # Force radv
-  networking.hostName = "uridesk"; # Define your hostname.
+  networking.hostName = "minidesk"; # Define your hostname.
 }
