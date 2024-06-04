@@ -30,13 +30,25 @@ in
         playerctl
         swappy
         swaylock-effects
-        swayidle
+        hypridle
         slurp
         swww
         wayshot
         wlsunset
         wf-recorder
         anyrun # use hyprconfig/anyrun.nix when it works
+
+        showmethekey
+        kitty
+        bat
+        acpi
+        foot
+        ydotool
+
+        yad
+        blueberry
+        icon-library
+        qt5.qtimageformats
       ];
 
       uri = {
@@ -75,12 +87,10 @@ in
           ];
           monitor = [",preferred,auto,1"];
           "exec-once" = [
-            "ags"
-            "swww kill; swww init"
+            "swww-daemon --format xrgb"
+            "ags &"
             # "fcitx5"
-            ''
-              swayidle -w timeout 300 'swaylock -f' timeout 450 'pidof java || systemctl suspend' before-sleep 'swaylock -f'
-            ''
+            "hypridle"
             "wl-paste --type text --watch cliphist store"
             "wl-paste --type image --watch cliphist store"
             "hyprctl setcursor Bibata-Modern-Classic 24"
