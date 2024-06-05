@@ -82,7 +82,11 @@
   };
   services.desktopManager.plasma6.enable = true;
   services.displayManager.defaultSession = "plasma";
+
   programs.dconf.enable = true;
+
+  # ssd optimization
+  services.fstrim.enable = true;
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
