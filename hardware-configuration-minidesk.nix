@@ -13,7 +13,10 @@
   ];
 
   # boot.initrd.kernelModules = ["amdgpu"];
-  boot.kernelModules = ["kvm-amd" "v4l2loopback"];
+  boot.kernelModules = ["kvm-amd" "v4l2loopback" "hp-wmi"];
+  boot.kernelParams = [
+    "i915.enable_guc=2"
+  ];
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
   boot.extraModprobeConfig = ''
     options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1
@@ -51,9 +54,9 @@
   # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
 
   # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.enableAllFirmware = true;
 
-  ### AMD STUFF
+  ### Intel Stuff
   hardware.opengl = {
     # Mesa
     enable = true;
@@ -64,6 +67,8 @@
     driSupport = true;
     driSupport32Bit = true;
   };
+  hardware.enableRedistributableFirmware = true;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   i18n.defaultLocale = "en_US.UTF-8";
   # Set your time zone.
