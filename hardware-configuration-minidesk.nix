@@ -69,6 +69,10 @@
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
 
+  # Power saving
+  services.thermald.enable = true;
+  services.auto-cpufreq.enable = true;
+
   # Force radv
   networking.hostName = "minidesk"; # Define your hostname.
 }
