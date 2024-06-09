@@ -60,6 +60,7 @@
       syncthingtray-minimal
       cosign
       openmw
+      pupdate
     ];
 
     services.arrpc.enable = true;
@@ -141,6 +142,7 @@
     };
     home.shellAliases = {
       love = "echo 'Edu: Te amo Uri <3'";
+      pupdate = "pupdate -p ~/.config/pupdate/";
     };
   };
 }
