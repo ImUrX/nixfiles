@@ -2,7 +2,6 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  config,
   pkgs,
   lib,
   inputs,
@@ -225,6 +224,7 @@
     epiphany
     kdePackages.kdeconnect-kde
     kdePackages.kleopatra
+    lm_sensors
     # LSP for Nix
     nil
 
