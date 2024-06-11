@@ -30,6 +30,8 @@
 
     ags.url = "github:Aylur/ags";
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+
     more-waita = {
       url = "github:somepaulo/MoreWaita";
       flake = false;
@@ -44,6 +46,7 @@
     home-manager,
     alejandra,
     aagl,
+    nixos-hardware,
     ...
   } @ inputs: {
     # nixosConfigurations is the key that nixos-rebuild looks for.
@@ -58,7 +61,6 @@
           ./hardware-configuration-uridesk.nix
           ./configuration.nix
           ./home-uri.nix
-          ./home-lal1tx.nix
           home-manager.nixosModules.home-manager
           {
             environment.systemPackages = [alejandra.defaultPackage.${system}];
@@ -90,6 +92,7 @@
           ./hardware-configuration-minidesk.nix
           ./configuration.nix
           ./home-uri.nix
+          nixos-hardware.nixosModules.framework-13th-gen-intel
           home-manager.nixosModules.home-manager
           {
             environment.systemPackages = [alejandra.defaultPackage.${system}];

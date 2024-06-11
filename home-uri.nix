@@ -1,10 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   users.users.uri = {
     isNormalUser = true;
     createHome = true;
@@ -61,6 +55,7 @@
       cosign
       openmw
       pupdate
+      calibre
     ];
 
     services.arrpc.enable = true;
