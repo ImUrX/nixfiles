@@ -136,7 +136,10 @@
   # 指
   uri.yubi.enable = true;
   programs.adb.enable = true;
-  programs.nix-ld.enable = true;
+  programs.nix-ld = {
+    enable = true;
+    package = pkgs.nix-ld-rs;
+  };
   programs.gamemode = {
     enable = true;
     settings = {
@@ -288,7 +291,7 @@
     "neofetch" = "hyfetch";
     "find" = "fd";
     "traceroute" = "mtr";
-    "grep" = "ripgrep";
+    "grep" = "rg";
     "ll" = "eza -l --git";
     "ls" = "eza";
   };
