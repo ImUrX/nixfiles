@@ -178,7 +178,7 @@
     vim-full # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     tree
-    neofetch
+    hyfetch
     killall
     htop
     file
@@ -204,6 +204,7 @@
     caddy # convenient bloated web server
     parallel # --citation
     nix-tree # nix what-depends why-depends who-am-i
+    eza # ls but better
     libayatana-appindicator
     wl-clipboard
     wev
@@ -281,6 +282,15 @@
     "ipsec.secrets".text = ''
       include ipsec.d/ipsec.nm-l2tp.secrets
     '';
+  };
+
+  environment.shellAliases = {
+    "neofetch" = "hyfetch";
+    "find" = "fd";
+    "traceroute" = "mtr";
+    "grep" = "ripgrep";
+    "ll" = "eza -l --git";
+    "ls" = "eza";
   };
 
   # Copy the NixOS configuration file and link it from the resulting system
