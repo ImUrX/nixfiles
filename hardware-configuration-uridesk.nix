@@ -65,6 +65,9 @@
     driSupport32Bit = true;
   };
 
+  # Audio goes wonkers and seems to go low quality (low sample rate?)
+  # cookiecutie.sound.pro = true;
+
   i18n.defaultLocale = "en_US.UTF-8";
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";

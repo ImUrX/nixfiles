@@ -32,6 +32,12 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
+    nix-alien.url = "github:thiagokokada/nix-alien";
+    nix-alien.inputs.nixpkgs.follows = "nixpkgs";
+
+    musnix.url = "github:musnix/musnix";
+    musnix.inputs.nixpkgs.follows = "nixpkgs";
+
     more-waita = {
       url = "github:somepaulo/MoreWaita";
       flake = false;
@@ -47,6 +53,8 @@
     alejandra,
     aagl,
     nixos-hardware,
+    nix-alien,
+    musnix,
     ...
   } @ inputs: {
     # nixosConfigurations is the key that nixos-rebuild looks for.
@@ -62,6 +70,7 @@
           ./configuration.nix
           ./home-uri.nix
           home-manager.nixosModules.home-manager
+          musnix.nixosModules.musnix
           {
             environment.systemPackages = [alejandra.defaultPackage.${system}];
           }
@@ -80,6 +89,9 @@
             nix.settings = aagl.nixConfig; # Setup cachix
             programs.anime-game-launcher.enable = true;
           }
+          {
+            environment.systemPackages = [nix-alien.packages.${system}.nix-alien];
+          }
         ];
       };
       minidesk = nixpkgs.lib.nixosSystem rec {
@@ -94,6 +106,7 @@
           ./home-uri.nix
           nixos-hardware.nixosModules.framework-13th-gen-intel
           home-manager.nixosModules.home-manager
+          musnix.nixosModules.musnix
           {
             environment.systemPackages = [alejandra.defaultPackage.${system}];
           }
@@ -121,6 +134,7 @@
           ./configuration.nix
           ./home-lal1tx.nix
           home-manager.nixosModules.home-manager
+          musnix.nixosModules.musnix
           {
             environment.systemPackages = [alejandra.defaultPackage.${system}];
           }

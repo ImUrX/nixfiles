@@ -5,10 +5,8 @@
   ...
 }: let
   cfg = config.cookiecutie.sound;
-  sources = import ../../nix/sources.nix;
 in
   with lib; {
-    imports = ["${sources.musnix}"];
     options.cookiecutie.sound = {
       enable = mkEnableOption "Enable the ALSA sound system";
       pro = mkEnableOption "Enable additional Pro Audio configuration";
@@ -48,7 +46,10 @@ in
       ### Musnix
       (mkIf cfg.pro {
         musnix.enable = true;
-        # uri.user.extraGroups = ["audio"];
+        environment.systemPackages = with pkgs; [
+          zrythm
+          vital
+        ];
       })
       ### PulseAudio
       (mkIf cfg.pulse.enable {
