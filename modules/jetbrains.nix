@@ -15,7 +15,7 @@ in
       home.packages = with pkgs; [
         #jetbrains.rider
         jetbrains.idea-ultimate
-        #jetbrains.clion
+        jetbrains.clion
       ];
     };
   }
