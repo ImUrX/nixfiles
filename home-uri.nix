@@ -9,6 +9,11 @@
   environment.variables.EXILED_References = "/home/uri/referenciasdelicht";
   environment.variables.SL_REFERENCES = "/home/uri/referenciasdelicht";
 
+  services.udev.packages = [
+    pkgs.platformio-core
+    pkgs.openocd
+  ];
+
   home-manager.users.uri = {
     config,
     lib,
@@ -56,6 +61,7 @@
       openmw
       pupdate
       calibre
+      platformio
     ];
 
     services.arrpc.enable = true;
