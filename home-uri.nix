@@ -62,6 +62,7 @@
       pupdate
       calibre
       platformio
+      dualsensectl
     ];
 
     services.arrpc.enable = true;
