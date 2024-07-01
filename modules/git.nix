@@ -32,6 +32,7 @@ in
     config = mkIf cfg.enable {
       home.packages = with pkgs; [
         git-interactive-rebase-tool
+        bfg-repo-cleaner
       ];
 
       programs.git = {
