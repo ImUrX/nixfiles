@@ -61,7 +61,6 @@
     extraPackages32 = with pkgs; [mangohud driversi686Linux.amdvlk];
 
     # Vulkan
-    driSupport = true;
     driSupport32Bit = true;
   };
 

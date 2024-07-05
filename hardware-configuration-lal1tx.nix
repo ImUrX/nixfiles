@@ -51,7 +51,6 @@
     extraPackages32 = with pkgs; [mangohud];
 
     # Vulkan
-    driSupport = true;
     driSupport32Bit = true;
   };
 
