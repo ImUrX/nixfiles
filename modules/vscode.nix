@@ -36,7 +36,7 @@ in
             bradlc.vscode-tailwindcss
             mskelton.npm-outdated
             # Rust
-            matklad.rust-analyzer
+            rust-lang.rust-analyzer
             tamasfe.even-better-toml
             serayuzgur.crates
             vadimcn.vscode-lldb
