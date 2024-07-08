@@ -149,6 +149,7 @@
             imports = [aagl.nixosModules.default];
             nix.settings = aagl.nixConfig; # Setup cachix
             programs.anime-game-launcher.enable = true;
+            programs.sleepy-launcher.enable = true;
           }
         ];
       };
