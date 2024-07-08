@@ -59,6 +59,8 @@
     driSupport32Bit = true;
   };
 
+  hardware.graphics.extraPackages = [pkgs.vaapiVdpau];
+
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;
@@ -90,12 +92,12 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     # PRIME
-    prime = {
-      reverseSync.enable = true;
-      # Make sure to use the correct Bus ID values for your system!
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
+    # prime = {
+    #   sync.enable = true;
+    #   # Make sure to use the correct Bus ID values for your system!
+    #   intelBusId = "PCI:0:2:0";
+    #   nvidiaBusId = "PCI:1:0:0";
+    # };
   };
 
   i18n.defaultLocale = "es_CL.UTF-8";
