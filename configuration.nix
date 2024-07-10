@@ -285,6 +285,9 @@
     "ipsec.secrets".text = ''
       include ipsec.d/ipsec.nm-l2tp.secrets
     '';
+    "distrobox/distrobox.conf".text = ''
+      container_additional_volumes="/nix/store:/nix/store:r /etc/profiles/per-user:/etc/profiles/per-user:r"
+    '';
   };
 
   environment.shellAliases = {
