@@ -213,7 +213,7 @@
     wev
     wl-mirror
     wl-color-picker
-    unar # unrar but free
+    unrar
     # gnomeExtensions.appindicator
     # gnome.gnome-tweaks
     nvtopPackages.amd
