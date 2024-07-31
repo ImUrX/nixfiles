@@ -45,7 +45,7 @@
       syncthingtray-minimal
     ];
 
-    services.easyeffects.enable = true;
+    # services.easyeffects.enable = true;
 
     services.syncthing = {
       enable = true;
