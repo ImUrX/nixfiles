@@ -65,8 +65,8 @@
       dualsensectl
     ];
 
-    services.arrpc.enable = true;
-    services.easyeffects.enable = true;
+    # services.arrpc.enable = true;
+    # services.easyeffects.enable = true;
 
     services.syncthing = {
       enable = true;

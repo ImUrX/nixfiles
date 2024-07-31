@@ -13,7 +13,7 @@ in
 
     config = mkIf cfg.enable {
       home.packages = with pkgs; [
-        ffmpeg_5-full
+        ffmpeg_7-full
         gst_all_1.gstreamer
         gst_all_1.gst-plugins-good
         gst_all_1.gst-vaapi
