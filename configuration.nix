@@ -96,6 +96,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  hardware.sane.enable = true;
   services.printing.drivers = with pkgs; [
     postscript-lexmark
   ];

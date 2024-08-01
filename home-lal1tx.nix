@@ -8,7 +8,7 @@
   users.users.lal1tx = {
     isNormalUser = true;
     createHome = true;
-    extraGroups = ["wheel" "input" "adbusers" "plugdev" "docker" "dialout"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "input" "adbusers" "plugdev" "docker" "dialout" "scanner" "lp"]; # Enable ‘sudo’ for the user.
     initialPassword = "eevee123";
   };
 
