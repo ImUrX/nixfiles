@@ -97,6 +97,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
   hardware.sane.enable = true;
+  hardware.sane.extraBackends = [pkgs.hplipWithPlugin];
   services.printing.drivers = with pkgs; [
     postscript-lexmark
   ];
@@ -233,6 +234,7 @@
     lm_sensors
     # LSP for Nix
     nil
+    skanpage
 
     # wine-staging (version with experimental features)
     # wineWowPackages.staging
