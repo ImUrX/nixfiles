@@ -257,7 +257,10 @@
     ifuse # optional, to mount using 'ifuse'
   ];
 
-  services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
+  # services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
+  services.udev.extraRules = ''
+    KERNEL=="hidraw*", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="7690",  MODE="0666", GROUP="dialout", TAG+="uaccess", TAG+="udev-acl"
+  '';
   services.upower.enable = true;
 
   xdg = {
