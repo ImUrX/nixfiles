@@ -5,6 +5,7 @@
     extraGroups = ["wheel" "input" "adbusers" "plugdev" "docker" "dialout" "audio" "scanner" "lp"]; # Enable ‘sudo’ for the user.
     initialPassword = "eevee123";
   };
+  users.groups.plugdev = {};
 
   environment.variables.EXILED_References = "/home/uri/referenciasdelicht";
   environment.variables.SL_REFERENCES = "/home/uri/referenciasdelicht";
