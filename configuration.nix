@@ -235,6 +235,7 @@
     # LSP for Nix
     nil
     skanpage
+    wireshark
 
     # wine-staging (version with experimental features)
     # wineWowPackages.staging
@@ -260,6 +261,7 @@
   # services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
   services.udev.extraRules = ''
     KERNEL=="hidraw*", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="7690",  MODE="0666", GROUP="dialout", TAG+="uaccess", TAG+="udev-acl"
+    SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
   '';
   services.upower.enable = true;
 
