@@ -2,7 +2,7 @@
   users.users.uri = {
     isNormalUser = true;
     createHome = true;
-    extraGroups = ["wheel" "input" "adbusers" "plugdev" "docker" "dialout" "audio" "scanner" "lp"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "input" "adbusers" "plugdev" "docker" "dialout" "audio" "scanner" "lp" "wireshark"]; # Enable ‘sudo’ for the user.
     initialPassword = "eevee123";
   };
   users.groups.plugdev = {};
@@ -14,6 +14,8 @@
     pkgs.platformio-core
     pkgs.openocd
   ];
+
+  programs.wireshark.enable = true;
 
   home-manager.users.uri = {
     config,
