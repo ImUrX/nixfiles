@@ -23,6 +23,9 @@
   '';
   #hardware.cpu.amd.updateMicrocode = true;
 
+  # dont track my laptop pls
+  networking.networkmanager.wifi.macAddress = "random";
+
   systemd.tmpfiles.rules = [
     # "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
     # "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
