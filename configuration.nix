@@ -175,7 +175,7 @@
     vesktop
     mpv
     gimp
-    (prismlauncher.override {withWaylandGLFW = true;})
+    prismlauncher
     qbittorrent
     appimage-run
     spotify
