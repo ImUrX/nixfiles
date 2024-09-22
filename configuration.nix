@@ -216,6 +216,7 @@
     wl-mirror
     wl-color-picker
     unrar
+    gamescope #gamescope-wsi will let me use HDR, but it breaks steam overlay apparently
     # gnomeExtensions.appindicator
     # gnome.gnome-tweaks
     nvtopPackages.amd
