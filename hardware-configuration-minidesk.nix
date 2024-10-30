@@ -60,14 +60,12 @@
   hardware.enableAllFirmware = true;
 
   ### Intel Stuff
-  hardware.opengl = {
+  hardware.graphics = {
     # Mesa
     enable = true;
     extraPackages = with pkgs; [mangohud];
     extraPackages32 = with pkgs; [pkgsi686Linux.mangohud];
-
-    # Vulkan
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

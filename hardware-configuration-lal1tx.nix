@@ -49,17 +49,13 @@
 
   ### NVIDIA STUFF
   services.xserver.videoDrivers = ["nvidia"];
-  hardware.opengl = {
+  hardware.graphics = {
     # Mesa
     enable = true;
-    extraPackages = with pkgs; [mangohud];
+    extraPackages = with pkgs; [mangohud vaapiVdpau];
     extraPackages32 = with pkgs; [pkgsi686Linux.mangohud];
-
-    # Vulkan
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
-
-  hardware.graphics.extraPackages = [pkgs.vaapiVdpau];
 
   hardware.nvidia = {
     # Modesetting is required.
