@@ -60,8 +60,6 @@
     enable = true;
     extraPackages = with pkgs; [mangohud rocmPackages.clr.icd];
     extraPackages32 = with pkgs; [pkgsi686Linux.mangohud];
-
-    # Vulkan
     enable32Bit = true;
   };
 

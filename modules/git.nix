@@ -85,7 +85,12 @@ in
             repo = "";
           };
           user = {
-            signingkey = cfg.signingkey;
+            ${
+              if cfg.signingkey != ""
+              then "signingkey"
+              else null
+            } =
+              cfg.signingkey;
           };
         };
       };
