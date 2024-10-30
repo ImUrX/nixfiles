@@ -27,6 +27,12 @@ in
         description = "Sign commit with GPG";
         example = default;
       };
+      signingkey = mkOption rec {
+        type = types.str;
+        default = "";
+        description = "Specific GPG key used for signing";
+        example = default;
+      };
     };
 
     config = mkIf cfg.enable {
@@ -77,6 +83,9 @@ in
 
           maintenance = {
             repo = "";
+          };
+          user = {
+            signingkey = cfg.signingkey;
           };
         };
       };

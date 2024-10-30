@@ -53,15 +53,16 @@
   # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
+  # hardware.pulseaudio.support32Bit = true;
   ### AMD STUFF
-  hardware.opengl = {
+  hardware.graphics = {
     # Mesa
     enable = true;
-    extraPackages = with pkgs; [mangohud amdvlk rocm-opencl-icd];
-    extraPackages32 = with pkgs; [mangohud driversi686Linux.amdvlk];
+    extraPackages = with pkgs; [mangohud rocmPackages.clr.icd];
+    extraPackages32 = with pkgs; [pkgsi686Linux.mangohud];
 
     # Vulkan
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
 
   # Audio goes wonkers and seems to go low quality (low sample rate?)
