@@ -64,7 +64,7 @@
     # Mesa
     enable = true;
     extraPackages = with pkgs; [mangohud];
-    extraPackages32 = with pkgs; [mangohud];
+    extraPackages32 = with pkgs; [pkgsi686Linux.mangohud];
 
     # Vulkan
     driSupport32Bit = true;

@@ -66,6 +66,7 @@
       calibre
       platformio
       dualsensectl
+      pcsx2
     ];
 
     # services.arrpc.enable = true;

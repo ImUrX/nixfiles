@@ -6,7 +6,7 @@
     nixpkgs = {
       # Using the nixos-unstable branch specifically, which is the
       # closest you can get to following the equivalent channel with flakes.
-      url = "github:NixOS/nixpkgs/nixos-unstable";
+      url = "github:ImUrX/nixpkgs/cherry-fhs";
     };
 
     home-manager.url = "github:nix-community/home-manager";
@@ -21,6 +21,7 @@
     pipewire-screenaudio.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";
 
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     aagl.inputs.nixpkgs.follows = "nixpkgs";
