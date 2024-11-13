@@ -6,7 +6,7 @@
     nixpkgs = {
       # Using the nixos-unstable branch specifically, which is the
       # closest you can get to following the equivalent channel with flakes.
-      url = "github:ImUrX/nixpkgs/cherry-fhs";
+      url = "github:NixOS/nixpkgs/nixos-unstable";
     };
 
     home-manager.url = "github:nix-community/home-manager";
