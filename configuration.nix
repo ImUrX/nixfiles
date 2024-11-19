@@ -225,7 +225,6 @@
     vulkan-loader
     vulkan-tools
     sidequest
-    distrobox
     pavucontrol
     docker-compose
     epiphany
