@@ -228,7 +228,6 @@
     distrobox
     pavucontrol
     docker-compose
-    distrobox
     epiphany
     kdePackages.kdeconnect-kde
     kdePackages.kleopatra
@@ -296,7 +295,7 @@
       include ipsec.d/ipsec.nm-l2tp.secrets
     '';
     "distrobox/distrobox.conf".text = ''
-      container_additional_volumes="/nix/store:/nix/store:r /etc/profiles/per-user:/etc/profiles/per-user:r"
+      container_additional_volumes="/nix/store:/nix/store:ro /etc/profiles/per-user:/etc/profiles/per-user:ro"
     '';
   };
 
