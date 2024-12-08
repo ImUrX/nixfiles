@@ -55,7 +55,7 @@
       python311Packages.aiohttp
       r2modman
       imv
-      dotnet-sdk_7
+      dotnet-sdk_8
       mono
       xivlauncher
       alsa-scarlett-gui
@@ -67,6 +67,7 @@
       platformio
       dualsensectl
       pcsx2
+      wowup-cf
     ];
 
     # services.arrpc.enable = true;

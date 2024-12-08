@@ -21,8 +21,8 @@ in
           [
             ms-vsliveshare.vsliveshare
             jnoortheen.nix-ide
-            # mkhl.direnv
-            arrterian.nix-env-selector
+            mkhl.direnv
+            # arrterian.nix-env-selector
             kamadorueda.alejandra
             eamodio.gitlens
             redhat.vscode-xml
