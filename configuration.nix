@@ -186,6 +186,7 @@
     wget
     tree
     hyfetch
+    fastfetch
     killall
     htop
     file
