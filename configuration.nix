@@ -172,7 +172,9 @@
       ];
     })
     piper
-    vesktop
+    (vesktop.override {
+      withMiddleClickScroll = true;
+    })
     mpv
     gimp
     prismlauncher
