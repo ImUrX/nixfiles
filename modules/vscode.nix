@@ -19,7 +19,6 @@ in
         package = pkgs.vscodium;
         extensions = with pkgs.vscode-extensions;
           [
-            ms-vscode-remote.remote-ssh
             ms-vsliveshare.vsliveshare
             jnoortheen.nix-ide
             mkhl.direnv
@@ -45,6 +44,7 @@ in
           ++ (with extensions.open-vsx; [
             floxay.vscode-flatbuffers
             tauri-apps.tauri-vscode
+            jeanp413.open-remote-ssh
           ])
           ++ (with extensions.vscode-marketplace; [
             macabeus.vscode-fluent
