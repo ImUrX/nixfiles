@@ -23,6 +23,9 @@
   '';
   #hardware.cpu.amd.updateMicrocode = true;
 
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+
   # dont track my laptop pls
   networking.networkmanager.wifi.macAddress = "random";
 

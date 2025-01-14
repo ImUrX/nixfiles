@@ -43,6 +43,9 @@
       url = "github:somepaulo/MoreWaita";
       flake = false;
     };
+
+    minegrub-theme.url = "github:Lxtharia/minegrub-theme";
+    minegrub-theme.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Outputs can be anything, but the wiki + some commands define their own
@@ -180,6 +183,7 @@
             nix.settings = aagl.nixConfig; # Setup cachix
             programs.sleepy-launcher.enable = true;
           }
+          inputs.minegrub-theme.nixosModules.default
         ];
       };
     };
