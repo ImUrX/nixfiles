@@ -12,6 +12,9 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+
   # boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelModules = ["v4l2loopback"];
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];

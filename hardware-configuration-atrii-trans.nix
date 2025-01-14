@@ -19,6 +19,21 @@
     options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1
   '';
 
+  # Usando GRUB xq tiene skins
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    # Detect OS automatically
+    useOSProber = true;
+    device = "nodev";
+    minegrub-theme = {
+      enable = true;
+      splash = "Say gex!";
+      background = "background_options/1.13 - [Aquatic update].png";
+      # boot-options-count = 3;
+    };
+  };
+
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
     fsType = "ext4";

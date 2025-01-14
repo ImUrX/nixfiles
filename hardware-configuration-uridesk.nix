@@ -20,6 +20,9 @@
   '';
   #hardware.cpu.amd.updateMicrocode = true;
 
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+
   systemd.tmpfiles.rules = [
     # "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
     "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
