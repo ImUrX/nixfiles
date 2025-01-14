@@ -19,6 +19,7 @@ in
         package = pkgs.vscodium;
         extensions = with pkgs.vscode-extensions;
           [
+            ms-vscode-remote.remote-ssh
             ms-vsliveshare.vsliveshare
             jnoortheen.nix-ide
             mkhl.direnv

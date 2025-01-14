@@ -108,7 +108,7 @@
   # Enable sound.
   #sound.enable = true;
   #services.pipewire.enable = true;
-  hardware.pulseaudio.enable = lib.mkForce false;
+  # hardware.pulseaudio.enable = lib.mkForce false;
   hardware.logitech.wireless.enable = true;
   hardware.logitech.wireless.enableGraphical = true;
   services.ratbagd.enable = true;
