@@ -99,6 +99,7 @@
   hardware.sane.extraBackends = [pkgs.hplipWithPlugin];
   services.printing.drivers = with pkgs; [
     postscript-lexmark
+    epson-escpr
   ];
   services.avahi = {
     enable = true;
