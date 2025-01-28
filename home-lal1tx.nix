@@ -43,7 +43,6 @@
       r2modman
       imv
       syncthingtray-minimal
-      openrgb-with-all-plugins
     ];
 
     # services.easyeffects.enable = true;
