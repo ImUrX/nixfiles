@@ -67,8 +67,6 @@
     enable32Bit = true;
   };
 
-  services.hardware.openrgb.enable = true;
-
   i18n.defaultLocale = "es_CL.UTF-8";
   # Set your time zone.
   time.timeZone = "America/Santiago";
