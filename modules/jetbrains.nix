@@ -14,7 +14,16 @@ in
     config = mkIf cfg.enable {
       home.packages = with pkgs; [
         #jetbrains.rider
-        jetbrains.idea-ultimate
+        # Add GLFW stuff for being able to dev with Minecraft
+        (symlinkJoin {
+          name = "idea-ultimate";
+          paths = [jetbrains.idea-ultimate];
+          buildInputs = [makeWrapper];
+          postBuild = ''
+            wrapProgram $out/bin/idea-ultimate \
+            --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [libpulseaudio libGL glfw openal stdenv.cc.cc.lib]}"
+          '';
+        })
         jetbrains.clion
       ];
     };
