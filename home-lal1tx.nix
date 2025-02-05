@@ -43,6 +43,7 @@
       r2modman
       imv
       syncthingtray-minimal
+      davinci-resolve
     ];
 
     # services.easyeffects.enable = true;
