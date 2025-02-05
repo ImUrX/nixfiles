@@ -66,6 +66,7 @@
     extraPackages32 = with pkgs; [pkgsi686Linux.mangohud];
     enable32Bit = true;
   };
+  hardware.amdgpu.opencl.enable = true;
 
   i18n.defaultLocale = "es_CL.UTF-8";
   # Set your time zone.
