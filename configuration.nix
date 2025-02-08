@@ -258,6 +258,7 @@
     nil
     skanpage
     wireshark
+    popsicle
 
     # wine-staging (version with experimental features)
     # wineWowPackages.staging
