@@ -259,6 +259,9 @@
     skanpage
     wireshark
     popsicle
+    (ventoy-full.override {
+      defaultGuiType = "qt5";
+    })
 
     # wine-staging (version with experimental features)
     # wineWowPackages.staging
