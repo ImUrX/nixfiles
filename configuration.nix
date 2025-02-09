@@ -80,6 +80,8 @@
   };
   services.desktopManager.plasma6.enable = true;
   services.displayManager.defaultSession = "plasma";
+  # Make KWallet work with login service when using PAM
+  security.pam.services.login.kwallet.enable = true;
 
   programs.dconf.enable = true;
 
@@ -253,6 +255,10 @@
     epiphany
     kdePackages.kdeconnect-kde
     kdePackages.kleopatra
+    kdePackages.filelight
+    kdePackages.yakuake
+    kdePackages.kcalc
+    kdePackages.partitionmanager
     lm_sensors
     # LSP for Nix
     nil
