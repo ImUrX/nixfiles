@@ -258,7 +258,6 @@
     nil
     skanpage
     wireshark
-    popsicle
     (ventoy-full.override {
       defaultGuiType = "qt5";
     })
