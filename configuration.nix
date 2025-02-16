@@ -80,8 +80,6 @@
   };
   services.desktopManager.plasma6.enable = true;
   services.displayManager.defaultSession = "plasma";
-  # Make KWallet work with login service when using PAM
-  security.pam.services.login.kwallet.enable = true;
 
   programs.dconf.enable = true;
 
