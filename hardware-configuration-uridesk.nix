@@ -71,7 +71,7 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
   # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "America/Santiago";
 
   # Force radv
   environment.variables.AMD_VULKAN_ICD = "RADV";
