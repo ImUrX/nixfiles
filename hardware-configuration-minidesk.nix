@@ -75,7 +75,7 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
   # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "America/Santiago";
 
   # Power saving
   services.thermald.enable = true;
