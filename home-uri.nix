@@ -48,7 +48,7 @@
       termius
       inkscape-with-extensions
       xorg.xeyes
-      element-desktop
+      fractal
       flatpak-builder
       python3Full
       python311Packages.toml
@@ -136,6 +136,7 @@
     # };
 
     cookiecutie.git.enable = true;
+    cookiecutie.git.signingkey = "13E59DEACC71A51D";
     uri.vscode.enable = true;
     uri.jetbrains.enable = true;
     uri.rust.enable = true;
