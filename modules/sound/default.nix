@@ -91,7 +91,22 @@ in
             enable = true;
             support32Bit = true;
           };
+          package = pkgs.pipewire.overrideAttrs (old: {
+            patches = old.patches ++ [./always-feedback.patch];
+          });
           # used to have lots of config from sctanf, last in a5626226295a08b9c648f8f75594a65a57095f70
+          configPackages = [
+            (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/50-airplay.conf" ''
+              context.modules = [
+                {
+                  name = libpipewire-module-raop-discover
+                  args = {
+                    raop.latency.ms = 40
+                  }
+                }
+              ]
+            '')
+          ];
         };
       }))
     ];

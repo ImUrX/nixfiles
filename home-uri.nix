@@ -136,7 +136,7 @@
     # };
 
     cookiecutie.git.enable = true;
-    cookiecutie.git.signingkey = "13E59DEACC71A51D";
+    # cookiecutie.git.signingkey = "13E59DEACC71A51D";
     uri.vscode.enable = true;
     uri.jetbrains.enable = true;
     uri.rust.enable = true;
