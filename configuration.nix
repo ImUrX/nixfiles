@@ -176,6 +176,7 @@
       };
     };
   };
+  programs.corectrl.enable = true;
 
   # Apple
   services.usbmuxd.enable = true;
