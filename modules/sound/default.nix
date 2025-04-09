@@ -101,7 +101,7 @@ in
                 {
                   name = libpipewire-module-raop-discover
                   args = {
-                    raop.latency.ms = 40
+                    raop.latency.ms = 500
                   }
                 }
               ]
