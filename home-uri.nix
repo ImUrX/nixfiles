@@ -107,21 +107,21 @@
     qt.platformTheme = "kde";
 
     xdg.enable = true;
-    xdg.mimeApps = {
-      enable = true;
-      defaultApplications = {
-        "image" = ["imv.desktop"];
-        "video" = ["mpv.desktop"];
-        "text/html" = ["firefox.desktop"];
-        "x-scheme-handler/http" = ["firefox.desktop"];
-        "x-scheme-handler/https" = ["firefox.desktop"];
-        "x-scheme-handler/humble" = ["Humble-scheme-handler.desktop"];
-        "x-scheme-handler/ror2mm" = ["r2modman.desktop"];
-        "x-scheme-handler/termius" = ["Termius.desktop"];
-        "x-scheme-handler/ssh" = ["ktelnetservice5.desktop"];
-        "x-scheme-handler/heroic" = ["com.heroicgameslauncher.hgl.desktop"];
-      };
-    };
+    # xdg.mimeApps = {
+    #   enable = true;
+    #   defaultApplications = {
+    #     "image" = ["imv.desktop"];
+    #     "video" = ["mpv.desktop"];
+    #     "text/html" = ["firefox.desktop"];
+    #     "x-scheme-handler/http" = ["firefox.desktop"];
+    #     "x-scheme-handler/https" = ["firefox.desktop"];
+    #     "x-scheme-handler/humble" = ["Humble-scheme-handler.desktop"];
+    #     "x-scheme-handler/ror2mm" = ["r2modman.desktop"];
+    #     "x-scheme-handler/termius" = ["Termius.desktop"];
+    #     "x-scheme-handler/ssh" = ["ktelnetservice5.desktop"];
+    #     "x-scheme-handler/heroic" = ["com.heroicgameslauncher.hgl.desktop"];
+    #   };
+    # };
 
     programs.direnv.enable = true;
     programs.direnv.enableBashIntegration = true;
