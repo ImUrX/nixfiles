@@ -73,6 +73,10 @@
   # Set your time zone.
   time.timeZone = "America/Santiago";
 
+  programs.envision = {
+    enable = true;
+  };
+
   # Force radv
   environment.variables.AMD_VULKAN_ICD = "RADV";
   networking.hostName = "uridesk"; # Define your hostname.
