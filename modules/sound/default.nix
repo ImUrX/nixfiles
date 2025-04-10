@@ -92,7 +92,7 @@ in
             support32Bit = true;
           };
           package = pkgs.pipewire.overrideAttrs (old: {
-            patches = old.patches ++ [./always-feedback.patch];
+            patches = old.patches ++ [./2333.diff];
           });
           # used to have lots of config from sctanf, last in a5626226295a08b9c648f8f75594a65a57095f70
           configPackages = [
