@@ -31,10 +31,6 @@
       };
     };
 
-    services.syncthing = {
-      enable = true;
-    };
-
     programs.direnv.enable = true;
     programs.direnv.enableBashIntegration = true;
     programs.bash.enable = true;
@@ -50,7 +46,9 @@
     };
 
     home.activation = {
-      import-ssh = lib.hm.dag.entryAfter ["writeBoundary"] "run ssh-import-id-gh imurx";
+      import-ssh = lib.hm.dag.entryAfter ["writeBoundary"] ''
+        PATH="${pkgs.ssh-import-id}/bin:${pkgs.openssh}/bin:$PATH" run ssh-import-id-gh imurx
+      '';
     };
   };
 }

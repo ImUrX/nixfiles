@@ -78,7 +78,6 @@
     nix-tree # nix what-depends why-depends who-am-i
     eza # ls but better
     docker-compose
-    ssh-import-id
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

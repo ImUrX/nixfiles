@@ -11,6 +11,7 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./containers.nix
+    ./homepage.nix
   ];
 
   # Usando GRUB xq tiene skins

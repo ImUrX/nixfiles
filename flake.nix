@@ -47,8 +47,8 @@
     minegrub-theme.url = "github:Lxtharia/minegrub-theme";
     minegrub-theme.inputs.nixpkgs.follows = "nixpkgs";
 
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Outputs can be anything, but the wiki + some commands define their own
@@ -62,6 +62,7 @@
     nixos-hardware,
     nix-alien,
     musnix,
+    agenix,
     ...
   } @ inputs: {
     # nixosConfigurations is the key that nixos-rebuild looks for.
@@ -79,7 +80,10 @@
           home-manager.nixosModules.home-manager
           musnix.nixosModules.musnix
           {
-            environment.systemPackages = [alejandra.defaultPackage.${system}];
+            environment.systemPackages = [
+              alejandra.defaultPackage.${system}
+              agenix.packages.${system}.default
+            ];
           }
           {
             _module.args = {inherit inputs;};
@@ -119,7 +123,10 @@
           home-manager.nixosModules.home-manager
           musnix.nixosModules.musnix
           {
-            environment.systemPackages = [alejandra.defaultPackage.${system}];
+            environment.systemPackages = [
+              alejandra.defaultPackage.${system}
+              agenix.packages.${system}.default
+            ];
           }
           {
             _module.args = {inherit inputs;};
@@ -213,6 +220,7 @@
           ./users/uri
           home-manager.nixosModules.home-manager
           musnix.nixosModules.musnix
+          agenix.nixosModules.default
           {
             _module.args = {inherit inputs;};
             home-manager.useGlobalPkgs = true;
@@ -221,6 +229,9 @@
               inherit inputs;
               headless = true;
             };
+
+            age.secrets.homepage.file = ./secrets/homepage.age;
+            age.secrets.cloudflared.file = ./secrets/cloudflared.age;
           }
         ];
       };

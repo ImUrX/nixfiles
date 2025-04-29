@@ -45,6 +45,7 @@
   # services.easyeffects.enable = true;
 
   services.syncthing = {
+    enable = true;
     tray = {
       enable = true;
       command = "syncthingtray --wait";
