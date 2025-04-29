@@ -50,7 +50,7 @@
     };
 
     home.activation = {
-      import-ssh = lib.hm.dag.entryAfter ["writeBoundary"] "run ${pkgs.ssh-import-id}/bin/ssh-import-id-gh imurx";
+      import-ssh = lib.hm.dag.entryAfter ["writeBoundary"] "run ssh-import-id-gh imurx";
     };
   };
 }
