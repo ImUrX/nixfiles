@@ -46,6 +46,9 @@
 
     minegrub-theme.url = "github:Lxtharia/minegrub-theme";
     minegrub-theme.inputs.nixpkgs.follows = "nixpkgs";
+
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Outputs can be anything, but the wiki + some commands define their own
@@ -70,9 +73,9 @@
         system = "x86_64-linux";
         # Import our old system configuration.nix
         modules = [
-          ./hardware-configuration-uridesk.nix
+          ./hosts/uridesk
           ./configuration.nix
-          ./home-uri.nix
+          ./users/uri
           home-manager.nixosModules.home-manager
           musnix.nixosModules.musnix
           {
@@ -86,7 +89,10 @@
 
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
-            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+              headless = false;
+            };
           }
           {
             imports = [aagl.nixosModules.default];
@@ -106,9 +112,9 @@
         system = "x86_64-linux";
         # Import our old system configuration.nix
         modules = [
-          ./hardware-configuration-minidesk.nix
+          ./hosts/minidesk
           ./configuration.nix
-          ./home-uri.nix
+          ./users/uri
           nixos-hardware.nixosModules.framework-13th-gen-intel
           home-manager.nixosModules.home-manager
           musnix.nixosModules.musnix
@@ -124,7 +130,10 @@
 
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
-            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+              headless = false;
+            };
           }
         ];
       };
@@ -135,9 +144,9 @@
         system = "x86_64-linux";
         # Import our old system configuration.nix
         modules = [
-          ./hardware-configuration-lal1tx.nix
+          ./hosts/lal1tx
           ./configuration.nix
-          ./home-lal1tx.nix
+          ./users/home-lal1tx.nix
           home-manager.nixosModules.home-manager
           musnix.nixosModules.musnix
           {
@@ -147,7 +156,10 @@
             _module.args = {inherit inputs;};
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+              headless = false;
+            };
           }
           {
             imports = [aagl.nixosModules.default];
@@ -164,9 +176,9 @@
         system = "x86_64-linux";
         # Import our old system configuration.nix
         modules = [
-          ./hardware-configuration-atrii-trans.nix
+          ./hosts/atrii-trans
           ./configuration.nix
-          ./home-lal1tx.nix
+          ./users/home-lal1tx.nix
           home-manager.nixosModules.home-manager
           musnix.nixosModules.musnix
           {
@@ -176,7 +188,10 @@
             _module.args = {inherit inputs;};
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+              headless = false;
+            };
           }
           {
             imports = [aagl.nixosModules.default];
@@ -184,6 +199,29 @@
             programs.sleepy-launcher.enable = true;
           }
           inputs.minegrub-theme.nixosModules.default
+        ];
+      };
+      parana = nixpkgs.lib.nixosSystem {
+        # A lot of times online you will see the use of flake-utils + a
+        # function which iterates over many possible systems. My system
+        # is x86_64-linux, so I'm only going to define that
+        system = "x86_64-linux";
+        # Import our old system configuration.nix
+        modules = [
+          ./hosts/parana
+          ./headless.nix
+          ./users/uri
+          home-manager.nixosModules.home-manager
+          musnix.nixosModules.musnix
+          {
+            _module.args = {inherit inputs;};
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+              headless = true;
+            };
+          }
         ];
       };
     };

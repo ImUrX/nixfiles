@@ -16,6 +16,9 @@
   boot.loader.systemd-boot.enable = true;
 
   # boot.initrd.kernelModules = ["amdgpu"];
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
+
   boot.kernelModules = ["v4l2loopback"];
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
   boot.extraModprobeConfig = ''
@@ -58,6 +61,12 @@
     extraPackages = with pkgs; [mangohud vaapiVdpau];
     extraPackages32 = with pkgs; [pkgsi686Linux.mangohud];
     enable32Bit = true;
+  };
+
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
   };
 
   hardware.nvidia = {
@@ -103,6 +112,11 @@
   # Set your time zone.
   time.timeZone = "America/Santiago";
   time.hardwareClockInLocalTime = true;
+
+  environment.systemPackages = with pkgs; [
+    nvtopPackages.amd
+    radeontop
+  ];
 
   # Force radv
   networking.hostName = "lal1tx"; # Define your hostname.

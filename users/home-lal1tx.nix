@@ -1,35 +1,22 @@
 {pkgs, ...}: {
-  users.users.uri = {
+  users.users.lal1tx = {
     isNormalUser = true;
     createHome = true;
-    extraGroups = ["wheel" "input" "adbusers" "plugdev" "docker" "dialout" "audio" "scanner" "lp" "wireshark"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "input" "adbusers" "plugdev" "docker" "dialout" "scanner" "lp"]; # Enable ‘sudo’ for the user.
     initialPassword = "eevee123";
   };
-  users.groups.plugdev = {};
 
-  environment.variables.EXILED_References = "/home/uri/referenciasdelicht";
-  environment.variables.SL_REFERENCES = "/home/uri/referenciasdelicht";
-
-  services.udev.packages = [
-    pkgs.platformio-core
-    pkgs.openocd
-  ];
-
-  programs.wireshark.enable = true;
-
-  home-manager.users.uri = {
+  home-manager.users.lal1tx = {
     config,
     lib,
     ...
   }: {
     imports = [
-      ./modules/git.nix
-      ./modules/vscode.nix
-      ./modules/jetbrains.nix
-      ./modules/js.nix
-      ./modules/java.nix
-      ./modules/rust.nix
-      ./modules/obs.nix
+      ../modules/git.nix
+      ../modules/vscode.nix
+      ../modules/js.nix
+      ../modules/java.nix
+      ../modules/obs.nix
     ];
 
     home.stateVersion = "23.05";
@@ -42,41 +29,23 @@
     };
 
     home.packages = with pkgs; [
-      blender-hip
-      thunderbird
+      audacity
+      netflix
+      blender
       anydesk
-      termius
-      inkscape-with-extensions
       xorg.xeyes
-      fractal
-      flatpak-builder
-      python3Full
-      python311Packages.toml
-      python311Packages.aiohttp
       r2modman
       imv
-      dotnet-sdk_8
-      mono
-      xivlauncher
-      alsa-scarlett-gui
       syncthingtray-minimal
-      cosign
-      openmw
-      pupdate
-      calibre
-      platformio
-      dualsensectl
-      pcsx2
-      wowup-cf
+      davinci-resolve
     ];
 
-    # services.arrpc.enable = true;
     # services.easyeffects.enable = true;
 
     services.syncthing = {
       enable = true;
       tray = {
-        enable = true;
+        enable = false;
         command = "syncthingtray --wait";
       };
     };
@@ -135,22 +104,22 @@
     #   # and packages.el files
     # };
 
-    cookiecutie.git.enable = true;
-    # cookiecutie.git.signingkey = "13E59DEACC71A51D";
+    cookiecutie.git = {
+      enable = true;
+      name = "Lal1tx";
+      email = "156338803+lal1tx@users.noreply.github.com";
+      gpg = false;
+    };
     uri.vscode.enable = true;
-    uri.jetbrains.enable = true;
-    uri.rust.enable = true;
     uri.java.enable = true;
     uri.javascript.enable = true;
     uri.obs.enable = true;
-    # uri.hyprland.enable = true;
 
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
     };
     home.shellAliases = {
-      love = "echo 'Edu: Te amo Uri <3'";
-      pupdate = "pupdate -p /run/media/uri/analogue/";
+      love = "echo 'Uri: Te amo Edu <3'";
     };
   };
 }

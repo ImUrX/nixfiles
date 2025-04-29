@@ -13,6 +13,8 @@
   ];
 
   # boot.initrd.kernelModules = ["amdgpu"];
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
   boot.kernelModules = ["v4l2loopback"];
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
   boot.extraModprobeConfig = ''
@@ -57,6 +59,12 @@
   # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   # hardware.pulseaudio.support32Bit = true;
   ### AMD STUFF
   hardware.graphics = {
@@ -72,6 +80,11 @@
   # Set your time zone.
   time.timeZone = "America/Santiago";
   time.hardwareClockInLocalTime = true;
+
+  environment.systemPackages = with pkgs; [
+    nvtopPackages.intel
+    nvtopPackages.nvidia
+  ];
 
   # Force radv
   networking.hostName = "atrii-trans"; # Define your hostname.

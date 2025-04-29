@@ -13,7 +13,13 @@
   ];
 
   # boot.initrd.kernelModules = ["amdgpu"];
-  boot.kernelModules = ["kvm-amd" "v4l2loopback"];
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
+
+  boot.kernelModules = ["kvm-amd" "v4l2loopback" "hp-wmi"];
+  boot.kernelParams = [
+    "i915.enable_guc=2"
+  ];
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
   boot.extraModprobeConfig = ''
     options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1
@@ -23,27 +29,30 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
 
+  # dont track my laptop pls
+  networking.networkmanager.wifi.macAddress = "random";
+
   systemd.tmpfiles.rules = [
     # "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-    "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
+    # "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
   ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/a1bc418b-85a3-404a-8ac8-2489e0493a90";
+    device = "/dev/disk/by-label/nixos";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/E727-A42A";
+    device = "/dev/disk/by-label/boot";
     fsType = "vfat";
   };
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/004a816f-9715-4515-9dac-ca261aa2e7d9";
-    fsType = "ext4";
-  };
-
-  swapDevices = [];
+  swapDevices = [
+    {
+      device = "/dev/disk/by-label/swap";
+      # randomEncryption.enable = true;
+    }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -54,30 +63,36 @@
   # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
 
   # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.enableAllFirmware = true;
 
-  # hardware.pulseaudio.support32Bit = true;
-  ### AMD STUFF
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
+  ### Intel Stuff
   hardware.graphics = {
     # Mesa
     enable = true;
-    extraPackages = with pkgs; [mangohud rocmPackages.clr.icd];
+    extraPackages = with pkgs; [mangohud];
     extraPackages32 = with pkgs; [pkgsi686Linux.mangohud];
     enable32Bit = true;
   };
-
-  # Audio goes wonkers and seems to go low quality (low sample rate?)
-  # cookiecutie.sound.pro = true;
+  hardware.enableRedistributableFirmware = true;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   i18n.defaultLocale = "en_US.UTF-8";
   # Set your time zone.
   time.timeZone = "America/Santiago";
 
-  programs.envision = {
-    enable = true;
-  };
+  # Power saving
+  services.thermald.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    nvtopPackages.intel
+  ];
 
   # Force radv
-  environment.variables.AMD_VULKAN_ICD = "RADV";
-  networking.hostName = "uridesk"; # Define your hostname.
+  networking.hostName = "minidesk"; # Define your hostname.
 }

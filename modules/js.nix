@@ -15,8 +15,6 @@ in
       home.packages = with pkgs; [
         deno
         nodejs
-        node2nix
-        yarn2nix
       ];
     };
   }

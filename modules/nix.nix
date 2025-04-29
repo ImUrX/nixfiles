@@ -8,6 +8,8 @@
     settings = {
       trusted-users = ["root" "@wheel"];
       auto-optimise-store = true;
+      experimental-features = ["nix-command" "flakes"];
+      sandbox = true;
     };
     nixPath = [
       "nixpkgs=/run/current-system/sw/nixpkgs"
@@ -29,6 +31,8 @@
         path = "${inputs.nixpkgs}";
       };
     };
+
+    optimise.automatic = true;
   };
 
   environment.extraSetup = ''
