@@ -13,8 +13,12 @@
     ./containers.nix
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
+  # Usando GRUB xq tiene skins
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    device = "nodev";
+  };
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
 
@@ -49,6 +53,8 @@
       interface = "eno1";
     };
   };
+  networking.nameservers = ["1.1.1.1" "8.8.8.8"];
+  networking.dhcpcd.enable = lib.mkForce false;
 
   # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

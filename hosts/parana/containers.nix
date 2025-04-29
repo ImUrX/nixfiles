@@ -13,7 +13,4 @@
     # Lazy IPv6 connectivity for the container
     enableIPv6 = true;
   };
-
-  # If you are using Network Manager, you need to explicitly prevent it from managing container interfaces:
-  networking.networkmanager.unmanaged = ["interface-name:ve-*"];
 }
