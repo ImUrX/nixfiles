@@ -12,13 +12,36 @@
     {
       resources = {
         cpu = true;
-        disk = "/";
+        cputemp = true;
         memory = true;
+        label = "System";
+      };
+    }
+    {
+      resources = {
+        disk = "/";
+        label = "Root";
       };
     }
   ];
 
   services.homepage-dashboard.services = [
+    {
+      "Services" = [
+        {
+          "Paperless" = rec {
+            icon = "paperless-ng";
+            href = "https://paper.2dgirls.date";
+            siteMonitor = "http://192.168.100.11:28981";
+            widget = {
+              type = "paperlessngx";
+              url = siteMonitor;
+              key = "{{HOMEPAGE_VAR_PAPER}}";
+            };
+          };
+        }
+      ];
+    }
     {
       "Home" = [
         {

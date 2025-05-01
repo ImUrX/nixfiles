@@ -22,9 +22,10 @@
   };
 
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
+  boot.blacklistedKernelModules = ["nouveau"];
 
   fileSystems."/" = {
-    device = "/dev/sda2";
+    device = "/dev/disk/by-uuid/20367c05-bf86-4291-818b-3884887af5d2";
     fsType = "ext4";
   };
 
@@ -33,7 +34,13 @@
     fsType = "vfat";
   };
 
-  swapDevices = [{device = "/dev/sda3";}];
+  fileSystems."/data" = {
+    device = "/dev/disk/by-uuid/c510ab6e-ff31-4ddb-824f-1867da4345d6";
+    fsType = "btrfs";
+    options = ["noatime" "compress=zstd"];
+  };
+
+  swapDevices = [{device = "/dev/disk/by-uuid/f72ffc99-9aba-4469-8e43-6d7b3191affb";}];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -43,19 +50,21 @@
   # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
   networking = {
-    interfaces.eno1.ipv4.addresses = [
-      {
-        address = "192.168.42.69";
-        prefixLength = 24;
-      }
-    ];
+    interfaces.eno1 = {
+      useDHCP = false;
+      ipv4.addresses = [
+        {
+          address = "192.168.42.69";
+          prefixLength = 24;
+        }
+      ];
+    };
     defaultGateway = {
       address = "192.168.42.1";
       interface = "eno1";
     };
   };
   networking.nameservers = ["1.1.1.1" "8.8.8.8"];
-  networking.dhcpcd.enable = lib.mkForce false;
 
   # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -63,50 +72,12 @@
 
   ### NVIDIA STUFF
   hardware.graphics = {
-    # Mesa
     enable = true;
-    extraPackages = with pkgs; [vaapiVdpau];
-    enable32Bit = true;
+    extraPackages = with pkgs; [nvidia-vaapi-driver];
   };
 
-  hardware.nvidia = {
-    # Modesetting is required.
-    modesetting.enable = true;
-
-    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
-    # of just the bare essentials.
-    powerManagement.enable = false;
-
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
-
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of
-    # supported GPUs is at:
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-    # Only available from driver 515.43.04+
-    # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = false;
-
-    # Enable the Nvidia settings menu,
-    # accessible via `nvidia-settings`.
-    nvidiaSettings = true;
-
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-    # PRIME
-    # prime = {
-    #   sync.enable = true;
-    #   # Make sure to use the correct Bus ID values for your system!
-    #   intelBusId = "PCI:0:2:0";
-    #   nvidiaBusId = "PCI:1:0:0";
-    # };
-  };
+  services.xserver.videoDrivers = ["nvidia"];
+  hardware.nvidia.open = false;
 
   i18n.defaultLocale = "en_US.UTF-8";
   # Set your time zone.

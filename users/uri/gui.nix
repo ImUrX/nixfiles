@@ -52,10 +52,6 @@
     };
   };
 
-  home.sessionVariables = {
-    MESA_DISK_CACHE_SINGLE_FILE = "1";
-  };
-
   # dconf.settings = {
   #   "org/gnome/desktop/input-sources" = {
   #     show-all-sources = true;
@@ -110,6 +106,9 @@
 
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
+    NIXOS_OZONE_WL = "1";
+    MESA_DISK_CACHE_SINGLE_FILE = "1";
+
     EXILED_References = "/home/uri/referenciasdelicht";
     SL_REFERENCES = "/home/uri/referenciasdelicht";
   };
