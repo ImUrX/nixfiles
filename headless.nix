@@ -77,6 +77,7 @@
     parallel # --citation
     nix-tree # nix what-depends why-depends who-am-i
     eza # ls but better
+    ranger # a nice file commander with vim controls
     docker-compose
   ];
 
