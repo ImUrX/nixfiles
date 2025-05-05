@@ -1,7 +1,6 @@
 {config, ...}: {
   imports = [
     ../../modules/paperless.nix
-    ../../modules/deluge.nix
   ];
 
   networking.nat = {
