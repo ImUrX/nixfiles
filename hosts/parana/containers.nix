@@ -31,6 +31,7 @@
       image = "gotenberg/gotenberg:8";
       ports = ["3000:3000"];
       cmd = [
+        "gotenberg"
         "--chromium-disable-javascript=true"
         "--chromium-allow-list=file:///tmp/.*"
       ];
