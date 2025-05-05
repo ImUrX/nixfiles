@@ -25,5 +25,17 @@
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "server";
 
+  virtualisation.oci-containers.containers = {
+    gotenberg = {
+      autoStart = true;
+      image = "gotenberg/gotenberg:8";
+      ports = ["3000:3000"];
+      cmd = [
+        "--chromium-disable-javascript=true"
+        "--chromium-allow-list=file:///tmp/.*"
+      ];
+    };
+  };
+
   uri.paperless.enable = true;
 }

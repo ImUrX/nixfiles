@@ -99,6 +99,7 @@ in
             settings = {
               PAPERLESS_OCR_LANGUAGE = "spa+eng+nld";
               PAPERLESS_TIKA_ENABLED = true;
+              PAPERLESS_TIKA_GOTENBERG_ENDPOINT = "http://192.168.100.10:3000";
 
               PAPERLESS_URL = "https://paper.2dgirls.date";
               PAPERLESS_CSRF_TRUSTED_ORIGINS = "http://192.168.100.11:28981";
