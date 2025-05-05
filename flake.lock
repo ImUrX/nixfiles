@@ -420,6 +420,29 @@
         "type": "github"
       }
     },
+    "nixarr": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "vpnconfinement": "vpnconfinement",
+        "website-builder": "website-builder"
+      },
+      "locked": {
+        "lastModified": 1746137327,
+        "narHash": "sha256-uiZloTT/G4/7CkWsAtuL4oH87UZALJfsF9Ofp0OqMu4=",
+        "owner": "rasmus-kirk",
+        "repo": "nixarr",
+        "rev": "f0bd3f3923decd53e04a8ab33905fddf9a04979b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rasmus-kirk",
+        "ref": "dev",
+        "repo": "nixarr",
+        "type": "github"
+      }
+    },
     "nixos-hardware": {
       "locked": {
         "lastModified": 1745955289,
@@ -500,6 +523,7 @@
         "musnix": "musnix",
         "nix-alien": "nix-alien",
         "nix-vscode-extensions": "nix-vscode-extensions",
+        "nixarr": "nixarr",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "pipewire-screenaudio": "pipewire-screenaudio"
@@ -564,6 +588,42 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "vpnconfinement": {
+      "locked": {
+        "lastModified": 1740921534,
+        "narHash": "sha256-orXe3m04DLTW3I19VVanClzpqeq7adnDTqKAD7aPbA8=",
+        "owner": "Maroka-chan",
+        "repo": "VPN-Confinement",
+        "rev": "5eb7dc3e901f4dbb085eb37f5785473a9ae78bc4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Maroka-chan",
+        "repo": "VPN-Confinement",
+        "type": "github"
+      }
+    },
+    "website-builder": {
+      "inputs": {
+        "nixpkgs": [
+          "nixarr",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1741594814,
+        "narHash": "sha256-YPAIywsWZVhQuy/cPJLi3PiWgoWDrqvQCBytXeSQYCk=",
+        "owner": "rasmus-kirk",
+        "repo": "website-builder",
+        "rev": "e0239195b33103a4923011d8e96ef39a3397631b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rasmus-kirk",
+        "repo": "website-builder",
         "type": "github"
       }
     }
