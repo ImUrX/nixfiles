@@ -1,0 +1,3 @@
+[submodule "nixfiles-secrets"]
+	path = nixfiles-secrets
+	url = https://github.com/ImUrX/nixfiles-secrets
