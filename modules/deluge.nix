@@ -46,7 +46,7 @@ in
               # need to set lo up as network namespace is started with lo down
               ${iproute2}/bin/ip -n wg link set lo up
               ${iproute2}/bin/ip -n wg route add default dev wg0
-              # ${iproute}/bin/ip -n wg -6 route add default dev wg0
+              # ${iproute2}/bin/ip -n wg -6 route add default dev wg0
             '';
           ExecStop = with pkgs;
             writers.writeBash "wg-down" ''
