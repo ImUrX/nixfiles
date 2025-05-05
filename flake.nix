@@ -3,6 +3,8 @@
   description = "the simplest flake for nixos-rebuild";
 
   inputs = {
+    self.submodules = true;
+
     nixpkgs = {
       # Using the nixos-unstable branch specifically, which is the
       # closest you can get to following the equivalent channel with flakes.
