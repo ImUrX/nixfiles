@@ -12,8 +12,13 @@
     {
       resources = {
         cpu = true;
-        cputemp = true;
         memory = true;
+        network = true;
+
+        cputemp = true;
+        tempmin = 20;
+        tempmax = 75;
+
         label = "System";
       };
     }
@@ -21,6 +26,12 @@
       resources = {
         disk = "/";
         label = "Root";
+      };
+    }
+    {
+      resources = {
+        disk = "/data";
+        label = "Data";
       };
     }
   ];

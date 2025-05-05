@@ -67,14 +67,38 @@ in
             location = "/data/backup/paperless";
           };
 
+          services.gotenberg = {
+            enable = true;
+            package = pkgs.gotenberg.overrideAttrs (old: rec {
+              version = "8.20.1";
+
+              src = pkgs.fetchFromGitHub {
+                owner = "gotenberg";
+                repo = "gotenberg";
+                tag = "v${version}";
+                hash = "sha256-3+6bdO6rFSyRtRQjXBPefwjuX0AMuGzHNAQas7HNNRE=";
+              };
+
+              vendorHash = "sha256-qZ4cgVZAmjIwXhtQ7DlAZAZxyXP89ZWafsSUPQE0dxE=";
+
+              postPatch = ''
+                find ./pkg -name '*_test.go' -exec sed -i -e 's#/tests#${src}#g' {} \;
+              '';
+            });
+            chromium = {
+              disableJavascript = true;
+              autoStart = true;
+            };
+            extraArgs = ["--chromium-allow-list=file:///tmp/.*" "--chromium-start-timeout=60s"];
+          };
+
           services.paperless = {
             enable = true;
             passwordFile = config.age.secrets.passwd.path;
             address = "0.0.0.0";
             settings = {
-              PAPERLESS_OCR_LANGUAGE = "spa+eng";
+              PAPERLESS_OCR_LANGUAGE = "spa+eng+nld";
               PAPERLESS_TIKA_ENABLED = true;
-              PAPERLESS_TIKA_GOTENBERG_ENDPOINT = "http://192.168.100.10:3000";
 
               PAPERLESS_URL = "https://paper.2dgirls.date";
               PAPERLESS_CSRF_TRUSTED_ORIGINS = "http://192.168.100.11:28981";
