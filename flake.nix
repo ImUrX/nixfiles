@@ -51,6 +51,9 @@
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixarr.url = "github:rasmus-kirk/nixarr/dev";
+    nixarr.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Outputs can be anything, but the wiki + some commands define their own
@@ -65,6 +68,7 @@
     nix-alien,
     musnix,
     agenix,
+    nixarr,
     ...
   } @ inputs: {
     # nixosConfigurations is the key that nixos-rebuild looks for.
@@ -223,6 +227,7 @@
           home-manager.nixosModules.home-manager
           musnix.nixosModules.musnix
           agenix.nixosModules.default
+          nixarr.nixosModules.default
           {
             _module.args = {inherit inputs;};
             home-manager.useGlobalPkgs = true;

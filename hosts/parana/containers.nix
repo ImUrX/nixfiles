@@ -40,5 +40,4 @@
   };
 
   uri.paperless.enable = true;
-  uri.deluge.enable = true;
 }

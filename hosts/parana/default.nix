@@ -12,6 +12,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ./containers.nix
     ./homepage.nix
+    ./arr.nix
   ];
 
   # Usando GRUB xq tiene skins
