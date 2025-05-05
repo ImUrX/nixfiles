@@ -1,6 +1,7 @@
 {config, ...}: {
   imports = [
     ../../modules/paperless.nix
+    ../../modules/deluge.nix
   ];
 
   networking.nat = {
@@ -39,4 +40,5 @@
   };
 
   uri.paperless.enable = true;
+  uri.deluge.enable = true;
 }
