@@ -64,14 +64,6 @@ in
       services.deluge = {
         enable = true;
         web.enable = true;
-        declarative = true;
-
-        authFile = config.age.secrets.deluge.path;
-        config = {
-          download_location = "/data/torrents/";
-          max_upload_speed = "100.0";
-          allow_remote = true;
-        };
       };
 
       # binding deluged to network namespace
