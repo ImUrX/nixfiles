@@ -44,6 +44,7 @@
       renew_port() {
         protocol="$1"
         port_file="/tmp/transmission-$protocol-port"
+        touch $port_file
 
         result="$(${pkgs.libnatpmp}/bin/natpmpc -a 1 0 "$protocol" 60 -g 10.2.0.1)"
         echo "$result"
