@@ -17,15 +17,15 @@
     "127.0.0.1"
   ];
 
-  # systemd.timers."transmission-port-forwarding" = {
-  #   wantedBy = ["timers.target"];
-  #   after = ["transmission.service"];
-  #   timerConfig = {
-  #     OnBootSec = "45s";
-  #     OnUnitActiveSec = "45s";
-  #     Unit = "transmission-port-forwarding.service";
-  #   };
-  # };
+  systemd.timers."transmission-port-forwarding" = {
+    wantedBy = ["timers.target"];
+    after = ["transmission.service"];
+    timerConfig = {
+      OnBootSec = "45s";
+      OnUnitActiveSec = "45s";
+      Unit = "transmission-port-forwarding.service";
+    };
+  };
 
   systemd.services."transmission-port-forwarding" = {
     serviceConfig = {
