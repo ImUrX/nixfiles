@@ -11,7 +11,7 @@
     jellyseerr.enable = true;
   };
 
-  recyclarr = {
+  nixarr.recyclarr = {
     enable = true;
     configuration = {
       sonarr = {
