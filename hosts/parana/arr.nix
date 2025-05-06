@@ -68,7 +68,7 @@
 
     extraSettings = {
       port-forwarding-enabled = false;
-      rpc-whitelist = "*";
+      rpc-host-whitelist = "*";
     };
   };
 }
