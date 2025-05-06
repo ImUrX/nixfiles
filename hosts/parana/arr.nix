@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   nixarr.enable = true;
@@ -10,6 +11,11 @@
     enable = true;
     wgConf = config.age.secrets.vpn-ar.path;
   };
+  vpnNamespaces.wg.accessibleFrom = lib.mkForce [
+    "192.168.0.0/16"
+    "100.100.0.0/16"
+    "127.0.0.1"
+  ];
 
   # systemd.timers."transmission-port-forwarding" = {
   #   wantedBy = ["timers.target"];
