@@ -4,7 +4,7 @@ sonarr:
     api_key: !env_var SONARR_API_KEY
     include: 
       - template: sonarr-quality-definition-series
-      - template: sonarr-v4-quality-profile-web-2160p
+      - template: sonarr-v4-quality-profile-web-2160p-alternative
       - template: sonarr-v4-custom-formats-web-2160p
       - template: sonarr-v4-quality-profile-anime
       - template: sonarr-v4-custom-formats-anime
@@ -47,6 +47,12 @@ sonarr:
           - name: Remux-1080p - Anime
             score: 1075 # Adjust scoring as desired
 
+      - trash_ids:
+          - 418f50b10f1907201b6cfdf881f467b7 # Anime Dual Audio
+        assign_scores_to:
+          - name: Remux-1080p - Anime
+            score: 101 # Adjust scoring as desired
+
     media_naming:
       series: plex-tvdb
       episodes:
@@ -59,10 +65,31 @@ radarr:
     api_key: !env_var RADARR_API_KEY
     include:
       - template: radarr-quality-definition-movie
-      - template: radarr-quality-profile-remux-web-2160p
       - template: radarr-custom-formats-remux-web-2160p
       - template: radarr-quality-profile-anime
       - template: radarr-custom-formats-anime
+
+    quality_profiles:
+      - name: Remux + WEB 2160p
+        reset_unmatched_scores:
+          enabled: true
+        upgrade:
+          allowed: true
+          until_quality: Remux-2160p
+          until_score: 10000
+        min_format_score: 0
+        quality_sort: top
+        qualities:
+          - name: Remux-2160p
+          - name: WEB 2160p
+            qualities:
+              - WEBDL-2160p
+              - WEBRip-2160p
+          - name: Remux-1080p
+          - name: WEB 1080p
+            qualities:
+              - WEBDL-1080p
+              - WEBRip-1080p
 
     custom_formats:
       - trash_ids:
@@ -137,6 +164,12 @@ radarr:
         assign_scores_to:
           - name: Remux-1080p - Anime
             score: 1075 # Adjust scoring as desired
+
+      - trash_ids:
+        - 4a3b087eea2ce012fcc1ce319259a3be # Anime Dual Audio
+        assign_scores_to:
+          - name: Remux-1080p - Anime
+            score: 101 # Adjust scoring as desired
 
     media_naming:
       movie:
