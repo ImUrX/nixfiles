@@ -54,10 +54,31 @@
         echo "Mapped new $protocol port $new_port, old one was $old_port."
         echo "$new_port" >"$port_file"
 
+        if ${pkgs.iptables}/bin/iptables -C INPUT -p "$protocol" --dport "$new_port" -j ACCEPT -i wg
+        then
+          echo "New $protocol port $new_port already open, not opening again."
+        else
+          echo "Opening new $protocol port $new_port."
+          ${pkgs.iptables}/bin/iptables -I INPUT -p "$protocol" --dport "$new_port" -j ACCEPT -i wg
+        fi
+
         if [ "$protocol" = tcp ]
         then
           echo "Telling transmission to listen on peer port $new_port."
           ${pkgs.transmission}/bin/transmission-remote 192.168.15.1 --port "$new_port"
+        fi
+
+        if [ "$new_port" -eq "$old_port" ]
+        then
+          echo "New $protocol port $new_port is the same as old port $old_port, not closing old port."
+        else
+          if ${pkgs.iptables}/bin/iptables -C INPUT -p "$protocol" --dport "$old_port" -j ACCEPT -i wg
+          then
+            echo "Closing old $protocol port $old_port."
+            ${pkgs.iptables}/bin/iptables -D INPUT -p "$protocol" --dport "$old_port" -j ACCEPT -i wg
+          else
+            echo "Old $protocol port $old_port not open, not attempting to close."
+          fi
         fi
       }
 
