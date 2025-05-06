@@ -57,7 +57,7 @@
         if [ "$protocol" = tcp ]
         then
           echo "Telling transmission to listen on peer port $new_port."
-          ${pkgs.transmission}/bin/transmission-remote --port "$new_port"
+          ${pkgs.transmission}/bin/transmission-remote 192.168.15.1 --port "$new_port"
         fi
       }
 
