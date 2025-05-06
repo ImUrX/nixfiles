@@ -54,12 +54,12 @@
         echo "Mapped new $protocol port $new_port, old one was $old_port."
         echo "$new_port" >"$port_file"
 
-        if ${pkgs.iptables}/bin/iptables -C INPUT -p "$protocol" --dport "$new_port" -j ACCEPT -i wg
+        if ${pkgs.iptables}/bin/iptables -C INPUT -p "$protocol" --dport "$new_port" -j ACCEPT -i wg0
         then
           echo "New $protocol port $new_port already open, not opening again."
         else
           echo "Opening new $protocol port $new_port."
-          ${pkgs.iptables}/bin/iptables -I INPUT -p "$protocol" --dport "$new_port" -j ACCEPT -i wg
+          ${pkgs.iptables}/bin/iptables -I INPUT -p "$protocol" --dport "$new_port" -j ACCEPT -i wg0
         fi
 
         if [ "$protocol" = tcp ]
@@ -72,10 +72,10 @@
         then
           echo "New $protocol port $new_port is the same as old port $old_port, not closing old port."
         else
-          if ${pkgs.iptables}/bin/iptables -C INPUT -p "$protocol" --dport "$old_port" -j ACCEPT -i wg
+          if ${pkgs.iptables}/bin/iptables -C INPUT -p "$protocol" --dport "$old_port" -j ACCEPT -i wg0
           then
             echo "Closing old $protocol port $old_port."
-            ${pkgs.iptables}/bin/iptables -D INPUT -p "$protocol" --dport "$old_port" -j ACCEPT -i wg
+            ${pkgs.iptables}/bin/iptables -D INPUT -p "$protocol" --dport "$old_port" -j ACCEPT -i wg0
           else
             echo "Old $protocol port $old_port not open, not attempting to close."
           fi
