@@ -6,6 +6,7 @@
 }: {
   imports = [./arrs.nix];
   nixarr.enable = true;
+  users.users.streamer.extraGroups = ["media"];
 
   # VPN
   nixarr.vpn = {
