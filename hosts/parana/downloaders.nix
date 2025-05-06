@@ -4,6 +4,7 @@
   lib,
   ...
 }: {
+  imports = [./arrs.nix];
   nixarr.enable = true;
 
   # VPN
@@ -98,6 +99,12 @@
       port-forwarding-enabled = false;
       rpc-host-whitelist = "*";
     };
+  };
+
+  # Sabnzbd
+  nixarr.sabnzbd = {
+    enable = true;
+    whitelistHostnames = ["nz.2dgirls.date"];
   };
 
   # Plex
