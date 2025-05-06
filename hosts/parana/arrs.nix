@@ -11,6 +11,8 @@
     jellyseerr.enable = true;
   };
 
+  services.flaresolverr.enable = true;
+
   nixarr.recyclarr = {
     enable = true;
     configFile = ./recyclarr.yml;
