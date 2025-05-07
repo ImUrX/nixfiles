@@ -3,7 +3,7 @@
   pkgs,
   lib,
   ...
-}: {
+}: rec {
   imports = [./arrs.nix];
   nixarr.enable = true;
   users.users.streamer.extraGroups = ["media"];
@@ -107,6 +107,11 @@
     enable = true;
     whitelistHostnames = ["nz.2dgirls.date"];
   };
+
+  systemd.tmpfiles.rules = [
+    "d ${services.slskd.settings.directories.downloads} 775 streamer media"
+    "d ${services.slskd.settings.directories.incomplete} 775 streamer media"
+  ];
 
   # Soulseek
   services.slskd = {
