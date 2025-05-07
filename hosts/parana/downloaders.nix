@@ -121,6 +121,13 @@
     domain = null;
 
     settings = {
+      web = {
+        authentication = {
+          api_keys = {
+            soularr = {key = "JYRReBr^@shK69J^KYxXG&NTYEXEqSPe1F*DZ4ct@YFcQBzVg5K96E!1&UerFza&";};
+          };
+        };
+      };
       remote_file_management = true;
       directories = {
         downloads = "/data/media/soulseek/downloads";
