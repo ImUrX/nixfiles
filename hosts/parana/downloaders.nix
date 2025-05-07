@@ -117,6 +117,7 @@
   services.slskd = {
     enable = true;
     environmentFile = config.age.secrets.soulseek.path;
+    user = "lidarr";
     group = "media";
     domain = null;
 
