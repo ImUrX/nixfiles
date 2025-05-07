@@ -143,7 +143,7 @@
       TZ = "ETC/UTC";
       SCRIPT_INTERVAL = "300";
     };
-    user = "streamer:media";
+    user = "nobody:media";
     volumes = [
       "${services.slskd.settings.directories.downloads}:/downloads"
       "${dirOf config.age.secrets.soularr.path}:/data"
