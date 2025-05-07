@@ -138,12 +138,12 @@
   virtualisation.oci-containers.containers.soularr = {
     autoStart = true;
     image = "mrusse08/soularr:latest";
+    extraOptions = ["--hostuser streamer"];
     hostname = "soularr";
     environment = {
       TZ = "ETC/UTC";
       SCRIPT_INTERVAL = "300";
     };
-    user = "nobody:media";
     volumes = [
       "${services.slskd.settings.directories.downloads}:/downloads"
       "${dirOf config.age.secrets.soularr.path}:/data"
