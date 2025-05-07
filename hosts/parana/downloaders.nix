@@ -113,6 +113,7 @@
     enable = true;
     environmentFile = config.age.secrets.soulseek.path;
     group = "media";
+    domain = null;
 
     settings = {
       remote_file_management = true;
