@@ -141,7 +141,7 @@
       soulseek.description = "42";
     };
   };
-  systemd.services.slskd.serviceConfig.umask = 0002;
+  systemd.services.slskd.serviceConfig.UMask = 0002;
 
   virtualisation.oci-containers.containers.soularr = {
     autoStart = true;
