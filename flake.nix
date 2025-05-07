@@ -242,7 +242,7 @@
             age.secrets.vpn-ar.file = ./secrets/protonvpn-ar.age;
             age.secrets.soulseek = {
               file = ./secrets/soulseek.age;
-              owner = "slskd";
+              owner = "lidarr";
             };
             age.secrets.soularr = {
               file = ./secrets/soularr.age;
