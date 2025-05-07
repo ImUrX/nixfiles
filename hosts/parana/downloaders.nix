@@ -135,6 +135,21 @@
     };
   };
 
+  virtualisation.oci-containers.containers.soularr = {
+    autoStart = true;
+    image = "mrusse08/soularr:latest";
+    hostname = "soularr";
+    environment = {
+      TZ = "ETC/UTC";
+      SCRIPT_INTERVAL = "300";
+    };
+    user = "streamer:media";
+    volumes = [
+      "${services.slskd.settings.directories.downloads}:/downloads"
+      "${dirOf config.age.secrets.soularr.path}:/data"
+    ];
+  };
+
   # Plex
   nixarr.plex.enable = true;
 }

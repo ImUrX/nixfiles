@@ -244,6 +244,10 @@
               file = ./secrets/soulseek.age;
               owner = "slskd";
             };
+            age.secrets.soularr = {
+              file = ./secrets/soularr.age;
+              name = "config.ini";
+            };
           }
         ];
       };
