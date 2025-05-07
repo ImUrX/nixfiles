@@ -121,6 +121,7 @@
     domain = null;
 
     settings = {
+      permissions.file.mode = 775;
       web = {
         authentication = {
           api_keys = {
