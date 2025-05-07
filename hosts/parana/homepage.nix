@@ -42,7 +42,7 @@
         {
           "Radarr" = rec {
             icon = "radarr";
-            url = "https://radarr.2dgirls.date";
+            href = "https://radarr.2dgirls.date";
             siteMonitor = "http://localhost:7878";
             widget = {
               type = "radarr";
@@ -54,7 +54,7 @@
         {
           "Sonarr" = rec {
             icon = "sonarr";
-            url = "https://sonarr.2dgirls.date";
+            href = "https://sonarr.2dgirls.date";
             siteMonitor = "http://localhost:8989";
             widget = {
               type = "sonarr";
@@ -66,7 +66,7 @@
         {
           "Bazarr" = rec {
             icon = "bazarr";
-            url = "https://bazarr.2dgirls.date";
+            href = "https://bazarr.2dgirls.date";
             siteMonitor = "http://localhost:6767";
             widget = {
               type = "bazarr";
@@ -78,7 +78,7 @@
         {
           "Lidarr" = rec {
             icon = "lidarr";
-            url = "https://lidarr.2dgirls.date";
+            href = "https://lidarr.2dgirls.date";
             siteMonitor = "http://localhost:8686";
             widget = {
               type = "lidarr";
@@ -90,7 +90,7 @@
         {
           "Readarr" = rec {
             icon = "readarr";
-            url = "https://readarr.2dgirls.date";
+            href = "https://readarr.2dgirls.date";
             siteMonitor = "http://localhost:8787";
             widget = {
               type = "readarr";
@@ -102,7 +102,7 @@
         {
           "Prowlarr" = rec {
             icon = "prowlarr";
-            url = "https://prowlarr.2dgirls.date";
+            href = "https://prowlarr.2dgirls.date";
             siteMonitor = "http://localhost:9696";
             widget = {
               type = "prowlarr";
