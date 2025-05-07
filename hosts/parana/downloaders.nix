@@ -121,6 +121,12 @@
         downloads = "/data/media/soulseek/downloads";
         incomplete = "/data/media/soulseek/incomplete";
       };
+      shares = {
+        directories = ["/data/media/library/music"];
+        filters = [];
+      };
+      rooms = [];
+      soulseek.description = "42";
     };
   };
 
