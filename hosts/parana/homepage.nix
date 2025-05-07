@@ -206,6 +206,26 @@
             };
           };
         }
+        {
+          "immich" = rec {
+            icon = "immich";
+            href = "https://img.2dgirls.date";
+            siteMonitor = "http://192.168.101.11:2283";
+            widget = {
+              type = "immich";
+              url = siteMonitor;
+              key = "{{HOMEPAGE_VAR_IMMICH}}";
+              version = 2;
+            };
+          };
+        }
+        {
+          "Speedtest" = {
+            widget = {
+              type = "speedtest";
+            };
+          };
+        }
       ];
     }
     {
