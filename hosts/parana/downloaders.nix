@@ -108,6 +108,21 @@
     whitelistHostnames = ["nz.2dgirls.date"];
   };
 
+  # Soulseek
+  services.slskd = {
+    enable = true;
+    environmentFile = config.age.secrets.soulseek.path;
+    group = "media";
+
+    settings = {
+      remote_file_management = true;
+      directories = {
+        downloads = "/data/media/soulseek/downloads";
+        incomplete = "/data/media/soulseek/incomplete";
+      };
+    };
+  };
+
   # Plex
   nixarr.plex.enable = true;
 }

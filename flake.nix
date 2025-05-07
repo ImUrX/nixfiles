@@ -240,6 +240,10 @@
             age.secrets.homepage.file = ./secrets/homepage.age;
             age.secrets.cloudflared.file = ./secrets/cloudflared.age;
             age.secrets.vpn-ar.file = ./secrets/protonvpn-ar.age;
+            age.secrets.soulseek = {
+              file = ./secrets/soulseek.age;
+              owner = "slskd";
+            };
           }
         ];
       };

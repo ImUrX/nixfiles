@@ -11,6 +11,8 @@
     jellyseerr.enable = true;
   };
 
+  services.tautulli.enable = true;
+
   services.flaresolverr.enable = true;
 
   nixarr.recyclarr = {
