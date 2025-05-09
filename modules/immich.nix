@@ -2,35 +2,39 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.uri.immich;
 in
-  with lib; {
-    options.uri.immich = {
-      enable = mkEnableOption "Enables and configures immich";
-    };
+with lib;
+{
+  options.uri.immich = {
+    enable = mkEnableOption "Enables and configures immich";
+  };
 
-    config = mkIf cfg.enable {
-      systemd.tmpfiles.rules = [
-        "d /data/backup/immich 770 immich immich"
-        "d /data/media/immich 770 immich immich"
-      ];
-      containers.immich = {
-        autoStart = true;
-        privateNetwork = true;
-        hostAddress = "192.168.101.10";
-        localAddress = "192.168.101.11";
-        hostAddress6 = "fc01::1";
-        localAddress6 = "fc01::2";
+  config = mkIf cfg.enable {
+    systemd.tmpfiles.rules = [
+      "d /data/backup/immich 770 immich immich"
+      "d /data/media/immich 770 immich immich"
+    ];
+    containers.immich = {
+      autoStart = true;
+      privateNetwork = true;
+      hostAddress = "192.168.101.10";
+      localAddress = "192.168.101.11";
+      hostAddress6 = "fc01::1";
+      localAddress6 = "fc01::2";
 
-        bindMounts."/data/media/immich".isReadOnly = false;
+      bindMounts."/data/media/immich".isReadOnly = false;
 
-        config = {
+      config =
+        {
           config,
           pkgs,
           lib,
           ...
-        }: {
+        }:
+        {
           services.immich = {
             enable = true;
             host = "0.0.0.0";
@@ -41,7 +45,7 @@ in
           };
 
           networking = {
-            firewall.allowedTCPPorts = [2283];
+            firewall.allowedTCPPorts = [ 2283 ];
 
             # Use systemd-resolved inside the container
             # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
@@ -52,6 +56,6 @@ in
 
           system.stateVersion = "24.11";
         };
-      };
     };
-  }
+  };
+}

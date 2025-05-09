@@ -7,16 +7,24 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   # boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
-  boot.kernelModules = ["v4l2loopback"];
-  boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "nvme"
+    "usbhid"
+    "usb_storage"
+    "sd_mod"
+  ];
+  boot.kernelModules = [ "v4l2loopback" ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
   boot.extraModprobeConfig = ''
     options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1
   '';
@@ -46,7 +54,7 @@
     fsType = "vfat";
   };
 
-  swapDevices = [];
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -70,8 +78,11 @@
   hardware.graphics = {
     # Mesa
     enable = true;
-    extraPackages = with pkgs; [mangohud rocmPackages.clr.icd];
-    extraPackages32 = with pkgs; [pkgsi686Linux.mangohud];
+    extraPackages = with pkgs; [
+      mangohud
+      rocmPackages.clr.icd
+    ];
+    extraPackages32 = with pkgs; [ pkgsi686Linux.mangohud ];
     enable32Bit = true;
   };
   hardware.amdgpu.opencl.enable = true;

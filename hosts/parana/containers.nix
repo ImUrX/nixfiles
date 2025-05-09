@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   imports = [
     ../../modules/paperless.nix
     ../../modules/immich.nix
@@ -7,7 +8,7 @@
   networking.nat = {
     enable = true;
     # Use "ve-*" when using nftables instead of iptables
-    internalInterfaces = ["ve-+"];
+    internalInterfaces = [ "ve-+" ];
     externalInterface = "eno1";
     # Lazy IPv6 connectivity for the container
     enableIPv6 = true;
@@ -30,7 +31,7 @@
     gotenberg = {
       autoStart = true;
       image = "gotenberg/gotenberg:8";
-      ports = ["3000:3000"];
+      ports = [ "3000:3000" ];
       cmd = [
         "gotenberg"
         "--chromium-disable-javascript=true"

@@ -7,7 +7,8 @@
   pkgs,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     ./containers.nix
@@ -22,8 +23,15 @@
     device = "nodev";
   };
 
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
-  boot.blacklistedKernelModules = ["nouveau"];
+  boot.initrd.availableKernelModules = [
+    "xhci_pci"
+    "ahci"
+    "nvme"
+    "usbhid"
+    "usb_storage"
+    "sd_mod"
+  ];
+  boot.blacklistedKernelModules = [ "nouveau" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/20367c05-bf86-4291-818b-3884887af5d2";
@@ -38,10 +46,13 @@
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/c510ab6e-ff31-4ddb-824f-1867da4345d6";
     fsType = "btrfs";
-    options = ["noatime" "compress=zstd"];
+    options = [
+      "noatime"
+      "compress=zstd"
+    ];
   };
 
-  swapDevices = [{device = "/dev/disk/by-uuid/f72ffc99-9aba-4469-8e43-6d7b3191affb";}];
+  swapDevices = [ { device = "/dev/disk/by-uuid/f72ffc99-9aba-4469-8e43-6d7b3191affb"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -65,7 +76,10 @@
       interface = "eno1";
     };
   };
-  networking.nameservers = ["1.1.1.1" "8.8.8.8"];
+  networking.nameservers = [
+    "1.1.1.1"
+    "8.8.8.8"
+  ];
 
   # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
@@ -74,10 +88,10 @@
   ### NVIDIA STUFF
   hardware.graphics = {
     enable = true;
-    extraPackages = with pkgs; [nvidia-vaapi-driver];
+    extraPackages = with pkgs; [ nvidia-vaapi-driver ];
   };
 
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = false;
 
   i18n.defaultLocale = "en_US.UTF-8";

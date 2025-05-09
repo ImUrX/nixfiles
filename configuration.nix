@@ -5,7 +5,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   imports = [
     # Include the results of the hardware scan.
     ./headless.nix
@@ -32,7 +33,7 @@
   services.printing.enable = true;
   hardware.sane.enable = true;
   # HP giving 403
-  hardware.sane.extraBackends = [pkgs.hplipWithPlugin];
+  hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];
   services.printing.drivers = with pkgs; [
     postscript-lexmark
     epson-escpr
@@ -121,7 +122,7 @@
     wev
     wl-mirror
     wl-color-picker
-    gamescope #gamescope-wsi will let me use HDR, but it breaks steam overlay apparently
+    gamescope # gamescope-wsi will let me use HDR, but it breaks steam overlay apparently
     # gnomeExtensions.appindicator
     # gnome.gnome-tweaks
     remmina
@@ -134,6 +135,7 @@
     lm_sensors
     # LSP for Nix
     nil
+    nixfmt-rfc-style
     wireshark
     (ventoy-full.override {
       defaultGuiType = "qt5";

@@ -3,26 +3,28 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.uri.yubi;
 in
-  with lib; {
-    options.uri.yubi = {
-      enable = mkEnableOption "Enables and configures Yubikey usage";
+with lib;
+{
+  options.uri.yubi = {
+    enable = mkEnableOption "Enables and configures Yubikey usage";
+  };
+
+  config = mkIf cfg.enable {
+    services.udev.packages = [ pkgs.yubikey-personalization ];
+
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
     };
 
-    config = mkIf cfg.enable {
-      services.udev.packages = [pkgs.yubikey-personalization];
-
-      programs.gnupg.agent = {
-        enable = true;
-        enableSSHSupport = true;
-      };
-
-      security.pam.yubico = {
-        enable = true;
-        mode = "challenge-response";
-      };
-      services.pcscd.enable = true;
+    security.pam.yubico = {
+      enable = true;
+      mode = "challenge-response";
     };
-  }
+    services.pcscd.enable = true;
+  };
+}

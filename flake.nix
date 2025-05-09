@@ -3,7 +3,7 @@
   description = "the simplest flake for nixos-rebuild";
 
   inputs = {
-    self.submodules = true;
+    # self.submodules = true;
 
     nixpkgs = {
       # Using the nixos-unstable branch specifically, which is the
@@ -16,8 +16,6 @@
 
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     # emacs-overlay.url = "github:nix-community/emacs-overlay";
-    alejandra.url = "github:kamadorueda/alejandra/3.0.0";
-    alejandra.inputs.nixpkgs.follows = "nixpkgs";
 
     pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
     pipewire-screenaudio.inputs.nixpkgs.follows = "nixpkgs";
@@ -58,199 +56,192 @@
 
   # Outputs can be anything, but the wiki + some commands define their own
   # specific keys. Wiki page: https://nixos.wiki/wiki/Flakes#Output_schema
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    alejandra,
-    aagl,
-    nixos-hardware,
-    nix-alien,
-    musnix,
-    agenix,
-    nixarr,
-    ...
-  } @ inputs: {
-    # nixosConfigurations is the key that nixos-rebuild looks for.
-    nixosConfigurations = {
-      uridesk = nixpkgs.lib.nixosSystem rec {
-        # A lot of times online you will see the use of flake-utils + a
-        # function which iterates over many possible systems. My system
-        # is x86_64-linux, so I'm only going to define that
-        system = "x86_64-linux";
-        # Import our old system configuration.nix
-        modules = [
-          ./hosts/uridesk
-          ./configuration.nix
-          ./users/uri
-          home-manager.nixosModules.home-manager
-          musnix.nixosModules.musnix
-          {
-            environment.systemPackages = [
-              alejandra.defaultPackage.${system}
-              agenix.packages.${system}.default
-            ];
-          }
-          {
-            _module.args = {inherit inputs;};
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            # home-manager.users.uri = import ./home.nix
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      aagl,
+      nixos-hardware,
+      nix-alien,
+      musnix,
+      agenix,
+      nixarr,
+      ...
+    }@inputs:
+    {
+      # nixosConfigurations is the key that nixos-rebuild looks for.
+      nixosConfigurations = {
+        uridesk = nixpkgs.lib.nixosSystem rec {
+          # A lot of times online you will see the use of flake-utils + a
+          # function which iterates over many possible systems. My system
+          # is x86_64-linux, so I'm only going to define that
+          system = "x86_64-linux";
+          # Import our old system configuration.nix
+          modules = [
+            ./hosts/uridesk
+            ./configuration.nix
+            ./users/uri
+            home-manager.nixosModules.home-manager
+            musnix.nixosModules.musnix
+            {
+              environment.systemPackages = [
+                agenix.packages.${system}.default
+              ];
+            }
+            {
+              _module.args = { inherit inputs; };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              # home-manager.users.uri = import ./home.nix
 
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-              headless = false;
-            };
-          }
-          {
-            imports = [aagl.nixosModules.default];
-            nix.settings = aagl.nixConfig; # Setup cachix
-            programs.anime-game-launcher.enable = true;
-            programs.sleepy-launcher.enable = true;
-          }
-          {
-            environment.systemPackages = [nix-alien.packages.${system}.nix-alien];
-          }
-        ];
-      };
-      minidesk = nixpkgs.lib.nixosSystem rec {
-        # A lot of times online you will see the use of flake-utils + a
-        # function which iterates over many possible systems. My system
-        # is x86_64-linux, so I'm only going to define that
-        system = "x86_64-linux";
-        # Import our old system configuration.nix
-        modules = [
-          ./hosts/minidesk
-          ./configuration.nix
-          ./users/uri
-          nixos-hardware.nixosModules.framework-13th-gen-intel
-          home-manager.nixosModules.home-manager
-          musnix.nixosModules.musnix
-          {
-            environment.systemPackages = [
-              alejandra.defaultPackage.${system}
-              agenix.packages.${system}.default
-            ];
-          }
-          {
-            _module.args = {inherit inputs;};
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "backup";
-            # home-manager.users.uri = import ./home.nix
+              # Optionally, use home-manager.extraSpecialArgs to pass
+              # arguments to home.nix
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                headless = false;
+              };
+            }
+            {
+              imports = [ aagl.nixosModules.default ];
+              nix.settings = aagl.nixConfig; # Setup cachix
+              programs.anime-game-launcher.enable = true;
+              programs.sleepy-launcher.enable = true;
+            }
+            {
+              environment.systemPackages = [ nix-alien.packages.${system}.nix-alien ];
+            }
+          ];
+        };
+        minidesk = nixpkgs.lib.nixosSystem rec {
+          # A lot of times online you will see the use of flake-utils + a
+          # function which iterates over many possible systems. My system
+          # is x86_64-linux, so I'm only going to define that
+          system = "x86_64-linux";
+          # Import our old system configuration.nix
+          modules = [
+            ./hosts/minidesk
+            ./configuration.nix
+            ./users/uri
+            nixos-hardware.nixosModules.framework-13th-gen-intel
+            home-manager.nixosModules.home-manager
+            musnix.nixosModules.musnix
+            {
+              environment.systemPackages = [
+                agenix.packages.${system}.default
+              ];
+            }
+            {
+              _module.args = { inherit inputs; };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "backup";
+              # home-manager.users.uri = import ./home.nix
 
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-              headless = false;
-            };
-          }
-        ];
-      };
-      lal1tx = nixpkgs.lib.nixosSystem rec {
-        # A lot of times online you will see the use of flake-utils + a
-        # function which iterates over many possible systems. My system
-        # is x86_64-linux, so I'm only going to define that
-        system = "x86_64-linux";
-        # Import our old system configuration.nix
-        modules = [
-          ./hosts/lal1tx
-          ./configuration.nix
-          ./users/home-lal1tx.nix
-          home-manager.nixosModules.home-manager
-          musnix.nixosModules.musnix
-          {
-            environment.systemPackages = [alejandra.defaultPackage.${system}];
-          }
-          {
-            _module.args = {inherit inputs;};
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-              headless = false;
-            };
-          }
-          {
-            imports = [aagl.nixosModules.default];
-            nix.settings = aagl.nixConfig; # Setup cachix
-            programs.anime-game-launcher.enable = true;
-            programs.sleepy-launcher.enable = true;
-          }
-        ];
-      };
-      atrii-trans = nixpkgs.lib.nixosSystem rec {
-        # A lot of times online you will see the use of flake-utils + a
-        # function which iterates over many possible systems. My system
-        # is x86_64-linux, so I'm only going to define that
-        system = "x86_64-linux";
-        # Import our old system configuration.nix
-        modules = [
-          ./hosts/atrii-trans
-          ./configuration.nix
-          ./users/home-lal1tx.nix
-          home-manager.nixosModules.home-manager
-          musnix.nixosModules.musnix
-          {
-            environment.systemPackages = [alejandra.defaultPackage.${system}];
-          }
-          {
-            _module.args = {inherit inputs;};
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-              headless = false;
-            };
-          }
-          {
-            imports = [aagl.nixosModules.default];
-            nix.settings = aagl.nixConfig; # Setup cachix
-            programs.sleepy-launcher.enable = true;
-          }
-          inputs.minegrub-theme.nixosModules.default
-        ];
-      };
-      parana = nixpkgs.lib.nixosSystem {
-        # A lot of times online you will see the use of flake-utils + a
-        # function which iterates over many possible systems. My system
-        # is x86_64-linux, so I'm only going to define that
-        system = "x86_64-linux";
-        # Import our old system configuration.nix
-        modules = [
-          ./hosts/parana
-          ./headless.nix
-          ./users/uri
-          home-manager.nixosModules.home-manager
-          musnix.nixosModules.musnix
-          agenix.nixosModules.default
-          nixarr.nixosModules.default
-          {
-            _module.args = {inherit inputs;};
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-              headless = true;
-            };
+              # Optionally, use home-manager.extraSpecialArgs to pass
+              # arguments to home.nix
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                headless = false;
+              };
+            }
+          ];
+        };
+        lal1tx = nixpkgs.lib.nixosSystem {
+          # A lot of times online you will see the use of flake-utils + a
+          # function which iterates over many possible systems. My system
+          # is x86_64-linux, so I'm only going to define that
+          system = "x86_64-linux";
+          # Import our old system configuration.nix
+          modules = [
+            ./hosts/lal1tx
+            ./configuration.nix
+            ./users/home-lal1tx.nix
+            home-manager.nixosModules.home-manager
+            musnix.nixosModules.musnix
+            {
+              _module.args = { inherit inputs; };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                headless = false;
+              };
+            }
+            {
+              imports = [ aagl.nixosModules.default ];
+              nix.settings = aagl.nixConfig; # Setup cachix
+              programs.anime-game-launcher.enable = true;
+              programs.sleepy-launcher.enable = true;
+            }
+          ];
+        };
+        atrii-trans = nixpkgs.lib.nixosSystem {
+          # A lot of times online you will see the use of flake-utils + a
+          # function which iterates over many possible systems. My system
+          # is x86_64-linux, so I'm only going to define that
+          system = "x86_64-linux";
+          # Import our old system configuration.nix
+          modules = [
+            ./hosts/atrii-trans
+            ./configuration.nix
+            ./users/home-lal1tx.nix
+            home-manager.nixosModules.home-manager
+            musnix.nixosModules.musnix
+            {
+              _module.args = { inherit inputs; };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                headless = false;
+              };
+            }
+            {
+              imports = [ aagl.nixosModules.default ];
+              nix.settings = aagl.nixConfig; # Setup cachix
+              programs.sleepy-launcher.enable = true;
+            }
+            inputs.minegrub-theme.nixosModules.default
+          ];
+        };
+        parana = nixpkgs.lib.nixosSystem {
+          # A lot of times online you will see the use of flake-utils + a
+          # function which iterates over many possible systems. My system
+          # is x86_64-linux, so I'm only going to define that
+          system = "x86_64-linux";
+          # Import our old system configuration.nix
+          modules = [
+            ./hosts/parana
+            ./headless.nix
+            ./users/uri
+            home-manager.nixosModules.home-manager
+            musnix.nixosModules.musnix
+            agenix.nixosModules.default
+            nixarr.nixosModules.default
+            {
+              _module.args = { inherit inputs; };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                headless = true;
+              };
 
-            age.secrets.homepage.file = ./secrets/homepage.age;
-            age.secrets.cloudflared.file = ./secrets/cloudflared.age;
-            age.secrets.vpn-ar.file = ./secrets/protonvpn-ar.age;
-            age.secrets.soulseek = {
-              file = ./secrets/soulseek.age;
-              owner = "lidarr";
-            };
-            age.secrets.soularr = {
-              file = ./secrets/soularr.age;
-              name = "config.ini";
-            };
-          }
-        ];
+              age.secrets.homepage.file = ./secrets/homepage.age;
+              age.secrets.cloudflared.file = ./secrets/cloudflared.age;
+              age.secrets.vpn-ar.file = ./secrets/protonvpn-ar.age;
+              age.secrets.soulseek = {
+                file = ./secrets/soulseek.age;
+                owner = "lidarr";
+              };
+              age.secrets.soularr = {
+                file = ./secrets/soularr.age;
+                name = "config.ini";
+              };
+            }
+          ];
+        };
       };
     };
-  };
 }

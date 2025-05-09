@@ -3,10 +3,11 @@
   pkgs,
   lib,
   ...
-}: rec {
-  imports = [./arrs.nix];
+}:
+rec {
+  imports = [ ./arrs.nix ];
   nixarr.enable = true;
-  users.users.streamer.extraGroups = ["media"];
+  users.users.streamer.extraGroups = [ "media" ];
 
   # VPN
   nixarr.vpn = {
@@ -20,8 +21,8 @@
   ];
 
   systemd.timers."transmission-port-forwarding" = {
-    wantedBy = ["timers.target"];
-    after = ["transmission.service"];
+    wantedBy = [ "timers.target" ];
+    after = [ "transmission.service" ];
     timerConfig = {
       OnBootSec = "45s";
       OnUnitActiveSec = "45s";
@@ -105,7 +106,7 @@
   # Sabnzbd
   nixarr.sabnzbd = {
     enable = true;
-    whitelistHostnames = ["nz.2dgirls.date"];
+    whitelistHostnames = [ "nz.2dgirls.date" ];
   };
 
   systemd.tmpfiles.rules = [
@@ -125,7 +126,9 @@
       web = {
         authentication = {
           api_keys = {
-            soularr = {key = "JYRReBr^@shK69J^KYxXG&NTYEXEqSPe1F*DZ4ct@YFcQBzVg5K96E!1&UerFza&";};
+            soularr = {
+              key = "JYRReBr^@shK69J^KYxXG&NTYEXEqSPe1F*DZ4ct@YFcQBzVg5K96E!1&UerFza&";
+            };
           };
         };
       };
@@ -135,10 +138,10 @@
         incomplete = "/data/media/soulseek/incomplete";
       };
       shares = {
-        directories = ["/data/media/library/music"];
-        filters = [];
+        directories = [ "/data/media/library/music" ];
+        filters = [ ];
       };
-      rooms = [];
+      rooms = [ ];
       soulseek.description = "42";
     };
   };
@@ -147,7 +150,7 @@
   virtualisation.oci-containers.containers.soularr = {
     autoStart = true;
     image = "mrusse08/soularr:latest";
-    extraOptions = ["--hostuser=streamer"];
+    extraOptions = [ "--hostuser=streamer" ];
     hostname = "soularr";
     environment = {
       TZ = "ETC/UTC";

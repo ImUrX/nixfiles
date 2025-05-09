@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   nixarr = {
     radarr.enable = true;
     lidarr.enable = true;

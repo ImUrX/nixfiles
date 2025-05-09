@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.homepage-dashboard.enable = true;
   services.homepage-dashboard.environmentFile = config.age.secrets.homepage.path;
 
@@ -240,7 +241,7 @@
               url = href;
               key = "{{HOMEPAGE_VAR_HA}}";
               custom = [
-                {state = "sensor.energy_today";}
+                { state = "sensor.energy_today"; }
                 {
                   state = "sensor.fusiblebken_current";
                   label = "amperaje";

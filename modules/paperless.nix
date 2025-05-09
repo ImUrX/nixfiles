@@ -3,40 +3,44 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   cfg = config.uri.paperless;
 in
-  with lib; {
-    options.uri.paperless = {
-      enable = mkEnableOption "Enables and configures paperless-ngx";
-    };
+with lib;
+{
+  options.uri.paperless = {
+    enable = mkEnableOption "Enables and configures paperless-ngx";
+  };
 
-    config = mkIf cfg.enable {
-      containers.paperless = {
-        autoStart = true;
-        privateNetwork = true;
-        hostAddress = "192.168.100.10";
-        localAddress = "192.168.100.11";
-        hostAddress6 = "fc00::1";
-        localAddress6 = "fc00::2";
+  config = mkIf cfg.enable {
+    containers.paperless = {
+      autoStart = true;
+      privateNetwork = true;
+      hostAddress = "192.168.100.10";
+      localAddress = "192.168.100.11";
+      hostAddress6 = "fc00::1";
+      localAddress6 = "fc00::2";
 
-        bindMounts."/etc/ssh/ssh_host_ed25519_key".isReadOnly = true;
-        bindMounts."/data/backup/paperless".isReadOnly = false;
+      bindMounts."/etc/ssh/ssh_host_ed25519_key".isReadOnly = true;
+      bindMounts."/data/backup/paperless".isReadOnly = false;
 
-        config = {
+      config =
+        {
           config,
           pkgs,
           lib,
           ...
-        }: {
-          imports = [inputs.agenix.nixosModules.default]; # import agenix-module into the nixos-container
-          age.identityPaths = ["/etc/ssh/ssh_host_ed25519_key"]; # isn't set automatically when openssh is not setup
+        }:
+        {
+          imports = [ inputs.agenix.nixosModules.default ]; # import agenix-module into the nixos-container
+          age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ]; # isn't set automatically when openssh is not setup
           age.secrets.passwd.file = ../secrets/paperless-passwd.age;
 
           systemd.services.protonmail-bridge = {
             description = "protonmail bridge";
-            after = ["network.target"];
-            wantedBy = ["multi-user.target"];
+            after = [ "network.target" ];
+            wantedBy = [ "multi-user.target" ];
 
             environment = {
               HOME = "/root";
@@ -47,13 +51,13 @@ in
               Restart = "always";
             };
           };
-          environment.systemPackages = [pkgs.protonmail-bridge];
+          environment.systemPackages = [ pkgs.protonmail-bridge ];
 
           services.tika.enable = true;
 
           services.postgresql = {
             enable = true;
-            ensureDatabases = ["paperless"];
+            ensureDatabases = [ "paperless" ];
             authentication = pkgs.lib.mkOverride 10 ''
               #type database  DBuser  auth-method
               local all       all     trust
@@ -90,7 +94,7 @@ in
           };
 
           networking = {
-            firewall.allowedTCPPorts = [28981];
+            firewall.allowedTCPPorts = [ 28981 ];
 
             # Use systemd-resolved inside the container
             # Workaround for bug https://github.com/NixOS/nixpkgs/issues/162686
@@ -101,6 +105,6 @@ in
 
           system.stateVersion = "24.11";
         };
-      };
     };
-  }
+  };
+}

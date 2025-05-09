@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   imports = [
     ../../modules/vscode.nix
     ../../modules/jetbrains.nix
@@ -8,7 +9,7 @@
   systemd.user.targets.tray = {
     Unit = {
       Description = "Home Manager System Tray";
-      Requires = ["graphical-session-pre.target"];
+      Requires = [ "graphical-session-pre.target" ];
     };
   };
 
@@ -102,6 +103,7 @@
   # cookiecutie.git.signingkey = "13E59DEACC71A51D";
   uri.jetbrains.enable = true;
   uri.obs.enable = true;
+  uri.vscode.enable = true;
   # uri.hyprland.enable = true;
 
   home.sessionVariables = {
