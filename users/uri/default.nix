@@ -56,6 +56,17 @@
       home.shellAliases = {
         love = "echo 'Edu: Te amo Uri <3'";
       };
+      programs.bash.initExtra = ''
+        nixos-remote () {
+          if [ $# -eq 0 ]; then
+            echo "No arguments supplied"
+          elif [ $# -eq 2 ]; then
+            nixos-rebuild switch --flake ".#$1" --build-host $2 --target-host $2 --use-remote-sudo
+          else
+            nixos-rebuild $3 --flake ".#$1" --build-host $2 --target-host $2 --use-remote-sudo
+          fi
+        }
+      '';
 
       home.activation = {
         import-ssh = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

@@ -35,6 +35,8 @@ rec {
       Type = "oneshot";
       User = "root";
     };
+    bindsTo = ["wg.service"];
+    after = ["wg.service"];
 
     vpnConfinement = {
       enable = true;
@@ -62,7 +64,7 @@ rec {
           echo "New $protocol port $new_port already open, not opening again."
         else
           echo "Opening new $protocol port $new_port."
-          ${pkgs.iptables}/bin/iptables -A INPUT -p "$protocol" --dport "$new_port" -j ACCEPT -i wg0
+          ${pkgs.iptables}/bin/iptables -I INPUT -p "$protocol" --dport "$new_port" -j ACCEPT -i wg0
         fi
 
         if [ "$protocol" = tcp ]
