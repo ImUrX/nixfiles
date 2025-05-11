@@ -50,8 +50,11 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
+    vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
+
     nixarr.url = "github:rasmus-kirk/nixarr/dev";
     nixarr.inputs.nixpkgs.follows = "nixpkgs";
+    nixarr.inputs.vpnconfinement.follows = "vpn-confinement";
   };
 
   # Outputs can be anything, but the wiki + some commands define their own
@@ -66,6 +69,7 @@
       nix-alien,
       musnix,
       agenix,
+      vpn-confinement,
       nixarr,
       ...
     }@inputs:
@@ -219,6 +223,7 @@
             musnix.nixosModules.musnix
             agenix.nixosModules.default
             nixarr.nixosModules.default
+            vpn-confinement.nixosModules.default
             {
               _module.args = { inherit inputs; };
               home-manager.useGlobalPkgs = true;
@@ -231,9 +236,11 @@
               age.secrets.homepage.file = ./secrets/homepage.age;
               age.secrets.cloudflared.file = ./secrets/cloudflared.age;
               age.secrets.vpn-ar.file = ./secrets/protonvpn-ar.age;
+              age.secrets.vpn-slsk.file = ./secrets/vpn-slsk.age;
               age.secrets.soulseek = {
                 file = ./secrets/soulseek.age;
                 owner = "lidarr";
+                mode = "770";
               };
               age.secrets.soularr = {
                 file = ./secrets/soularr.age;

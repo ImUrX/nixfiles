@@ -143,7 +143,7 @@
           "slskd" = rec {
             icon = "slskd";
             href = "https://soul.2dgirls.date";
-            siteMonitor = "http://localhost:5030";
+            siteMonitor = "http://192.168.16.1:5030";
             widget = {
               type = "slskd";
               url = siteMonitor;
