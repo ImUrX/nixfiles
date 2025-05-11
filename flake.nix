@@ -30,6 +30,7 @@
     anyrun.inputs.nixpkgs.follows = "nixpkgs";
 
     ags.url = "github:Aylur/ags";
+    ags.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
