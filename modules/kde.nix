@@ -31,6 +31,7 @@ with lib;
       kdePackages.yakuake
       kdePackages.kcalc
       kdePackages.partitionmanager
+      kdePackages.konversation
       kdePackages.skanpage
     ];
 
