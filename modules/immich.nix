@@ -17,6 +17,10 @@ with lib;
       "d /data/backup/immich 770 immich immich"
       "d /data/media/immich 770 immich immich"
     ];
+
+    # limit immich to only 2 cores at it likes slurping on that CPU
+    systemd.services."containers@immich".serviceConfig.CPUQuota = "200%";
+
     containers.immich = {
       autoStart = true;
       privateNetwork = true;

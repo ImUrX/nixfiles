@@ -31,6 +31,9 @@ rec {
     messageLevel = "info";
     vpn.enable = true;
 
+    # Doesn't build
+    # privateTrackers.cross-seed.enable = true;
+
     extraSettings = {
       port-forwarding-enabled = false;
       rpc-host-whitelist = "*";

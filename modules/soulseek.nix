@@ -67,6 +67,12 @@ with lib;
             };
           };
         };
+        global = {
+          upload = {
+            slots = 10;
+            speed_limit = 2048;
+          };
+        };
         remote_file_management = true;
         directories = {
           downloads = cfg.downloads;

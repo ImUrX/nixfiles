@@ -112,6 +112,18 @@
             };
           };
         }
+        {
+          "Autobrr" = rec {
+            icon = "autobrr";
+            href = "https://autoarr.2dgirls.date";
+            siteMonitor = "http://localhost:7474";
+            widget = {
+              type = "autobrr";
+              url = siteMonitor;
+              key = "{{HOMEPAGE_VAR_AUTOBRR}}";
+            };
+          };
+        }
       ];
     }
     {
