@@ -48,7 +48,6 @@
       programs.bash.enable = true;
 
       cookiecutie.git.enable = true;
-      # cookiecutie.git.signingkey = "13E59DEACC71A51D";
       uri.rust.enable = true;
       uri.java.enable = true;
       uri.javascript.enable = true;

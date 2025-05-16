@@ -99,8 +99,8 @@
   #   # and packages.el files
   # };
 
-  cookiecutie.git.enable = true;
-  # cookiecutie.git.signingkey = "13E59DEACC71A51D";
+  cookiecutie.git.gpg = true;
+  cookiecutie.git.signingkey = "13E59DEACC71A51D";
   uri.jetbrains.enable = true;
   uri.obs.enable = true;
   uri.vscode.enable = true;
