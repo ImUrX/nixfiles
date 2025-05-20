@@ -112,7 +112,7 @@
       withMiddleClickScroll = true;
     })
     mpv
-    gimp
+    gimp3
     prismlauncher
     qbittorrent
     spotify
