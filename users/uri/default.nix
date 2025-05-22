@@ -46,6 +46,7 @@
       programs.direnv.enable = true;
       programs.direnv.enableBashIntegration = true;
       programs.bash.enable = true;
+      programs.distrobox.enable = true;
 
       cookiecutie.git.enable = true;
       uri.rust.enable = true;
