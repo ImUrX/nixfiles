@@ -98,7 +98,10 @@
               ];
             }
             {
-              _module.args = { inherit inputs; inherit system; };
+              _module.args = {
+                inherit inputs;
+                inherit system;
+              };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               # home-manager.users.uri = import ./home.nix
@@ -141,7 +144,10 @@
               ];
             }
             {
-              _module.args = { inherit inputs; };
+              _module.args = {
+                inherit inputs;
+                inherit system;
+              };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "backup";
@@ -151,12 +157,13 @@
               # arguments to home.nix
               home-manager.extraSpecialArgs = {
                 inherit inputs;
+                inherit system;
                 headless = false;
               };
             }
           ];
         };
-        lal1tx = nixpkgs.lib.nixosSystem {
+        lal1tx = nixpkgs.lib.nixosSystem rec {
           # A lot of times online you will see the use of flake-utils + a
           # function which iterates over many possible systems. My system
           # is x86_64-linux, so I'm only going to define that
@@ -169,11 +176,15 @@
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
             {
-              _module.args = { inherit inputs; };
+              _module.args = {
+                inherit inputs;
+                inherit system;
+              };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = {
                 inherit inputs;
+                inherit system;
                 headless = false;
               };
             }
@@ -185,7 +196,7 @@
             }
           ];
         };
-        atrii-trans = nixpkgs.lib.nixosSystem {
+        atrii-trans = nixpkgs.lib.nixosSystem rec {
           # A lot of times online you will see the use of flake-utils + a
           # function which iterates over many possible systems. My system
           # is x86_64-linux, so I'm only going to define that
@@ -198,11 +209,15 @@
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
             {
-              _module.args = { inherit inputs; };
+              _module.args = {
+                inherit inputs;
+                inherit system;
+              };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = {
                 inherit inputs;
+                inherit system;
                 headless = false;
               };
             }
@@ -214,7 +229,7 @@
             inputs.minegrub-theme.nixosModules.default
           ];
         };
-        parana = nixpkgs.lib.nixosSystem {
+        parana = nixpkgs.lib.nixosSystem rec {
           # A lot of times online you will see the use of flake-utils + a
           # function which iterates over many possible systems. My system
           # is x86_64-linux, so I'm only going to define that
@@ -230,11 +245,15 @@
             nixarr.nixosModules.default
             vpn-confinement.nixosModules.default
             {
-              _module.args = { inherit inputs; };
+              _module.args = {
+                inherit inputs;
+                inherit system;
+              };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = {
                 inherit inputs;
+                inherit system;
                 headless = true;
               };
 
