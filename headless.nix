@@ -1,6 +1,8 @@
 {
   pkgs,
   lib,
+  inputs,
+  system,
   ...
 }:
 {
@@ -19,9 +21,6 @@
     font = "Lat2-Terminus16";
     keyMap = lib.mkForce "us";
     useXkbConfig = true; # use xkbOptions in tty.
-  };
-  environment.shellAliases = {
-    "nix-switch" = "sudo nixos-rebuild --flake . switch";
   };
 
   programs.dconf.enable = true;
@@ -78,7 +77,7 @@
     parallel # --citation
     nix-tree # nix what-depends why-depends who-am-i
     eza # ls but better
-    rfm # a nice file commander with vim controls
+    inputs.rfm.packages.${system}.default # a nice file commander with vim controls
     docker-compose
   ];
 
@@ -112,6 +111,7 @@
   networking.firewall.enable = false;
 
   environment.shellAliases = {
+    "nix-switch" = "sudo nixos-rebuild --flake . switch";
     "neofetch" = "hyfetch";
     "find" = "fd";
     "traceroute" = "mtr";
@@ -120,7 +120,7 @@
     "ls" = "eza --smart-group --git";
     "cd" = "z";
   };
-  environment.etc = {
+  environment.sessionVariables = {
     _ZO_DOCTOR = "0";
   };
 

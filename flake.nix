@@ -56,6 +56,9 @@
     nixarr.url = "github:rasmus-kirk/nixarr/dev";
     nixarr.inputs.nixpkgs.follows = "nixpkgs";
     nixarr.inputs.vpnconfinement.follows = "vpn-confinement";
+
+    rfm.url = "github:dsxmachina/rfm";
+    rfm.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Outputs can be anything, but the wiki + some commands define their own
@@ -95,7 +98,7 @@
               ];
             }
             {
-              _module.args = { inherit inputs; };
+              _module.args = { inherit inputs; inherit system; };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               # home-manager.users.uri = import ./home.nix
@@ -104,6 +107,7 @@
               # arguments to home.nix
               home-manager.extraSpecialArgs = {
                 inherit inputs;
+                inherit system;
                 headless = false;
               };
             }
