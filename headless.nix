@@ -78,13 +78,16 @@
     parallel # --citation
     nix-tree # nix what-depends why-depends who-am-i
     eza # ls but better
-    ranger # a nice file commander with vim controls
+    rfm # a nice file commander with vim controls
     docker-compose
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
+
+  # a smarter cd command
+  programs.zoxide.enable = true;
 
   # List services that you want to enable:
 
@@ -113,8 +116,12 @@
     "find" = "fd";
     "traceroute" = "mtr";
     "grep" = "rg";
-    "ll" = "eza -l --git";
-    "ls" = "eza";
+    "ll" = "ls -l";
+    "ls" = "eza --smart-group --git";
+    "cd" = "z";
+  };
+  environment.etc = {
+    _ZO_DOCTOR = "0";
   };
 
   # Copy the NixOS configuration file and link it from the resulting system
