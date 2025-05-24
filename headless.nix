@@ -87,6 +87,7 @@
 
   # a smarter cd command
   programs.zoxide.enable = true;
+  programs.screen.enable = true;
 
   # List services that you want to enable:
 
