@@ -257,18 +257,23 @@
                 headless = true;
               };
 
-              age.secrets.homepage.file = ./secrets/homepage.age;
-              age.secrets.cloudflared.file = ./secrets/cloudflared.age;
-              age.secrets.vpn-ar.file = ./secrets/protonvpn-ar.age;
-              age.secrets.vpn-slsk.file = ./secrets/vpn-slsk.age;
-              age.secrets.soulseek = {
-                file = ./secrets/soulseek.age;
-                owner = "lidarr";
-                mode = "770";
-              };
-              age.secrets.soularr = {
-                file = ./secrets/soularr.age;
-                name = "config.ini";
+              age.secrets = {
+                homepage.file = ./secrets/homepage.age;
+                cloudflared.file = ./secrets/cloudflared.age;
+                vpn-ar.file = ./secrets/protonvpn-ar.age;
+                vpn-slsk.file = ./secrets/vpn-slsk.age;
+                soulseek = {
+                  file = ./secrets/soulseek.age;
+                  owner = "lidarr";
+                  mode = "770";
+                };
+                soularr = {
+                  file = ./secrets/soularr.age;
+                  name = "config.ini";
+                };
+                speedtest = {
+                  file = ./secrets/speedtest.age;
+                };
               };
             }
           ];

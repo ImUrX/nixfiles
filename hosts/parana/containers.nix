@@ -27,6 +27,10 @@
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "server";
 
+  systemd.tmpfiles.rules = [
+    "d /data/speedtest 755 1000 1000"
+  ];
+
   virtualisation.oci-containers.containers = {
     gotenberg = {
       autoStart = true;
@@ -36,6 +40,22 @@
         "gotenberg"
         "--chromium-disable-javascript=true"
         "--chromium-allow-list=file:///tmp/.*"
+      ];
+    };
+    speedtest = {
+      autoStart = true;
+      image = "lscr.io/linuxserver/speedtest-tracker:latest";
+      ports = [ "6814:80" ];
+      volumes = [
+        "/data/speedtest:/config"
+      ];
+      environment = {
+        DB_CONNECTION = "sqlite";
+        PUID = "1000";
+        PGID = "1000";
+      };
+      environmentFiles = [
+        config.age.secrets.speedtest.path
       ];
     };
   };

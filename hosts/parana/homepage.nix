@@ -233,9 +233,24 @@
           };
         }
         {
-          "Speedtest" = {
+          "Speedtest" = rec {
+            icon = "speedtest-tracker";
+            href = "https://speedtest.2dgirls.date";
+            siteMonitor = "http://localhost:6814";
             widget = {
               type = "speedtest";
+              url = siteMonitor;
+              version = "2";
+              key = "{{HOMEPAGE_VAR_SPEEDTEST}}";
+            };
+          };
+        }
+        {
+          "Minecraft" = {
+            icon = "minecraft";
+            widget = {
+              type = "minecraft";
+              url = "udp://localhost:25565";
             };
           };
         }
