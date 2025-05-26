@@ -49,6 +49,7 @@ with lib;
         ])
         ++ (with extensions.vscode-marketplace; [
           macabeus.vscode-fluent
+          object-object.hex-casting
         ]);
     };
   };

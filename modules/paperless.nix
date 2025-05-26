@@ -49,6 +49,7 @@ with lib;
             serviceConfig = {
               ExecStart = "${lib.getExe pkgs.protonmail-bridge} -n";
               Restart = "always";
+              CPUQuota = "50%";
             };
           };
           environment.systemPackages = [ pkgs.protonmail-bridge ];

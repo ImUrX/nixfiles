@@ -2,7 +2,6 @@
   pkgs,
   lib,
   inputs,
-  system,
   ...
 }:
 {
@@ -77,7 +76,7 @@
     parallel # --citation
     nix-tree # nix what-depends why-depends who-am-i
     eza # ls but better
-    inputs.rfm.packages.${system}.default # a nice file commander with vim controls
+    inputs.rfm.packages.${pkgs.system}.default # a nice file commander with vim controls
     docker-compose
   ];
 
