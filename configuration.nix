@@ -137,9 +137,10 @@
     nil
     nixfmt-rfc-style
     wireshark
-    (ventoy-full.override {
-      defaultGuiType = "qt5";
-    })
+    # Disabled for now https://github.com/NixOS/nixpkgs/issues/404663
+    # (ventoy-full.override {
+    #   defaultGuiType = "qt5";
+    # })
 
     # wine-staging (version with experimental features)
     # wineWowPackages.staging
