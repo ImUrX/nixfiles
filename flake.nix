@@ -53,7 +53,7 @@
 
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
 
-    nixarr.url = "github:rasmus-kirk/nixarr/dev";
+    nixarr.url = "github:rasmus-kirk/nixarr";
     nixarr.inputs.nixpkgs.follows = "nixpkgs";
     nixarr.inputs.vpnconfinement.follows = "vpn-confinement";
 

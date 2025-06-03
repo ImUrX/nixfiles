@@ -11,7 +11,7 @@ rec {
     ../../modules/soulseek.nix
   ];
   nixarr.enable = true;
-  users.users.streamer.extraGroups = [ "media" ];
+  # users.users.streamer.extraGroups = [ "media" ];
 
   # VPN
   nixarr.vpn = {
@@ -67,7 +67,7 @@ rec {
   virtualisation.oci-containers.containers.soularr = {
     autoStart = true;
     image = "mrusse08/soularr:latest";
-    extraOptions = [ "--hostuser=streamer" ];
+    # extraOptions = [ "--hostuser=streamer" ];
     hostname = "soularr";
     environment = {
       TZ = "ETC/UTC";

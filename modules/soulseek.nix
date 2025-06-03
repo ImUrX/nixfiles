@@ -46,14 +46,14 @@ with lib;
     };
 
     systemd.tmpfiles.rules = [
-      "d ${cfg.downloads} 775 streamer media"
-      "d ${cfg.incomplete} 775 streamer media"
+      "d ${cfg.downloads} 775 root media"
+      "d ${cfg.incomplete} 775 root media"
     ];
 
     services.slskd = {
       enable = true;
       environmentFile = config.age.secrets.soulseek.path;
-      user = "lidarr";
+      # user = "lidarr";
       group = "media";
       domain = null;
 
