@@ -404,11 +404,11 @@
         "website-builder": "website-builder"
       },
       "locked": {
-        "lastModified": 1748935664,
-        "narHash": "sha256-yGoi9jTsrjxMO0i+H1UKyyCFnlJ4Q24u+EoH6Gc1uj4=",
+        "lastModified": 1748939153,
+        "narHash": "sha256-FOTTKVIZHcfiMBYIu16Hd17V6xD/J+QsfCXANqBGSmY=",
         "owner": "rasmus-kirk",
         "repo": "nixarr",
-        "rev": "a6c75237d2cc554ed91b85ed34d948df9b8b702b",
+        "rev": "a72ca94008e58d9917ad2a2b0d2a5df5b5faef25",
         "type": "github"
       },
       "original": {
