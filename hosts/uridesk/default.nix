@@ -97,6 +97,7 @@
 
   programs.envision = {
     enable = true;
+    package = pkgs.envision-unwrapped;
   };
 
   environment.systemPackages = with pkgs; [
