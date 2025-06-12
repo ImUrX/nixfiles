@@ -36,10 +36,21 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
 
-  systemd.tmpfiles.rules = [
-    # "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-    "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
-  ];
+  systemd.tmpfiles.rules =
+    let
+      rocmEnv = pkgs.symlinkJoin {
+        name = "rocm-combined";
+        paths = with pkgs.rocmPackages; [
+          rocblas
+          hipblas
+          clr
+        ];
+      };
+    in
+    [
+      "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+      "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
+    ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/a1bc418b-85a3-404a-8ac8-2489e0493a90";
@@ -87,6 +98,9 @@
     extraPackages32 = with pkgs; [ pkgsi686Linux.mangohud ];
     enable32Bit = true;
   };
+  hardware.amdgpu = {
+    overdrive.enable = true;
+  };
 
   # Audio goes wonkers and seems to go low quality (low sample rate?)
   # cookiecutie.sound.pro = true;
@@ -104,7 +118,6 @@
   environment.systemPackages = with pkgs; [
     nvtopPackages.amd
     radeontop
-    lact
   ];
 
   # Force radv

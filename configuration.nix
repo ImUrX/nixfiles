@@ -168,6 +168,7 @@
 
   services.flatpak.enable = true;
   services.ratbagd.enable = true;
+  services.lact.enable = true;
 
   # this file is not created and it's required for networkmanager ipsec
   environment.etc = {
