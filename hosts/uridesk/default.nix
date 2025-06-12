@@ -95,14 +95,16 @@
   # Set your time zone.
   time.timeZone = "America/Santiago";
 
-  programs.envision = {
-    enable = true;
-    package = pkgs.envision-unwrapped;
-  };
+  # seems like envision is bad so not using it
+  # programs.envision = {
+  #   enable = true;
+  #   package = pkgs.envision;
+  # };
 
   environment.systemPackages = with pkgs; [
     nvtopPackages.amd
     radeontop
+    lact
   ];
 
   # Force radv
