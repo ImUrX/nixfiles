@@ -113,6 +113,7 @@
     })
     mpv
     gimp3
+    (callPackage ./modules/davinci.nix { })
     prismlauncher
     qbittorrent
     spotify
