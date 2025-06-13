@@ -5,6 +5,7 @@
     ../../modules/jetbrains.nix
     ../../modules/obs.nix
     ../../modules/hm/vrchat.nix
+    ../../modules/hm/vr.nix
   ];
 
   systemd.user.targets.tray = {
@@ -14,36 +15,34 @@
     };
   };
 
-  home.packages =
-    with pkgs;
-    [
-      blender-hip
-      thunderbird
-      anydesk
-      termius
-      inkscape-with-extensions
-      xorg.xeyes
-      fractal
-      flatpak-builder
-      python3Full
-      python311Packages.toml
-      python311Packages.aiohttp
-      r2modman
-      imv
-      dotnet-sdk_8
-      mono
-      xivlauncher
-      alsa-scarlett-gui
-      syncthingtray-minimal
-      cosign
-      openmw
-      pupdate
-      calibre
-      platformio
-      dualsensectl
-      pcsx2
-      wowup-cf
-    ];
+  home.packages = with pkgs; [
+    blender-hip
+    thunderbird
+    anydesk
+    termius
+    inkscape-with-extensions
+    xorg.xeyes
+    fractal
+    flatpak-builder
+    python3Full
+    python311Packages.toml
+    python311Packages.aiohttp
+    r2modman
+    imv
+    dotnet-sdk_8
+    mono
+    xivlauncher
+    alsa-scarlett-gui
+    syncthingtray-minimal
+    cosign
+    openmw
+    pupdate
+    calibre
+    platformio
+    dualsensectl
+    pcsx2
+    wowup-cf
+  ];
 
   # services.arrpc.enable = true;
   # services.easyeffects.enable = true;
@@ -108,6 +107,7 @@
   uri.obs.enable = true;
   uri.vscode.enable = true;
   uri.vrchat.enable = true;
+  uri.vr.enable = true;
   # uri.hyprland.enable = true;
 
   home.sessionVariables = {

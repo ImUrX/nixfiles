@@ -120,6 +120,55 @@
     radeontop
   ];
 
+  services.wivrn = {
+    enable = true;
+    package = pkgs.wivrn.overrideAttrs (oldAttrs: {
+      monado = pkgs.applyPatches {
+        patches = oldAttrs.monado.patches ++ [
+          (pkgs.fetchpatch {
+            url = "https://gitlab.freedesktop.org/monado/monado/-/merge_requests/2253.patch";
+            sha256 = "sha256-lYCNu5hGqifMonqZTGIT2U+x8YHW7DtGswlRHaXKDEU=";
+          })
+        ];
+
+        inherit (oldAttrs.monado) src postPatch;
+      };
+      cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
+        (lib.cmakeBool "WIVRN_FEATURE_SOLARXR" true)
+      ];
+    });
+
+    # Write information to /etc/xdg/openxr/1/active_runtime.json, VR applications
+    # will automatically read this and work with WiVRn (Note: This does not currently
+    # apply for games run in Valve's Proton)
+    defaultRuntime = true;
+
+    # Run WiVRn as a systemd service on startup
+    autoStart = true;
+
+    # Config for WiVRn (https://github.com/WiVRn/WiVRn/blob/master/docs/configuration.md)
+    config = {
+      enable = true;
+      json = {
+        # 1.0x foveation scaling
+        scale = 1.0;
+        # 100 Mb/s
+        bitrate = 100000000;
+        encoders = [
+          {
+            encoder = "vaapi";
+            codec = "h265";
+            # 1.0 x 1.0 scaling
+            width = 1.0;
+            height = 1.0;
+            offset_x = 0.0;
+            offset_y = 0.0;
+          }
+        ];
+      };
+    };
+  };
+
   # Force radv
   environment.variables.AMD_VULKAN_ICD = "RADV";
   networking.hostName = "uridesk"; # Define your hostname.

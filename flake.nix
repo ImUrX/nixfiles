@@ -59,6 +59,11 @@
 
     rfm.url = "github:dsxmachina/rfm";
     rfm.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixpkgs-xr = {
+      url = "github:nix-community/nixpkgs-xr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Outputs can be anything, but the wiki + some commands define their own
@@ -75,6 +80,7 @@
       agenix,
       vpn-confinement,
       nixarr,
+      nixpkgs-xr,
       ...
     }@inputs:
     {
@@ -92,6 +98,7 @@
             ./users/uri
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
+            nixpkgs-xr.nixosModules.nixpkgs-xr
             {
               environment.systemPackages = [
                 agenix.packages.${system}.default

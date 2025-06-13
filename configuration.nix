@@ -129,7 +129,6 @@
     vulkan-headers
     vulkan-loader
     vulkan-tools
-    sidequest
     pavucontrol
     epiphany
     lm_sensors

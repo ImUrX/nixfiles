@@ -46,6 +46,7 @@ with lib;
           floxay.vscode-flatbuffers
           tauri-apps.tauri-vscode
           jeanp413.open-remote-ssh
+          blueglassblock.better-json5
         ])
         ++ (with extensions.vscode-marketplace; [
           macabeus.vscode-fluent
