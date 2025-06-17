@@ -14,6 +14,7 @@
       "scanner"
       "lp"
       "wireshark"
+      "libvirtd"
     ]; # Enable ‘sudo’ for the user.
     initialPassword = "eevee123";
   };
