@@ -64,6 +64,11 @@
       url = "github:nix-community/nixpkgs-xr";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Outputs can be anything, but the wiki + some commands define their own
@@ -81,6 +86,7 @@
       vpn-confinement,
       nixarr,
       nixpkgs-xr,
+      nur,
       ...
     }@inputs:
     {
@@ -99,6 +105,7 @@
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
             nixpkgs-xr.nixosModules.nixpkgs-xr
+            nur.modules.nixos.default
             {
               environment.systemPackages = [
                 agenix.packages.${system}.default
@@ -143,6 +150,7 @@
             nixos-hardware.nixosModules.framework-13th-gen-intel
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
+            nur.modules.nixos.default
             {
               environment.systemPackages = [
                 agenix.packages.${system}.default
@@ -178,6 +186,7 @@
             ./users/home-lal1tx.nix
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
+            nur.modules.nixos.default
             {
               _module.args = {
                 inherit inputs;
@@ -209,6 +218,7 @@
             ./users/home-lal1tx.nix
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
+            nur.modules.nixos.default
             {
               _module.args = {
                 inherit inputs;
@@ -242,6 +252,7 @@
             musnix.nixosModules.musnix
             agenix.nixosModules.default
             nixarr.nixosModules.default
+            nur.modules.nixos.default
             vpn-confinement.nixosModules.default
             {
               _module.args = {

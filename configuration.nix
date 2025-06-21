@@ -126,6 +126,7 @@
     gamescope # gamescope-wsi will let me use HDR, but it breaks steam overlay apparently
     # gnomeExtensions.appindicator
     # gnome.gnome-tweaks
+    nur.repos.ataraxiasjel.waydroid-script
     remmina
     vulkan-headers
     vulkan-loader
