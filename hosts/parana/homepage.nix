@@ -143,7 +143,7 @@
           "SABnzbd" = rec {
             icon = "sabnzbd";
             href = "https://nz.2dgirls.date";
-            siteMonitor = "http://localhost:8080";
+            siteMonitor = "http://localhost:6336";
             widget = {
               type = "sabnzbd";
               url = siteMonitor;

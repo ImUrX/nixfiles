@@ -32,7 +32,22 @@ rec {
     vpn.enable = true;
 
     # Doesn't build
-    # privateTrackers.cross-seed.enable = true;
+    privateTrackers.cross-seed = {
+      # enable = true;
+      indexIds = [
+        12
+        16
+        10
+        11
+      ];
+      extraSettings = {
+        delay = 60;
+        excludeRecentSearch = "90 days";
+        excludeOlder = "450 days";
+        matchMode = "partial";
+        linkDirs = [ "/data/media/torrents/manual" ];
+      };
+    };
 
     extraSettings = {
       port-forwarding-enabled = false;
