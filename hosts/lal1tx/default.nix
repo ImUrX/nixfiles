@@ -6,16 +6,11 @@
   lib,
   pkgs,
   modulesPath,
-  nixos-hardware,
   ...
 }:
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    nixos-hardware.nixosModules.common-cpu-intel
-    nixos-hardware.nixosModules.common-gpu-nvidia
-    nixos-hardware.nixosModules.common-pc-laptop
-    nixos-hardware.nixosModules.common-pc-ssd
   ];
 
   # Use the systemd-boot EFI boot loader.
