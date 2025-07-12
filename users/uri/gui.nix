@@ -42,6 +42,7 @@
     dualsensectl
     pcsx2
     wowup-cf
+    krita
   ];
 
   # services.arrpc.enable = true;

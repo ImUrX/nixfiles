@@ -16,7 +16,7 @@
     ./modules/steam.nix
     ./modules/yubikey.nix
   ];
-  virtualisation.waydroid.enable = true;
+  # virtualisation.waydroid.enable = true;
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -125,7 +125,7 @@
     gamescope # gamescope-wsi will let me use HDR, but it breaks steam overlay apparently
     # gnomeExtensions.appindicator
     # gnome.gnome-tweaks
-    nur.repos.ataraxiasjel.waydroid-script
+    # nur.repos.ataraxiasjel.waydroid-script
     remmina
     vulkan-headers
     vulkan-loader
