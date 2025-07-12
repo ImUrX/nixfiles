@@ -6,11 +6,16 @@
   lib,
   pkgs,
   modulesPath,
+  nixos-hardware,
   ...
 }:
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    nixos-hardware.nixosModules.common-cpu-intel
+    nixos-hardware.nixosModules.common-gpu-nvidia
+    nixos-hardware.nixosModules.common-pc-laptop
+    nixos-hardware.nixosModules.common-pc-ssd
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -98,12 +103,11 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
 
     # PRIME
-    # prime = {
-    #   sync.enable = true;
-    #   # Make sure to use the correct Bus ID values for your system!
-    #   intelBusId = "PCI:0:2:0";
-    #   nvidiaBusId = "PCI:1:0:0";
-    # };
+    prime = {
+      # Make sure to use the correct Bus ID values for your system!
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
   };
 
   i18n.defaultLocale = "es_CL.UTF-8";
