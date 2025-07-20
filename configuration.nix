@@ -5,8 +5,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./headless.nix
@@ -33,7 +32,7 @@
   services.printing.enable = true;
   hardware.sane.enable = true;
   # HP giving 403
-  hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];
+  hardware.sane.extraBackends = [pkgs.hplipWithPlugin];
   services.printing.drivers = with pkgs; [
     postscript-lexmark
     epson-escpr
