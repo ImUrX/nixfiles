@@ -26,22 +26,7 @@ with lib;
       [
         # opencomposite
         # xrizer
-        (writeShellScriptBin "wlx-overlay-s" ''
-          env PATH="${lib.makeBinPath wlxRuntimePackages}:$PATH" ${
-            wlx-overlay-s.overrideAttrs (oldAttrs: {
-              cargoBuildFeatures = [ "uidev" ];
-              buildInputs = oldAttrs.buildInputs ++ [
-                vulkan-loader
-              ];
-
-              postFixup = ''
-                patchelf $out/bin/${oldAttrs.pname} \
-                  --add-needed ${wayland}/lib/libwayland-client.so \
-                  --add-needed ${vulkan-loader}/lib/libvulkan.so
-              '';
-            })
-          }/bin/wlx-overlay-s "$@"
-        '')
+        wlx-overlay-s
         wayvr-dashboard
         slimevr
 

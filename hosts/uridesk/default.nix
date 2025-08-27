@@ -125,21 +125,21 @@
 
   services.wivrn = {
     enable = true;
-    package = pkgs.wivrn.overrideAttrs (oldAttrs: {
-      monado = pkgs.applyPatches {
-        patches = oldAttrs.monado.patches ++ [
-          (pkgs.fetchpatch {
-            url = "https://gitlab.freedesktop.org/monado/monado/-/merge_requests/2253.patch";
-            sha256 = "sha256-lYCNu5hGqifMonqZTGIT2U+x8YHW7DtGswlRHaXKDEU=";
-          })
-        ];
+    # package = pkgs.wivrn.overrideAttrs (oldAttrs: {
+    #   monado = pkgs.applyPatches {
+    #     patches = oldAttrs.monado.patches ++ [
+    #       (pkgs.fetchpatch {
+    #         url = "https://gitlab.freedesktop.org/monado/monado/-/merge_requests/2253.patch";
+    #         sha256 = "sha256-sbe48MvznmYyyQOv4QcS86BAjxvf0825w63wqkOp2e4=";
+    #       })
+    #     ];
 
-        inherit (oldAttrs.monado) src postPatch;
-      };
-      cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
-        (lib.cmakeBool "WIVRN_FEATURE_SOLARXR" true)
-      ];
-    });
+    #     inherit (oldAttrs.monado) src postPatch;
+    #   };
+    #   cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
+    #     (lib.cmakeBool "WIVRN_FEATURE_SOLARXR" true)
+    #   ];
+    # });
 
     # Write information to /etc/xdg/openxr/1/active_runtime.json, VR applications
     # will automatically read this and work with WiVRn (Note: This does not currently

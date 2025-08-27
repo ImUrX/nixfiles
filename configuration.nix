@@ -160,6 +160,9 @@
     # Apple
     libimobiledevice
     ifuse # optional, to mount using 'ifuse'
+
+    plexamp
+    plex-desktop
   ];
 
   # Apple
