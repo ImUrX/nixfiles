@@ -115,6 +115,7 @@
             };
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "bak";
             # home-manager.users.uri = import ./home.nix
 
             # Optionally, use home-manager.extraSpecialArgs to pass
@@ -200,6 +201,7 @@
               inherit inputs;
               headless = false;
             };
+            home-manager.backupFileExtension = "bak";
           }
           {
             imports = [aagl.nixosModules.default];
@@ -232,6 +234,7 @@
               inherit inputs;
               headless = false;
             };
+            home-manager.backupFileExtension = "bak";
           }
           {
             imports = [aagl.nixosModules.default];
@@ -267,6 +270,7 @@
               inherit inputs;
               headless = true;
             };
+            home-manager.backupFileExtension = "bak";
 
             age.secrets = {
               homepage.file = ./secrets/homepage.age;

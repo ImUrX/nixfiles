@@ -78,6 +78,8 @@
     eza # ls but better
     inputs.rfm.packages.${pkgs.system}.default # a nice file commander with vim controls
     docker-compose
+    bat # a cat alternative
+    tealdeer
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -119,9 +121,18 @@
     "ll" = "ls -l";
     "ls" = "eza --smart-group --git";
     "cd" = "z";
+    "cat" = "bat";
   };
   environment.sessionVariables = {
     _ZO_DOCTOR = "0";
+    TEALDEER_CONFIG_DIR = "/etc/tealdeer.conf";
+  };
+  environment.etc = {
+    "tealdeer.conf".source = (pkgs.formats.toml { }).generate "tealdeer.conf" {
+      updates = {
+        auto_update = true;
+      };
+    };
   };
 
   # Copy the NixOS configuration file and link it from the resulting system

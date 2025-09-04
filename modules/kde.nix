@@ -33,6 +33,7 @@ with lib;
       kdePackages.partitionmanager
       kdePackages.konversation
       kdePackages.skanpage
+      kdePackages.fcitx5-configtool
     ];
 
     xdg = {
