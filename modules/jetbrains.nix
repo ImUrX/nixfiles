@@ -15,7 +15,7 @@ with lib;
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      #jetbrains.rider
+      jetbrains.rider
       # Add GLFW stuff for being able to dev with Minecraft
       (symlinkJoin {
         name = "idea-ultimate";

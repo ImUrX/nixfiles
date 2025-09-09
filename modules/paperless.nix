@@ -52,21 +52,19 @@ with lib;
               CPUQuota = "50%";
             };
           };
-          services.nginx = {
-            enable = true;
-            streamConfig = ''
-              upstream proton {
-                server 127.0.0.1:1025;
-              }
-              server {
-                listen 192.168.42.69:1025;
-                proxy_pass proton;
-              }
-            '';
-          };
+          # services.nginx = {
+          #   enable = true;
+          #   streamConfig = ''
+          #     upstream proton {
+          #       server 127.0.0.1:1025;
+          #     }
+          #     server {
+          #       listen 192.168.42.69:1025;
+          #       proxy_pass proton;
+          #     }
+          #   '';
+          # };
           environment.systemPackages = [ pkgs.protonmail-bridge ];
-
-          services.tika.enable = true;
 
           services.postgresql = {
             enable = true;
@@ -87,13 +85,11 @@ with lib;
           services.paperless = {
             enable = true;
             passwordFile = config.age.secrets.passwd.path;
+            domain = "paper.2dgirls.date";
             address = "0.0.0.0";
+            configureTika = true;
             settings = {
               PAPERLESS_OCR_LANGUAGE = "spa+eng+nld";
-              PAPERLESS_TIKA_ENABLED = true;
-              PAPERLESS_TIKA_GOTENBERG_ENDPOINT = "http://192.168.100.10:3000";
-
-              PAPERLESS_URL = "https://paper.2dgirls.date";
               PAPERLESS_CSRF_TRUSTED_ORIGINS = "http://192.168.100.11:28981";
               PAPERLESS_ALLOWED_HOSTS = "192.168.100.11";
               PAPERLESS_CORS_ALLOWED_HOSTS = "http://192.168.100.11:28981";

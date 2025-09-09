@@ -19,10 +19,10 @@
     blender-hip
     thunderbird
     anydesk
-    termius
+    # termius
     inkscape-with-extensions
     xorg.xeyes
-    fractal
+    fluffychat
     flatpak-builder
     python3Full
     python311Packages.toml

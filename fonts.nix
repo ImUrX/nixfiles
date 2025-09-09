@@ -23,7 +23,6 @@ with lib;
           fcitx5-gtk
         ];
         waylandFrontend = true;
-        plasma6Support = true;
       };
     };
 

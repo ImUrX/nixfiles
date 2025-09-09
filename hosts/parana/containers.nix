@@ -3,6 +3,7 @@
   imports = [
     ../../modules/paperless.nix
     ../../modules/immich.nix
+    ../../modules/matrix.nix
   ];
 
   networking.nat = {
@@ -32,16 +33,6 @@
   ];
 
   virtualisation.oci-containers.containers = {
-    gotenberg = {
-      autoStart = true;
-      image = "gotenberg/gotenberg:8";
-      ports = [ "3000:3000" ];
-      cmd = [
-        "gotenberg"
-        "--chromium-disable-javascript=true"
-        "--chromium-allow-list=file:///tmp/.*"
-      ];
-    };
     speedtest = {
       autoStart = true;
       image = "lscr.io/linuxserver/speedtest-tracker:latest";
@@ -62,4 +53,5 @@
 
   uri.paperless.enable = true;
   uri.immich.enable = true;
+  uri.matrix.enable = true;
 }

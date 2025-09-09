@@ -180,15 +180,10 @@
     {
       "Streaming" = [
         {
-          "Plex" = rec {
+          "Plex" = {
             icon = "plex";
             href = "https://app.plex.tv";
             siteMonitor = "http://localhost:32400";
-            widget = {
-              type = "plex";
-              url = siteMonitor;
-              key = "{{HOMEPAGE_VAR_PLEX}}";
-            };
           };
         }
         {
@@ -246,12 +241,10 @@
           };
         }
         {
-          "Minecraft" = {
-            icon = "minecraft";
-            widget = {
-              type = "minecraft";
-              url = "udp://localhost:25565";
-            };
+          "Git" = rec {
+            icon = "forgejo";
+            href = "https://git.2dgirls.date";
+            siteMonitor = href;
           };
         }
       ];
