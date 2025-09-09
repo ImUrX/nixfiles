@@ -23,6 +23,7 @@ with lib;
         trusted_servers = [
           "matrix.org"
           "tchncs.de"
+          "nixos.org"
         ];
       };
     };
