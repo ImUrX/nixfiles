@@ -52,18 +52,6 @@ with lib;
               CPUQuota = "50%";
             };
           };
-          # services.nginx = {
-          #   enable = true;
-          #   streamConfig = ''
-          #     upstream proton {
-          #       server 127.0.0.1:1025;
-          #     }
-          #     server {
-          #       listen 192.168.42.69:1025;
-          #       proxy_pass proton;
-          #     }
-          #   '';
-          # };
           environment.systemPackages = [ pkgs.protonmail-bridge ];
 
           services.postgresql = {
