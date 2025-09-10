@@ -4,6 +4,7 @@
     ../../modules/paperless.nix
     ../../modules/immich.nix
     ../../modules/matrix.nix
+    ../../modules/misskey.nix
   ];
 
   networking.nat = {
@@ -54,4 +55,5 @@
   uri.paperless.enable = true;
   uri.immich.enable = true;
   uri.matrix.enable = true;
+  uri.misskey.enable = true;
 }

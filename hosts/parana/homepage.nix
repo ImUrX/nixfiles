@@ -247,6 +247,19 @@
             siteMonitor = href;
           };
         }
+        {
+          "Matrix" = {
+            icon = "matrix";
+            siteMonitor = "http://localhost:6167";
+          };
+        }
+        {
+          "Misskey" = rec {
+            icon = "misskey";
+            href = "https://misskey.2dgirls.date";
+            siteMonitor = href;
+          };
+        }
       ];
     }
     {
