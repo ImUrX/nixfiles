@@ -15,14 +15,13 @@ with lib;
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      jetbrains.rider
       # Add GLFW stuff for being able to dev with Minecraft
       (symlinkJoin {
-        name = "idea-ultimate";
-        paths = [ jetbrains.idea-ultimate ];
+        name = "idea-community";
+        paths = [ jetbrains.idea-community ];
         buildInputs = [ makeWrapper ];
         postBuild = ''
-          wrapProgram $out/bin/idea-ultimate \
+          wrapProgram $out/bin/idea-community \
           --prefix LD_LIBRARY_PATH : "${
             lib.makeLibraryPath [
               libpulseaudio
@@ -34,7 +33,6 @@ with lib;
           }"
         '';
       })
-      jetbrains.clion
     ];
   };
 }
