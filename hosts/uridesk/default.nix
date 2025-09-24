@@ -133,7 +133,7 @@
         rev = "9060dc9e7d2140a002fa3ab212c06cfdae2c6ac0";
         hash = "sha256-31eT4N55V7dlQQt/EsEgu+kkmRFhmwaoV9hL4oY1imU=";
       };
-      
+
       cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
         (lib.cmakeBool "WIVRN_FEATURE_SOLARXR" true)
       ];
@@ -171,6 +171,9 @@
   };
 
   # Force radv
-  environment.variables.AMD_VULKAN_ICD = "RADV";
+  environment.variables = {
+    AMD_VULKAN_ICD = "RADV";
+    KWIN_DRM_NO_DIRECT_SCANOUT = "1";
+  };
   networking.hostName = "uridesk"; # Define your hostname.
 }
