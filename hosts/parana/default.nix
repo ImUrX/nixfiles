@@ -14,6 +14,7 @@
     ./containers.nix
     ./homepage.nix
     ./downloaders.nix
+    ./sdns.nix
   ];
 
   # Usando GRUB xq tiene skins
@@ -75,14 +76,18 @@
       address = "192.168.42.1";
       interface = "eno1";
     };
+
+    # Use secure DNS
+    nameservers = [
+      "127.0.0.1"
+      "::1"
+    ];
+    dhcpcd.extraConfig = "nohook resolv.conf";
   };
-  networking.nameservers = [
-    "1.1.1.1"
-    "8.8.8.8"
-  ];
 
   # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
   # owo
 
   ### NVIDIA STUFF
