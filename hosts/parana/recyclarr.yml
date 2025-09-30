@@ -15,8 +15,8 @@ sonarr:
           - 9b27ab6498ec0f31a3353992e19434ca # DV (WEBDL)
 
           # HDR10+ Boost - Uncomment the next two lines if any of your devices DO support HDR10+
-          - 0dad0a507451acddd754fe6dc3a7f5e7 # HDR10+ Boost
-          - 385e9e8581d33133c3961bdcdeffb7b4 # DV HDR10+ Boost
+          - 0c4b99df9206d2cfac3c05ab897dd62a # HDR10+ Boost
+          - 7c3a61a9c6cb04f52f1544be6d44a026 # DV HDR10+ Boost
         assign_scores_to:
           - name: WEB-2160p
 
@@ -66,10 +66,26 @@ radarr:
     include:
       - template: radarr-quality-definition-movie
       - template: radarr-custom-formats-remux-web-2160p
+      - template: radarr-custom-formats-uhd-bluray-web
       - template: radarr-quality-profile-anime
       - template: radarr-custom-formats-anime
 
     quality_profiles:
+      - name: UHD Bluray + WEB
+        reset_unmatched_scores:
+          enabled: true
+        upgrade:
+          allowed: true
+          until_quality: Bluray-2160p
+          until_score: 10000
+        min_format_score: 0
+        quality_sort: top
+        qualities:
+          - name: Bluray-2160p
+          - name: WEB 2160p
+            qualities:
+              - WEBDL-2160p
+              - WEBRip-2160p
       - name: Remux + WEB 2160p
         reset_unmatched_scores:
           enabled: true
@@ -111,6 +127,7 @@ radarr:
           - c2998bd0d90ed5621d8df281e839436e # DD
         assign_scores_to:
           - name: Remux + WEB 2160p
+          - name: UHD Bluray + WEB
 
       # Movie Versions
       - trash_ids:
@@ -126,6 +143,7 @@ radarr:
           # - 9f6cbff8cfe4ebbc1bde14c7b7bec0de # IMAX Enhanced
         assign_scores_to:
           - name: Remux + WEB 2160p
+          - name: UHD Bluray + WEB
 
       # Optional
       - trash_ids:
@@ -137,16 +155,18 @@ radarr:
           - f537cf427b64c38c8e36298f657e4828 # Scene
         assign_scores_to:
           - name: Remux + WEB 2160p
+          - name: UHD Bluray + WEB
 
       - trash_ids:
           # Comment out the next line if you and all of your users' setups are fully DV compatible
           - 923b6abef9b17f937fab56cfcf89e1f1 # DV (WEBDL)
 
           # HDR10+ Boost - Uncomment the next two lines if any of your devices DO support HDR10+
-          - b17886cb4158d9fea189859409975758 # HDR10Plus Boost
-          - 55a5b50cb416dea5a50c4955896217ab # DV HDR10+ Boost
+          - caa37d0df9c348912df1fb1d88f9273a # HDR10+ Boost
+          - b337d6812e06c200ec9a2d3cfa9d20a7 # DV HDR10+ Boost
         assign_scores_to:
           - name: Remux + WEB 2160p
+          - name: UHD Bluray + WEB
 
       # Optional SDR
       # Only ever use ONE of the following custom formats:
@@ -157,6 +177,7 @@ radarr:
           # - 25c12f78430a3a23413652cbd1d48d77 # SDR (no WEBDL)
         assign_scores_to:
           - name: Remux + WEB 2160p
+          - name: UHD Bluray + WEB
 
       - trash_ids:
           - 064af5f084a0a24458cc8ecd3220f93f # Uncensored
