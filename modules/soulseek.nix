@@ -81,6 +81,9 @@ with lib;
         shares = {
           directories = [ "/data/media/library/music" ];
           filters = [ ];
+          cache = {
+            retention = "10080"; # 1 week
+          };
         };
         rooms = [ ];
         soulseek = {
