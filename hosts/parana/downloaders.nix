@@ -4,6 +4,10 @@
   lib,
   ...
 }:
+let
+  squidUser = "306";
+  squidGroup = "169";
+in
 rec {
   imports = [
     ./arrs.nix
@@ -79,20 +83,42 @@ rec {
     incomplete = "/data/media/soulseek/incomplete";
   };
 
-  virtualisation.oci-containers.containers.soularr = {
-    autoStart = true;
-    image = "mrusse08/soularr:latest";
-    # extraOptions = [ "--hostuser=streamer" ];
-    hostname = "soularr";
-    environment = {
-      TZ = "ETC/UTC";
-      SCRIPT_INTERVAL = "300";
+  virtualisation.oci-containers.containers = {
+    soularr = {
+      autoStart = true;
+      image = "mrusse08/soularr:latest";
+      # extraOptions = [ "--hostuser=streamer" ];
+      hostname = "soularr";
+      environment = {
+        TZ = "ETC/UTC";
+        SCRIPT_INTERVAL = "300";
+      };
+      volumes = [
+        "${uri.slsk.downloads}:/downloads"
+        "${dirOf config.age.secrets.soularr.path}:/data"
+      ];
     };
-    volumes = [
-      "${uri.slsk.downloads}:/downloads"
-      "${dirOf config.age.secrets.soularr.path}:/data"
-    ];
+
+    squidarr = {
+      autoStart = true;
+      image = "ghcr.io/mgthepro/squidarr-proxy:main";
+      hostname = "squidarr";
+      environment = {
+        TZ = "ETC/UTC";
+        DOWNLOAD_PATH = "/data/squidarr";
+        CATEGORY = "music";
+        REGION = "eu";
+        PORT = "8687";
+        API_KEY = "Testtesttest";
+      };
+      user = "${squidUser}:${squidGroup}";
+      ports = [ "127.0.0.1:9513:8687" ];
+      volumes = [ "/data/squidarr:/data/squidarr" ];
+    };
   };
+  systemd.tmpfiles.rules = [
+    "d /data/squidarr 775 ${squidUser} ${squidGroup}"
+  ];
 
   # Plex
   nixarr.plex.enable = true;
