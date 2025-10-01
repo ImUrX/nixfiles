@@ -299,6 +299,36 @@
             }
           ];
         };
+        rapel = nixpkgs.lib.nixosSystem {
+          # A lot of times online you will see the use of flake-utils + a
+          # function which iterates over many possible systems. My system
+          # is x86_64-linux, so I'm only going to define that
+          system = "x86_64-linux";
+          # Import our old system configuration.nix
+          modules = [
+            ./hosts/rapel
+            ./headless.nix
+            ./users/uri
+            home-manager.nixosModules.home-manager
+            musnix.nixosModules.musnix
+            # agenix.nixosModules.default
+            nixarr.nixosModules.default
+            nur.modules.nixos.default
+            vpn-confinement.nixosModules.default
+            {
+              _module.args = {
+                inherit inputs;
+              };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                headless = true;
+              };
+              home-manager.backupFileExtension = "bak";
+            }
+          ];
+        };
       };
     };
 }

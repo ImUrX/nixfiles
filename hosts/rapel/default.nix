@@ -4,25 +4,16 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }:
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
-    ./containers.nix
-    ./homepage.nix
-    ./downloaders.nix
     ../../modules/sdns.nix
   ];
 
-  # Usando GRUB xq tiene skins
-  boot.loader.grub = {
-    enable = true;
-    efiSupport = true;
-    device = "nodev";
-  };
+  boot.loader.systemd-boot.enable = true;
 
   boot.initrd.availableKernelModules = [
     "xhci_pci"
@@ -32,28 +23,24 @@
     "usb_storage"
     "sd_mod"
   ];
-  boot.blacklistedKernelModules = [ "nouveau" ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/20367c05-bf86-4291-818b-3884887af5d2";
+    device = "/dev/disk/by-label/nixos";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/AD74-4392";
+    device = "/dev/disk/by-label/boot";
     fsType = "vfat";
   };
 
   fileSystems."/data" = {
-    device = "/dev/disk/by-uuid/c510ab6e-ff31-4ddb-824f-1867da4345d6";
-    fsType = "btrfs";
-    options = [
-      "noatime"
-      "compress=zstd"
-    ];
+    device = "/dev/disk/by-label/data";
+    fsType = "ext4";
+    options = [ "noatime" ];
   };
 
-  swapDevices = [ { device = "/dev/disk/by-uuid/f72ffc99-9aba-4469-8e43-6d7b3191affb"; } ];
+  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -63,20 +50,6 @@
   # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
   networking = {
-    interfaces.eno1 = {
-      useDHCP = false;
-      ipv4.addresses = [
-        {
-          address = "192.168.42.69";
-          prefixLength = 24;
-        }
-      ];
-    };
-    defaultGateway = {
-      address = "192.168.42.1";
-      interface = "eno1";
-    };
-
     # Use secure DNS
     nameservers = [
       "127.0.0.1"
@@ -86,27 +59,12 @@
   };
 
   # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # owo
-
-  ### NVIDIA STUFF
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [ nvidia-vaapi-driver ];
-  };
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.open = false;
 
   i18n.defaultLocale = "en_US.UTF-8";
   # Set your time zone.
-  time.timeZone = "America/Argentina/Buenos_Aires";
+  time.timeZone = "America/Santiago";
 
-  environment.systemPackages = with pkgs; [
-    nvtopPackages.nvidia
-  ];
-
-  # Force radv
-  networking.hostName = "parana"; # Define your hostname.
+  networking.hostName = "rapel"; # Define your hostname.
 }
