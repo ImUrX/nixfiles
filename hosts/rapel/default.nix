@@ -25,22 +25,22 @@
   ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
+    device = "/dev/disk/by-label/sda3";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot";
+    device = "/dev/disk/by-label/sda1";
     fsType = "vfat";
   };
 
   fileSystems."/data" = {
-    device = "/dev/disk/by-label/data";
+    device = "/dev/disk/by-label/sdb1";
     fsType = "ext4";
     options = [ "noatime" ];
   };
 
-  swapDevices = [ { device = "/dev/disk/by-label/swap"; } ];
+  swapDevices = [ { device = "/dev/disk/sda2"; } ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
