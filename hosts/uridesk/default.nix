@@ -170,6 +170,8 @@
     };
   };
 
+  services.tailscale.enable = true;
+
   # Force radv
   environment.variables = {
     AMD_VULKAN_ICD = "RADV";

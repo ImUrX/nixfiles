@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   users.users.uri = {
     isNormalUser = true;
@@ -69,10 +69,10 @@
         }
       '';
 
-      home.activation = {
-        import-ssh = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          PATH="${pkgs.ssh-import-id}/bin:${pkgs.openssh}/bin:$PATH" run ssh-import-id-gh imurx
-        '';
-      };
+      # home.activation = {
+      #   import-ssh = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      #     PATH="${pkgs.ssh-import-id}/bin:${pkgs.openssh}/bin:$PATH" run ssh-import-id-gh imurx
+      #   '';
+      # };
     };
 }
