@@ -130,8 +130,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "notpeelz";
         repo = "wivrn";
-        rev = "9060dc9e7d2140a002fa3ab212c06cfdae2c6ac0";
-        hash = "sha256-31eT4N55V7dlQQt/EsEgu+kkmRFhmwaoV9hL4oY1imU=";
+        rev = "b3fe0ad35c97c8d7dcd89778e35b93f52cffad8c";
+        hash = "sha256-Q9vBKPXd6+QUMdFSwKy+kGzTdKfRVglpC8IWxoCMesY=";
       };
 
       cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [

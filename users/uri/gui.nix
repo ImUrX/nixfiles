@@ -24,9 +24,7 @@
     xorg.xeyes
     fluffychat
     flatpak-builder
-    python3Full
-    python311Packages.toml
-    python311Packages.aiohttp
+    python3
     r2modman
     imv
     dotnet-sdk_8

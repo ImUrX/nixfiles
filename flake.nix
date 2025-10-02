@@ -311,7 +311,7 @@
             ./users/uri
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
-            # agenix.nixosModules.default
+            agenix.nixosModules.default
             nixarr.nixosModules.default
             nur.modules.nixos.default
             vpn-confinement.nixosModules.default
@@ -326,6 +326,11 @@
                 headless = true;
               };
               home-manager.backupFileExtension = "bak";
+            }
+            {
+              age.secrets = {
+                cloudflared.file = ./secrets/cloudflared-rapel.age;
+              };
             }
           ];
         };

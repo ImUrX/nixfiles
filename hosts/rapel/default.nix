@@ -10,6 +10,7 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    ./stream.nix
     ../../modules/sdns.nix
   ];
 
@@ -68,9 +69,6 @@
   i18n.defaultLocale = "en_US.UTF-8";
   # Set your time zone.
   time.timeZone = "America/Santiago";
-
-  services.tailscale.enable = true;
-  services.tailscale.useRoutingFeatures = "server";
 
   networking.hostName = "rapel"; # Define your hostname.
 }
