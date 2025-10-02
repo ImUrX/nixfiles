@@ -16,26 +16,28 @@
   boot.loader.systemd-boot.enable = true;
 
   boot.initrd.availableKernelModules = [
-    "xhci_pci"
-    "ahci"
-    "nvme"
-    "usbhid"
-    "usb_storage"
+    "ata_piix"
+    "vmw_pvscsi"
     "sd_mod"
+    "sr_mod"
   ];
 
   fileSystems."/" = {
-    device = "/dev/sda3";
+    device = "/dev/disk/by-label/nixos";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/sda1";
+    device = "/dev/disk/by-label/boot";
     fsType = "vfat";
+    options = [
+      "fmask=0077"
+      "dmask=0077"
+    ];
   };
 
   fileSystems."/data" = {
-    device = "/dev/sdb1";
+    device = "/dev/disk/by-label/data";
     fsType = "ext4";
     options = [ "noatime" ];
   };
@@ -46,7 +48,7 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  # networking.useDHCP = lib.mkDefault true;
+  networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
   networking = {
@@ -58,8 +60,9 @@
     dhcpcd.extraConfig = "nohook resolv.conf";
   };
 
-  # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  virtualisation.vmware.guest.enable = true;
   # owo
 
   i18n.defaultLocale = "en_US.UTF-8";
