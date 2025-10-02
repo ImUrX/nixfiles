@@ -25,17 +25,17 @@
   ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/sda3";
+    device = "/dev/disk/sda3";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-label/sda1";
+    device = "/dev/disk/sda1";
     fsType = "vfat";
   };
 
   fileSystems."/data" = {
-    device = "/dev/disk/by-label/sdb1";
+    device = "/dev/disk/sdb1";
     fsType = "ext4";
     options = [ "noatime" ];
   };
