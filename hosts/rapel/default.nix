@@ -69,5 +69,8 @@
   # Set your time zone.
   time.timeZone = "America/Santiago";
 
+  services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "server";
+
   networking.hostName = "rapel"; # Define your hostname.
 }
