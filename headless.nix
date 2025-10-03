@@ -130,10 +130,10 @@
   };
   environment.sessionVariables = {
     _ZO_DOCTOR = "0";
-    TEALDEER_CONFIG_DIR = "/etc/tealdeer.conf";
+    TEALDEER_CONFIG_DIR = "/etc/tealdeer";
   };
   environment.etc = {
-    "tealdeer.conf".source = (pkgs.formats.toml { }).generate "tealdeer.conf" {
+    "tealdeer/config.toml".source = (pkgs.formats.toml { }).generate "tealdeer.conf" {
       updates = {
         auto_update = true;
       };

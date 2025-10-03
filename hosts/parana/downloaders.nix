@@ -76,6 +76,67 @@ rec {
     whitelistHostnames = [ "nz.2dgirls.date" ];
   };
 
+  # Rsync
+  systemd.paths.bitrate-movies = {
+    enable = true;
+    pathConfig = {
+      PathChanged = "/data/media/library/movies";
+    };
+  };
+  systemd.services.bitrate-movies = {
+    enable = true;
+    wantedBy = [ "rsyncd.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+    };
+    script = ''
+      set -u
+      shopt -s globstar
+
+      function join_by {
+        local d=''${1-} f=''${2-}
+        if shift 2; then
+          printf %s "$f" "''${@/#/$d}"
+        fi
+      }
+
+      sleep 2
+
+      allow_list=/etc/movie-list
+      touch $allow_list
+      allowed=( )
+      cd /data/media/library/movies
+      for file in **/*.mkv;
+      do
+        bitrate=$( ${pkgs.ffmpeg}/bin/ffprobe -v quiet -select_streams v -show_entries format=bit_rate -of compact=p=0:nk=1 "$file" )
+        if (( bitrate > 45000000 )); then
+          allowed+=("/$( dirname "''${file}" )/***")
+        fi
+      done
+
+      join_by $'\n' "''${allowed[@]}" > $allow_list
+    '';
+  };
+  services.rsyncd = {
+    enable = true;
+    settings = {
+      globalSection = {
+        address = "0.0.0.0";
+        "max connections" = 5;
+        "use chroot" = false;
+        "read only" = true;
+      };
+      sections = {
+        "movies" = {
+          comment = "high-bitrate movies";
+          path = "/data/media/library/movies";
+          "include from" = "/etc/movie-list";
+          exclude = "*";
+        };
+      };
+    };
+  };
+
   # Soulseek
   uri.slsk = {
     enable = true;
@@ -119,6 +180,9 @@ rec {
   systemd.tmpfiles.rules = [
     "d /data/squidarr 775 ${squidUser} ${squidGroup}"
   ];
+  environment.shellAliases = {
+    chown-squid = "chown -R ${squidUser}:${squidGroup}";
+  };
 
   # Plex
   nixarr.plex.enable = true;

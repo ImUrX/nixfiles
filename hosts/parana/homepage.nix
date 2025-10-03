@@ -180,10 +180,17 @@
     {
       "Streaming" = [
         {
-          "Plex" = {
+          "Parana" = {
             icon = "plex";
             href = "https://app.plex.tv";
             siteMonitor = "http://localhost:32400";
+          };
+        }
+        {
+          "Rapel" = {
+            icon = "plex";
+            href = "https://app.plex.tv";
+            siteMonitor = "http://rapel.ruffe-dojo.ts.net:32400/web/index.html";
           };
         }
         {
