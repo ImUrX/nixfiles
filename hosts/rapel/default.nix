@@ -49,10 +49,22 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
   networking = {
+    interfaces.ens192 = {
+      useDHCP = false;
+      ipv4.addresses = [
+        {
+          address = "192.168.41.69";
+          prefixLength = 24;
+        }
+      ];
+    };
+    defaultGateway = {
+      address = "192.168.41.1";
+      interface = "ens192";
+    };
     # Use secure DNS
     nameservers = [
       "127.0.0.1"

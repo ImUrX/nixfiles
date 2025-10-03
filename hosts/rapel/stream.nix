@@ -16,17 +16,11 @@
   nixarr.enable = true;
   nixarr.plex.enable = true;
 
-  systemd.timers.update-mirror = {
-    wantedBy = [ "timers.target" ];
-    timerConfig = {
-      Persistent = true;
-      OnCalendar = "*-*-* 00:00:00";
-    };
-  };
   systemd.services.update-mirror = {
     serviceConfig = {
       Type = "oneshot";
     };
+    startAt = "*-*-* 00:00:00";
     script = "${pkgs.rsync}/bin/rsync -za --progress rsync://parana.ruffe-dojo.ts.net/movies/ /data/media/library/movies";
   };
 }

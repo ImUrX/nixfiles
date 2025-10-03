@@ -4,7 +4,7 @@ let
 in
 {
   # See https://wiki.nixos.org/wiki/Encrypted_DNS
-  services.dnscrypt-proxy2 = {
+  services.dnscrypt-proxy = {
     enable = true;
     # See https://github.com/DNSCrypt/dnscrypt-proxy/blob/master/dnscrypt-proxy/example-dnscrypt-proxy.toml
     settings = {
@@ -33,5 +33,5 @@ in
     };
   };
 
-  systemd.services.dnscrypt-proxy2.serviceConfig.StateDirectory = StateDirectory;
+  systemd.services.dnscrypt-proxy.serviceConfig.StateDirectory = StateDirectory;
 }

@@ -89,6 +89,7 @@ rec {
     serviceConfig = {
       Type = "oneshot";
     };
+    description = "Checks for high-bitrate movies and makes a list of them";
     script = ''
       set -u
       shopt -s globstar
@@ -143,6 +144,22 @@ rec {
     downloads = "/data/media/soulseek/downloads";
     incomplete = "/data/media/soulseek/incomplete";
   };
+
+  # Restart soularr on agenix change
+  systemd.paths.agenix-soularr-watch = {
+    enable = true;
+    pathConfig = {
+      PathChanged = config.age.secrets.soularr.path;
+    };
+  };
+  systemd.services.agenix-soularr-watch = {
+    serviceConfig = {
+      Type = "oneshot";
+    };
+    after = ["network-online.target"];
+    script = "systemctl restart podman-soularr.service";
+  };
+
 
   virtualisation.oci-containers.containers = {
     soularr = {
