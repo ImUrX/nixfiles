@@ -31,6 +31,7 @@
 
   systemd.tmpfiles.rules = [
     "d /data/speedtest 755 1000 1000"
+    "d /data/scrobbler 755 1000 1000"
   ];
 
   virtualisation.oci-containers.containers = {
@@ -49,6 +50,20 @@
       environmentFiles = [
         config.age.secrets.speedtest.path
       ];
+    };
+
+    multi-scrobbler = {
+      autoStart = true;
+      image = "foxxmd/multi-scrobbler";
+      environment = {
+        TZ = "America/Argentina/Buenos_Aires";
+        BASE_URL = "https://scrobbler.2dgirls.date";
+        PLEX_URL = "http://10.88.0.1:32400";
+      };
+      environmentFiles = [ config.age.secrets.scrobbler.path ];
+      volumes = [ "/data/scrobbler:/config" ];
+      ports = [ "9078:9078" ];
+
     };
   };
 

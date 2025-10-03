@@ -279,6 +279,7 @@
                 cloudflared.file = ./secrets/cloudflared.age;
                 vpn-ar.file = ./secrets/protonvpn-ar.age;
                 vpn-slsk.file = ./secrets/vpn-slsk.age;
+                scrobbler.file = ./secrets/scrobbler.age;
                 soulseek = {
                   file = ./secrets/soulseek.age;
                   owner = "lidarr";

@@ -267,6 +267,13 @@
             siteMonitor = href;
           };
         }
+        {
+          "Scrobbler" = rec {
+            icon = "multi-scrobbler";
+            href = "https://scrobbler.2dgirls.date";
+            siteMonitor = href;
+          };
+        }
       ];
     }
     {
