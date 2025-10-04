@@ -82,8 +82,11 @@ with lib;
           directories = [ "/data/media/library/music" ];
           filters = [ ];
           cache = {
-            retention = "10080"; # 1 week
+            retention = 10080; # 1 week
           };
+        };
+        retention = {
+          search = 1440;
         };
         rooms = [ ];
         soulseek = {
