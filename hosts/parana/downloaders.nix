@@ -149,7 +149,7 @@ rec {
   systemd.paths.agenix-soularr-watch = {
     enable = true;
     pathConfig = {
-      PathChanged = config.age.secrets.soularr.path;
+      PathChanged = "/run/agenix";
     };
   };
   systemd.services.agenix-soularr-watch = {
