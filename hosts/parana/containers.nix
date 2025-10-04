@@ -50,6 +50,7 @@
       environmentFiles = [
         config.age.secrets.speedtest.path
       ];
+      pull = "newer";
     };
 
     multi-scrobbler = {
@@ -58,12 +59,12 @@
       environment = {
         TZ = "America/Argentina/Buenos_Aires";
         BASE_URL = "https://scrobbler.2dgirls.date";
-        PLEX_URL = "http://10.88.0.1:32400";
+        PLEX_URL = "http://host.containers.internal:32400";
       };
       environmentFiles = [ config.age.secrets.scrobbler.path ];
       volumes = [ "/data/scrobbler:/config" ];
       ports = [ "9078:9078" ];
-
+      pull = "newer";
     };
   };
 

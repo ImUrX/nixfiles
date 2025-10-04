@@ -145,21 +145,7 @@ rec {
     incomplete = "/data/media/soulseek/incomplete";
   };
 
-  # Restart soularr on agenix change
-  systemd.paths.agenix-soularr-watch = {
-    enable = true;
-    pathConfig = {
-      PathChanged = "/run/agenix";
-    };
-  };
-  systemd.services.agenix-soularr-watch = {
-    serviceConfig = {
-      Type = "oneshot";
-    };
-    after = ["network-online.target"];
-    script = "systemctl restart podman-soularr.service";
-  };
-
+  systemd.services.podman-soularr.partOf = [ "sysinit-reactivation.target" ];
 
   virtualisation.oci-containers.containers = {
     soularr = {
@@ -175,6 +161,7 @@ rec {
         "${uri.slsk.downloads}:/downloads"
         "${dirOf config.age.secrets.soularr.path}:/data"
       ];
+      pull = "newer";
     };
 
     squidarr = {
