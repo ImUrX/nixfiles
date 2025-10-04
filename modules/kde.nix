@@ -34,6 +34,7 @@ with lib;
       kdePackages.konversation
       kdePackages.skanpage
       kdePackages.fcitx5-configtool
+      kdePackages.akregator
     ];
 
     xdg = {
