@@ -164,25 +164,24 @@ rec {
       pull = "newer";
     };
 
-    squidarr = {
+    tidlarr = {
       autoStart = true;
-      image = "ghcr.io/mgthepro/squidarr-proxy:main";
-      hostname = "squidarr";
+      image = "ghcr.io/mgthepro/tidlarr-proxy:main";
+      hostname = "tidlarr";
       environment = {
         TZ = "ETC/UTC";
-        DOWNLOAD_PATH = "/data/squidarr";
+        DOWNLOAD_PATH = "/data/tidlarr";
         CATEGORY = "music";
-        REGION = "eu";
-        PORT = "8687";
+        PORT = "8688";
         API_KEY = "Testtesttest";
       };
       user = "${squidUser}:${squidGroup}";
-      ports = [ "127.0.0.1:9513:8687" ];
-      volumes = [ "/data/squidarr:/data/squidarr" ];
+      ports = [ "127.0.0.1:9514:8688" ];
+      volumes = [ "/data/tidlarr:/data/tidlarr" ];
     };
   };
   systemd.tmpfiles.rules = [
-    "d /data/squidarr 775 ${squidUser} ${squidGroup}"
+    "d /data/tidlarr 775 ${squidUser} ${squidGroup}"
   ];
   environment.shellAliases = {
     chown-squid = "chown -R ${squidUser}:${squidGroup}";

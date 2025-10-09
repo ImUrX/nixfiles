@@ -95,6 +95,7 @@
     enable = true;
     extraPackages = with pkgs; [ nvidia-vaapi-driver ];
   };
+  nixpkgs.config.cudaSupport = true;
 
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = false;
