@@ -16,23 +16,16 @@ with lib;
   config = mkIf cfg.enable {
     home.packages =
       with pkgs;
-      let
-        wlxRuntimePackages = [
-          cage
-          playerctl
-          eepyxr
-        ];
-      in
       [
         # opencomposite
         # xrizer
         wlx-overlay-s
         wayvr-dashboard
         slimevr
+        eepyxr
 
         bs-manager
-      ]
-      ++ wlxRuntimePackages;
+      ];
 
     # "${pkgs.opencomposite}/lib/opencomposite"
     # xdg.configFile."openvr/openvrpaths.vrpath" = {
@@ -58,7 +51,18 @@ with lib;
     #   # force = true;
     # };
 
-    xdg.configFile."wlxoverlay/watch.yaml".source = ./config/wlxoverlay/watch.yaml;
-    xdg.configFile."wlxoverlay/wayvr.yaml".source = ./config/wlxoverlay/wayvr.yaml;
+    xdg.configFile."wlxoverlay/watch.yaml".source = with pkgs; (replaceVars ./config/wlxoverlay/watch.yaml {
+      playerctl = "${playerctl}/bin/playerctl";
+      wpctl = "${wireplumber}/bin/wpctl";
+      DEFAULT_AUDIO_SINK = null;
+    });
+    xdg.configFile."wlxoverlay/wayvr.yaml".source = with pkgs; (replaceVars ./config/wlxoverlay/wayvr.yaml {
+      wayvr = "${wayvr-dashboard}/bin/wayvr-dashboard";
+      slimevr = "${slimevr}/bin/slimevr";
+      console = "${kdePackages.konsole}/bin/konsole";
+      firefox = "${firefox}/bin/firefox";
+      cage = "${cage}/bin/cage";
+      btop = "${btop}/bin/btop";
+    });
   };
 }

@@ -38,7 +38,7 @@ keyboard_repeat_rate: 50
 # exec: Executable path, for example "/home/USER/wayvr-dashboard/src-tauri/target/release/wayvr-dashboard"
 # or just "wayvr-dashboard" if you have it installed from your package manager.
 dashboard:
-  exec: "wayvr-dashboard"
+  exec: "@wayvr@"
   args: ""
   env: []
 
@@ -64,15 +64,15 @@ catalogs:
     apps:
       - name: "SlimeVR"
         target_display: "disp1"
-        exec: "slimevr"
+        exec: "@slimevr@"
         # shown_at_start: false
 
       - name: "btop"
         target_display: "watch"
-        exec: "konsole"
-        args: "-e btop"
+        exec: "@console@"
+        args: "-e @btop@"
 
       - name: "Browser"
         target_display: "disp2"
-        exec: "cage"
-        args: "firefox"
+        exec: "@cage@"
+        args: "@firefox@"
