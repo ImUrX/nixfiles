@@ -45,7 +45,7 @@ dashboard:
 displays:
   watch:
     width: 700
-    height: 460
+    height: 480
     scale: 0.2
     attach_to: "HandRight" # HandLeft, HandRight
     pos: [0.0, 0.0, 0.125]
