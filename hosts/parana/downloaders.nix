@@ -8,7 +8,7 @@ let
   squidUser = "306";
   squidGroup = "169";
 in
-rec {
+{
   imports = [
     ./arrs.nix
     ../../modules/wg-pnp.nix
@@ -145,25 +145,7 @@ rec {
     incomplete = "/data/media/soulseek/incomplete";
   };
 
-  systemd.services.podman-soularr.partOf = [ "sysinit-reactivation.target" ];
-
   virtualisation.oci-containers.containers = {
-    soularr = {
-      autoStart = true;
-      image = "mrusse08/soularr:latest";
-      # extraOptions = [ "--hostuser=streamer" ];
-      hostname = "soularr";
-      environment = {
-        TZ = "ETC/UTC";
-        SCRIPT_INTERVAL = "300";
-      };
-      volumes = [
-        "${uri.slsk.downloads}:/downloads"
-        "${dirOf config.age.secrets.soularr.path}:/data"
-      ];
-      pull = "newer";
-    };
-
     tidlarr = {
       autoStart = true;
       image = "ghcr.io/mgthepro/tidlarr-proxy:main";
@@ -176,11 +158,15 @@ rec {
         API_KEY = "Testtesttest";
       };
       user = "${squidUser}:${squidGroup}";
-      ports = [ "127.0.0.1:9514:8688" ];
+      ports = [ "9514:8688" ];
       volumes = [ "/data/tidlarr:/data/tidlarr" ];
+      pull = "newer";
     };
   };
   systemd.tmpfiles.rules = [
+    "d /data/media/deez 775 ${squidUser} ${squidGroup}"
+    "d /data/media/qo 775 ${squidUser} ${squidGroup}"
+    "d /data/tidlarr 775 ${squidUser} ${squidGroup}"
     "d /data/tidlarr 775 ${squidUser} ${squidGroup}"
   ];
   environment.shellAliases = {

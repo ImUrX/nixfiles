@@ -279,15 +279,12 @@
                 cloudflared.file = ./secrets/cloudflared.age;
                 vpn-ar.file = ./secrets/protonvpn-ar.age;
                 vpn-slsk.file = ./secrets/vpn-slsk.age;
+                spotplex.file = ./secrets/spotplex.age;
                 scrobbler.file = ./secrets/scrobbler.age;
                 soulseek = {
                   file = ./secrets/soulseek.age;
                   owner = "lidarr";
                   mode = "770";
-                };
-                soularr = {
-                  file = ./secrets/soularr.age;
-                  name = "config.ini";
                 };
                 speedtest = {
                   file = ./secrets/speedtest.age;
