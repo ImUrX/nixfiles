@@ -29,6 +29,7 @@
     nssmdns4 = true;
   };
   virtualisation.docker.enable = true;
+  hardware.sensor.iio.enable = true;
 
   security.polkit.enable = true;
 
