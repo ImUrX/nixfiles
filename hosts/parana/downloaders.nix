@@ -110,7 +110,7 @@ in
       cd /data/media/library/movies
       for file in **/*.mkv;
       do
-        bitrate=$( ${pkgs.ffmpeg}/bin/ffprobe -v quiet -select_streams v -show_entries format=bit_rate -of compact=p=0:nk=1 "$file" )
+        bitrate=$( ${pkgs.ffmpeg}/bin/ffprobe -v quiet -select_streams v -show_entries format=bit_rate -of compact=p=0:nk=1 "$file" || echo "" )
         if [ -z "$bitrate" ] || (( bitrate > 45000000 )); then
           allowed+=("/$( dirname "''${file}" )/***")
         fi
