@@ -32,7 +32,6 @@
     xivlauncher
     alsa-scarlett-gui
     syncthingtray-minimal
-    cosign
     openmw
     pupdate
     calibre

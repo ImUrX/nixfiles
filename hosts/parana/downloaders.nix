@@ -34,6 +34,7 @@ in
     flood.enable = true;
     messageLevel = "info";
     vpn.enable = true;
+    package = pkgs.transmission_4;
 
     # Doesn't build
     privateTrackers.cross-seed = {
@@ -65,7 +66,7 @@ in
       if [ "$protocol" = tcp ]
       then
         echo "Telling transmission to listen on peer port $new_port."
-        ${pkgs.transmission}/bin/transmission-remote 192.168.15.1 --port "$new_port"
+        ${pkgs.transmission_4}/bin/transmission-remote 192.168.15.1 --port "$new_port"
       fi
     '';
   };
@@ -110,7 +111,7 @@ in
       for file in **/*.mkv;
       do
         bitrate=$( ${pkgs.ffmpeg}/bin/ffprobe -v quiet -select_streams v -show_entries format=bit_rate -of compact=p=0:nk=1 "$file" )
-        if (( bitrate > 45000000 )); then
+        if [ -z "$bitrate" ] || (( bitrate > 45000000 )); then
           allowed+=("/$( dirname "''${file}" )/***")
         fi
       done

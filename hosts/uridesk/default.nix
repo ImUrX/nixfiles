@@ -70,6 +70,15 @@
     fsType = "ext4";
   };
 
+  fileSystems."/data" = {
+    device = "/dev/disk/by-uuid/62c082f2-fd98-4b48-9362-2d2bcee1e180";
+    fsType = "btrfs";
+    options = [
+      "noatime"
+      "compress=zstd"
+    ];
+  };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -130,8 +139,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "notpeelz";
         repo = "wivrn";
-        rev = "b3fe0ad35c97c8d7dcd89778e35b93f52cffad8c";
-        hash = "sha256-Q9vBKPXd6+QUMdFSwKy+kGzTdKfRVglpC8IWxoCMesY=";
+        rev = "2fd4890fc7410361493b774697162e2750413137";
+        hash = "sha256-A1Cr9UmztznwIBusyS832202vZ7bF3N1yFJ4EdsyA4k=";
       };
 
       cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
@@ -172,6 +181,16 @@
   };
 
   services.tailscale.enable = true;
+  nixarr.enable = true;
+  nixarr.plex.enable = true;
+
+  systemd.services.update-mirror = {
+    serviceConfig = {
+      Type = "oneshot";
+    };
+    startAt = "*-*-* 00:00:00";
+    script = "${pkgs.rsync}/bin/rsync -za --progress rsync://parana.ruffe-dojo.ts.net/movies/ /data/media/library/movies";
+  };
 
   # Force radv
   environment.variables = {

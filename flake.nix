@@ -106,6 +106,7 @@
             musnix.nixosModules.musnix
             nixpkgs-xr.nixosModules.nixpkgs-xr
             nur.modules.nixos.default
+            nixarr.nixosModules.default
             {
               environment.systemPackages = [
                 agenix.packages.${system}.default
