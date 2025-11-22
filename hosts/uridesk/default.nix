@@ -70,14 +70,14 @@
     fsType = "ext4";
   };
 
-  fileSystems."/data" = {
-    device = "/dev/disk/by-uuid/62c082f2-fd98-4b48-9362-2d2bcee1e180";
-    fsType = "btrfs";
-    options = [
-      "noatime"
-      "compress=zstd"
-    ];
-  };
+  # fileSystems."/data" = {
+  #   device = "/dev/disk/by-uuid/62c082f2-fd98-4b48-9362-2d2bcee1e180";
+  #   fsType = "btrfs";
+  #   options = [
+  #     "noatime"
+  #     "compress=zstd"
+  #   ];
+  # };
 
   swapDevices = [ ];
 
@@ -182,7 +182,7 @@
 
   services.tailscale.enable = true;
   nixarr.enable = true;
-  nixarr.plex.enable = true;
+  nixarr.plex.enable = false;
 
   systemd.services.update-mirror = {
     serviceConfig = {
