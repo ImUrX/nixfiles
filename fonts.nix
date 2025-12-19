@@ -14,15 +14,21 @@ with lib;
   };
 
   config = mkIf cfg.enable {
-    i18n.inputMethod = {
-      enable = true;
-      type = "fcitx5";
-      fcitx5 = {
-        addons = with pkgs; [
-          fcitx5-mozc
-          fcitx5-gtk
-        ];
-        waylandFrontend = true;
+    i18n = {
+      extraLocales = [
+        "ja_JP.UTF-8/UTF-8"
+        "ja_JP.EUC-JP/EUC-JP"
+      ];
+      inputMethod = {
+        enable = true;
+        type = "fcitx5";
+        fcitx5 = {
+          addons = with pkgs; [
+            fcitx5-mozc
+            fcitx5-gtk
+          ];
+          waylandFrontend = true;
+        };
       };
     };
 
@@ -54,9 +60,18 @@ with lib;
 
       fontconfig = {
         defaultFonts = {
-          monospace = [ "JetBrains Mono" "Mplus Code 60" ];
-          sansSerif = [ "Inter" "IPAexGothic" ];
-          serif = [ "Noto Serif" "IPAexMincho" ];
+          monospace = [
+            "JetBrains Mono"
+            "Mplus Code 60"
+          ];
+          sansSerif = [
+            "Inter"
+            "IPAexGothic"
+          ];
+          serif = [
+            "Noto Serif"
+            "IPAexMincho"
+          ];
           emoji = [ "Twitter Color Emoji" ];
         };
       };

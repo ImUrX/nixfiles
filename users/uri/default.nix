@@ -15,6 +15,7 @@
       "lp"
       "wireshark"
       "libvirtd"
+      "cdrom"
     ]; # Enable ‘sudo’ for the user.
     initialPassword = "eevee123";
   };
@@ -33,7 +34,8 @@
         ../../modules/js.nix
         ../../modules/java.nix
         ../../modules/rust.nix
-      ] ++ lib.optional (!headless) ./gui.nix;
+      ]
+      ++ lib.optional (!headless) ./gui.nix;
 
       home.stateVersion = "23.05";
 

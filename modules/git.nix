@@ -46,15 +46,15 @@ with lib;
     programs.git = {
       enable = true;
       package = pkgs.gitFull;
-      userEmail = cfg.email;
-      userName = cfg.name;
 
       lfs.enable = true;
       # difftastic.enable = true;
 
-      aliases = { };
-
-      extraConfig = {
+      settings = {
+        user = {
+          name = cfg.name;
+          email = cfg.email;
+        };
         # Cooler interactive rebase
         sequence.editor = "interactive-rebase-tool";
         # https://git-scm.com/book/en/v2/Git-Tools-Rerere

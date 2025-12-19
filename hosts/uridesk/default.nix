@@ -23,6 +23,7 @@
     "usbhid"
     "usb_storage"
     "sd_mod"
+    "vhba"
   ];
   boot.kernelModules = [
     "kvm-amd"
@@ -139,8 +140,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "notpeelz";
         repo = "wivrn";
-        rev = "2fd4890fc7410361493b774697162e2750413137";
-        hash = "sha256-A1Cr9UmztznwIBusyS832202vZ7bF3N1yFJ4EdsyA4k=";
+        rev = "be05170c552c31a3d94563e0a988cfe09a442174";
+        hash = "sha256-ogYKO8CIZgzqoa9ZD84/GmZQzTRA4E6Gg9NWgq20yII=";
       };
 
       cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [

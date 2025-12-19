@@ -95,6 +95,7 @@
   };
   programs.corectrl.enable = true;
   cookie.fonts.enable = true;
+  programs.cdemu.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

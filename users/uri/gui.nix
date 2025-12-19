@@ -40,6 +40,8 @@
     pcsx2
     wowup-cf
     krita
+    devenv
+    rubyPackages_3_5.ruby-lsp
   ];
 
   # services.arrpc.enable = true;

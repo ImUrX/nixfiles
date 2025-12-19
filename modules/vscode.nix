@@ -33,20 +33,26 @@ with lib;
           davidanson.vscode-markdownlint
           redhat.vscode-yaml
           fill-labs.dependi
+          github.copilot
           # Javascript
           dbaeumer.vscode-eslint
           esbenp.prettier-vscode
           bradlc.vscode-tailwindcss
+          prisma.prisma
           # Rust
           rust-lang.rust-analyzer
           tamasfe.even-better-toml
           vadimcn.vscode-lldb
+          # Ruby
+          shopify.ruby-lsp
         ]
         ++ (with extensions.open-vsx; [
           floxay.vscode-flatbuffers
           tauri-apps.tauri-vscode
           jeanp413.open-remote-ssh
           blueglassblock.better-json5
+          # Ruby
+          sorbet.sorbet-vscode-extension
         ]);
     };
   };
