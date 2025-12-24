@@ -101,6 +101,7 @@ in
       "::1"
     ];
     dhcpcd.extraConfig = "nohook resolv.conf";
+    hostId = "2ed1995c";
   };
 
   # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
