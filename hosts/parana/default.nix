@@ -45,10 +45,12 @@ in
     "usbhid"
     "usb_storage"
     "sd_mod"
-    "zfs"
   ];
   boot.blacklistedKernelModules = [ "nouveau" ];
   boot.kernelPackages = latestKernelPackage;
+  boot.supportedFilesystems = {
+    zfs = true;
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/20367c05-bf86-4291-818b-3884887af5d2";
