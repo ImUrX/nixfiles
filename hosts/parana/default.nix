@@ -8,6 +8,19 @@
   modulesPath,
   ...
 }:
+let
+  zfsCompatibleKernelPackages = lib.filterAttrs (
+    name: kernelPackages:
+    (builtins.match "linux_[0-9]+_[0-9]+" name) != null
+    && (builtins.tryEval kernelPackages).success
+    && (!kernelPackages.${config.boot.zfs.package.kernelModuleAttribute}.meta.broken)
+  ) pkgs.linuxKernel.packages;
+  latestKernelPackage = lib.last (
+    lib.sort (a: b: (lib.versionOlder a.kernel.version b.kernel.version)) (
+      builtins.attrValues zfsCompatibleKernelPackages
+    )
+  );
+in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -20,6 +33,7 @@
   # Usando GRUB xq tiene skins
   boot.loader.grub = {
     enable = true;
+    zfsSupport = true;
     efiSupport = true;
     device = "nodev";
   };
@@ -33,6 +47,7 @@
     "sd_mod"
   ];
   boot.blacklistedKernelModules = [ "nouveau" ];
+  boot.kernelPackages = latestKernelPackage;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/20367c05-bf86-4291-818b-3884887af5d2";
@@ -44,14 +59,14 @@
     fsType = "vfat";
   };
 
-  fileSystems."/data" = {
-    device = "/dev/disk/by-uuid/c510ab6e-ff31-4ddb-824f-1867da4345d6";
-    fsType = "btrfs";
-    options = [
-      "noatime"
-      "compress=zstd"
-    ];
-  };
+  # fileSystems."/data" = {
+  #   device = "/dev/disk/by-uuid/c510ab6e-ff31-4ddb-824f-1867da4345d6";
+  #   fsType = "btrfs";
+  #   options = [
+  #     "noatime"
+  #     "compress=zstd"
+  #   ];
+  # };
 
   swapDevices = [ { device = "/dev/disk/by-uuid/f72ffc99-9aba-4469-8e43-6d7b3191affb"; } ];
 
@@ -63,7 +78,7 @@
   # networking.interfaces.enp6s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
   networking = {
-    interfaces.eno1 = {
+    interfaces.eno2 = {
       useDHCP = false;
       ipv4.addresses = [
         {
@@ -74,7 +89,7 @@
     };
     defaultGateway = {
       address = "192.168.42.1";
-      interface = "eno1";
+      interface = "eno2";
     };
 
     # Use secure DNS
@@ -86,8 +101,7 @@
   };
 
   # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # owo
 
   ### NVIDIA STUFF
