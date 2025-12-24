@@ -45,6 +45,7 @@ in
     "usbhid"
     "usb_storage"
     "sd_mod"
+    "zfs"
   ];
   boot.blacklistedKernelModules = [ "nouveau" ];
   boot.kernelPackages = latestKernelPackage;
