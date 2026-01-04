@@ -62,14 +62,10 @@ in
     fsType = "vfat";
   };
 
-  # fileSystems."/data" = {
-  #   device = "/dev/disk/by-uuid/c510ab6e-ff31-4ddb-824f-1867da4345d6";
-  #   fsType = "btrfs";
-  #   options = [
-  #     "noatime"
-  #     "compress=zstd"
-  #   ];
-  # };
+  fileSystems."/data" = {
+    device = "data";
+    fsType = "zfs";
+  };
 
   swapDevices = [ { device = "/dev/disk/by-uuid/f72ffc99-9aba-4469-8e43-6d7b3191affb"; } ];
 
@@ -114,6 +110,11 @@ in
     extraPackages = with pkgs; [ nvidia-vaapi-driver ];
   };
   nixpkgs.config.cudaSupport = true;
+
+  services.zfs = {
+    autoScrub.enable = true;
+    # autoSnapshot.enable = true;
+  };
 
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = false;

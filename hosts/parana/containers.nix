@@ -11,7 +11,7 @@
     enable = true;
     # Use "ve-*" when using nftables instead of iptables
     internalInterfaces = [ "ve-+" ];
-    externalInterface = "eno1";
+    externalInterface = "eno2";
     # Lazy IPv6 connectivity for the container
     enableIPv6 = true;
   };
@@ -52,6 +52,15 @@
       ];
       pull = "newer";
     };
+    flaresolverr = {
+      autoStart = true;
+      image = "ghcr.io/flaresolverr/flaresolverr:latest";
+      ports = [ "8192:8191" ];
+      environment = {
+        LOG_LEVEL = "info";
+      };
+      pull = "newer";
+    };
 
     multi-scrobbler = {
       autoStart = true;
@@ -68,8 +77,8 @@
     };
   };
 
-  uri.paperless.enable = true;
-  uri.immich.enable = true;
+  # uri.paperless.enable = true;
+  # uri.immich.enable = true;
   uri.matrix.enable = true;
   uri.misskey.enable = true;
 }
