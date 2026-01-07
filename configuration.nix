@@ -79,7 +79,6 @@
   uri.steam.enable = true;
   # 指
   uri.yubi.enable = true;
-  programs.adb.enable = true;
   programs.gamemode = {
     enable = true;
     settings = {

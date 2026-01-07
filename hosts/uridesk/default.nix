@@ -15,7 +15,7 @@
 
   # boot.initrd.kernelModules = ["amdgpu"];
   virtualisation.libvirtd.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
@@ -135,19 +135,6 @@
 
   services.wivrn = {
     enable = true;
-    package = pkgs.wivrn.overrideAttrs (oldAttrs: {
-
-      src = pkgs.fetchFromGitHub {
-        owner = "notpeelz";
-        repo = "wivrn";
-        rev = "be05170c552c31a3d94563e0a988cfe09a442174";
-        hash = "sha256-ogYKO8CIZgzqoa9ZD84/GmZQzTRA4E6Gg9NWgq20yII=";
-      };
-
-      cmakeFlags = (oldAttrs.cmakeFlags or [ ]) ++ [
-        (lib.cmakeBool "WIVRN_FEATURE_SOLARXR" true)
-      ];
-    });
 
     # Write information to /etc/xdg/openxr/1/active_runtime.json, VR applications
     # will automatically read this and work with WiVRn (Note: This does not currently
@@ -185,18 +172,17 @@
   nixarr.enable = true;
   nixarr.plex.enable = false;
 
-  systemd.services.update-mirror = {
-    serviceConfig = {
-      Type = "oneshot";
-    };
-    startAt = "*-*-* 00:00:00";
-    script = "${pkgs.rsync}/bin/rsync -za --progress rsync://parana.ruffe-dojo.ts.net/movies/ /data/media/library/movies";
-  };
+  # systemd.services.update-mirror = {
+  #   serviceConfig = {
+  #     Type = "oneshot";
+  #   };
+  #   startAt = "*-*-* 00:00:00";
+  #   script = "${pkgs.rsync}/bin/rsync -za --progress rsync://parana.ruffe-dojo.ts.net/movies/ /data/media/library/movies";
+  # };
 
   # Force radv
   environment.variables = {
     AMD_VULKAN_ICD = "RADV";
-    KWIN_DRM_NO_DIRECT_SCANOUT = "1";
   };
   networking.hostName = "uridesk"; # Define your hostname.
 }

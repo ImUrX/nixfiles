@@ -69,6 +69,9 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    nix-cachyos-kernel.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   # Outputs can be anything, but the wiki + some commands define their own
@@ -80,6 +83,7 @@
       home-manager,
       aagl,
       nixos-hardware,
+      nix-cachyos-kernel,
       nix-alien,
       musnix,
       agenix,
@@ -136,6 +140,7 @@
             }
             {
               environment.systemPackages = [ nix-alien.packages.${system}.nix-alien ];
+              nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ];
             }
           ];
         };
@@ -209,7 +214,6 @@
             {
               imports = [ aagl.nixosModules.default ];
               nix.settings = aagl.nixConfig; # Setup cachix
-              programs.anime-game-launcher.enable = true;
               programs.sleepy-launcher.enable = true;
             }
           ];
@@ -224,6 +228,44 @@
             ./hosts/atrii-trans
             ./configuration.nix
             ./users/home-lal1tx.nix
+            home-manager.nixosModules.home-manager
+            musnix.nixosModules.musnix
+            nur.modules.nixos.default
+            {
+              _module.args = {
+                inherit inputs;
+              };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                headless = false;
+              };
+              home-manager.backupFileExtension = "bak";
+            }
+            {
+              imports = [ aagl.nixosModules.default ];
+              nix.settings = aagl.nixConfig; # Setup cachix
+              programs.sleepy-launcher.enable = true;
+            }
+            inputs.minegrub-theme.nixosModules.default
+          ];
+        };
+        teto = nixpkgs.lib.nixosSystem {
+          # A lot of times online you will see the use of flake-utils + a
+          # function which iterates over many possible systems. My system
+          # is x86_64-linux, so I'm only going to define that
+          system = "x86_64-linux";
+          # Import our old system configuration.nix
+          modules = [
+            ./hosts/teto
+            ./configuration.nix
+            ./users/home-lal1tx.nix
+            nixos-hardware.nixosModules.common-cpu-amd
+            nixos-hardware.nixosModules.common-cpu-amd-pstate
+            nixos-hardware.nixosModules.common-gpu-amd
+            nixos-hardware.nixosModules.common-pc-laptop
+            nixos-hardware.nixosModules.common-pc-laptop-ssd
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
             nur.modules.nixos.default
