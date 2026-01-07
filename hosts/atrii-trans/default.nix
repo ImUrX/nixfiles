@@ -55,10 +55,10 @@
   };
 
   swapDevices = [
-    {
-      device = "/dev/disk/by-label/swap";
-      # randomEncryption.enable = true;
-    }
+    # {
+    #   device = "/dev/disk/by-label/swap";
+    #   # randomEncryption.enable = true;
+    # }
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
