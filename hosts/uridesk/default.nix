@@ -54,6 +54,7 @@
     [
       "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
       "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
+      "Z /sys/class/powercap/intel-rapl:0/energy_uj 0444 root root - -"
     ];
 
   fileSystems."/" = {
@@ -131,6 +132,7 @@
   environment.systemPackages = with pkgs; [
     nvtopPackages.amd
     radeontop
+    btop-rocm
   ];
 
   services.wivrn = {

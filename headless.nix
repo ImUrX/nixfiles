@@ -70,7 +70,7 @@
     tmux # when you can't afford i3
     yt-dlp # do some pretendin' and fetch videos
     jq # like 'node -e' but nicer
-    btop # htop on steroids
+    # btop # htop on steroids
     expect # color capture, galore
     caddy # convenient bloated web server
     parallel # --citation

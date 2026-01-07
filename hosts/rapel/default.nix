@@ -2,6 +2,7 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
+  pkgs,
   config,
   lib,
   modulesPath,
@@ -77,6 +78,7 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   virtualisation.vmware.guest.enable = true;
   # owo
+  environment.systemPackages = with pkgs; [ btop ];
 
   i18n.defaultLocale = "en_US.UTF-8";
   # Set your time zone.

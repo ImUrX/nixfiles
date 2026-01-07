@@ -722,26 +722,6 @@
         "type": "github"
       }
     },
-    "pipewire-screenaudio": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1761605726,
-        "narHash": "sha256-zVA8lfgJ9yM586wrqxZpWbNXSxsoKp/IAPEtbObvpt0=",
-        "owner": "IceDBorn",
-        "repo": "pipewire-screenaudio",
-        "rev": "853a646cfe9a6cef6c044c19f7866aab42bf6cb1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "IceDBorn",
-        "repo": "pipewire-screenaudio",
-        "type": "github"
-      }
-    },
     "rfm": {
       "inputs": {
         "flake-compat": "flake-compat_5",
@@ -783,7 +763,6 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-xr": "nixpkgs-xr",
         "nur": "nur",
-        "pipewire-screenaudio": "pipewire-screenaudio",
         "rfm": "rfm",
         "vpn-confinement": "vpn-confinement"
       }

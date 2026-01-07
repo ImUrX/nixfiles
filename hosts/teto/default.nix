@@ -39,7 +39,7 @@
     minegrub-theme = {
       enable = true;
       splash = "Say gex!";
-      background = "background_options/1.13 - [Aquatic update].png";
+      background = "background_options/1.20 - [Trails & Tales].png";
       # boot-options-count = 3;
     };
   };
@@ -59,6 +59,10 @@
       device = "/dev/disk/by-label/swap";
       # randomEncryption.enable = true;
     }
+  ];
+
+  systemd.tmpfiles.rules = [
+    "Z /sys/class/powercap/intel-rapl:0/energy_uj 0444 root root - -"
   ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -103,6 +107,7 @@
   environment.systemPackages = with pkgs; [
     nvtopPackages.amd
     radeontop
+    btop-rocm
   ];
 
   # Force radv

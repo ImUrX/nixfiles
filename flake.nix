@@ -17,8 +17,8 @@
     # nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     # emacs-overlay.url = "github:nix-community/emacs-overlay";
 
-    pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
-    pipewire-screenaudio.inputs.nixpkgs.follows = "nixpkgs";
+    # pipewire-screenaudio.url = "github:IceDBorn/pipewire-screenaudio";
+    # pipewire-screenaudio.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nix-vscode-extensions.inputs.nixpkgs.follows = "nixpkgs";

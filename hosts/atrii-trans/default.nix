@@ -61,6 +61,10 @@
     # }
   ];
 
+  systemd.tmpfiles.rules = [
+    "Z /sys/class/powercap/intel-rapl:0/energy_uj 0444 root root - -"
+  ];
+
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
@@ -103,6 +107,7 @@
   environment.systemPackages = with pkgs; [
     nvtopPackages.amd
     radeontop
+    btop-rocm
   ];
 
   # Force radv

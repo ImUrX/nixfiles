@@ -102,7 +102,7 @@
     libreoffice-qt
     (firefox.override {
       nativeMessagingHosts = [
-        inputs.pipewire-screenaudio.packages.${pkgs.system}.default
+        # inputs.pipewire-screenaudio.packages.${pkgs.system}.default
         pkgs.kdePackages.plasma-browser-integration
         pkgs.fx-cast-bridge
       ];

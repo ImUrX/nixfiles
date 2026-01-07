@@ -125,6 +125,7 @@ in
 
   environment.systemPackages = with pkgs; [
     nvtopPackages.nvidia
+    btop-cuda
   ];
 
   # Force radv
