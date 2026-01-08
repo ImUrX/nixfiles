@@ -50,6 +50,7 @@
         imv
         syncthingtray-minimal
         davinci-resolve
+        pcsx2
       ];
 
       # services.easyeffects.enable = true;
