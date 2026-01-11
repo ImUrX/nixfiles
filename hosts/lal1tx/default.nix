@@ -84,7 +84,7 @@
     enable = true;
     extraPackages = with pkgs; [
       mangohud
-      vaapiVdpau
+      libva-vdpau-driver
     ];
     extraPackages32 = with pkgs; [ pkgsi686Linux.mangohud ];
     enable32Bit = true;
