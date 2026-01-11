@@ -217,6 +217,7 @@
               nix.settings = aagl.nixConfig; # Setup cachix
               programs.sleepy-launcher.enable = true;
             }
+            inputs.minegrub-theme.nixosModules.default
           ];
         };
         atrii-trans = nixpkgs.lib.nixosSystem {
