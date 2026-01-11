@@ -192,6 +192,7 @@
             ./hosts/lal1tx
             ./configuration.nix
             ./users/home-lal1tx.nix
+            ./modules/niri.nix
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
             nur.modules.nixos.default
