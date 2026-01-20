@@ -17,8 +17,7 @@ with lib;
     home.packages = with pkgs; [
       # opencomposite
       # xrizer
-      wlx-overlay-s
-      wayvr-dashboard
+      wayvr
       slimevr
       eepyxr
 
@@ -36,7 +35,7 @@ with lib;
       "wlxoverlay/wayvr.yaml".source =
         with pkgs;
         (replaceVars ./config/wlxoverlay/wayvr.yaml {
-          wayvr = "${wayvr-dashboard}/bin/wayvr-dashboard";
+          wayvr = "${wayvr}/bin/wayvr-dashboard";
           slimevr = "${slimevr}/bin/slimevr";
           console = "${kdePackages.konsole}/bin/konsole";
           firefox = "${firefox}/bin/firefox";

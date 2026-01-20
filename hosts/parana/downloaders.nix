@@ -186,4 +186,5 @@ in
 
   # Plex
   nixarr.plex.enable = true;
+  nixarr.jellyfin.enable = true;
 }

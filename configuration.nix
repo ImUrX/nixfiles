@@ -111,6 +111,7 @@
     (vesktop.override {
       withMiddleClickScroll = true;
     })
+    feishin
     mpv
     gimp3
     prismlauncher
