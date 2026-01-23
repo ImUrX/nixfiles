@@ -136,7 +136,7 @@
     lm_sensors
     # LSP for Nix
     nil
-    nixfmt-rfc-style
+    nixfmt
     wireshark
     # Disabled for now https://github.com/NixOS/nixpkgs/issues/404663
     # (ventoy-full.override {

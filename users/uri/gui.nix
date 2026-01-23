@@ -37,14 +37,7 @@
     calibre
     platformio
     dualsensectl
-    pcsx2
-    (wowup-cf.overrideAttrs (_: rec {
-      version = "2.22.0-beta.4";
-      src = pkgs.fetchurl {
-        url = "https://github.com/WowUp/WowUp.CF/releases/download/v${version}/WowUp-CF-${version}.AppImage";
-        hash = "sha256-TZEwR35BjXNaH8YSKgcTY3mbb58Sw87jHtTUX1SZo4k=";
-      };
-    }))
+    wowup-cf
     krita
     devenv
     rubyPackages_3_5.ruby-lsp
