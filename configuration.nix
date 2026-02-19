@@ -134,6 +134,7 @@
     pavucontrol
     epiphany
     lm_sensors
+    xeyes
     # LSP for Nix
     nil
     nixfmt
@@ -148,7 +149,7 @@
     # winetricks (all versions)
     winetricks
     # native wayland support (unstable)
-    wineWowPackages.waylandFull
+    wineWow64Packages.waylandFull
     dxvk
     protontricks
 

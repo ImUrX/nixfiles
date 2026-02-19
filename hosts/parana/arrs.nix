@@ -7,8 +7,8 @@
       package = pkgs.lidarr.overrideAttrs (_: {
         version = "3.1.1.4901-plugin";
         src = pkgs.fetchurl {
-          url = "https://dev.azure.com/Lidarr/Lidarr/_apis/build/builds/4860/artifacts?artifactName=Packages&fileId=B626DE733AE21F7FA97A80E357B35827A0C9407834E70C176B763B5BF759111802&fileName=Lidarr.merge.3.1.1.4901.linux-core-x64.tar.gz&api-version=5.1";
-          sha256 = "sha256-Kg1vO0u6d+j6PMahgRm+mlDxoVYd/mHKk61s0gDGPGc=";
+          url = "https://dev.azure.com/Lidarr/Lidarr/_apis/build/builds/4872/artifacts?artifactName=Packages&fileId=058198D54F6BB70DEE85C89C325D1114E1C932719BBEEFD39BB65605B92EC75902&fileName=Lidarr.merge.3.1.2.4913.linux-core-x64.tar.gz&api-version=5.1";
+          sha256 = "sha256-Hi1gsQTvintVBrAdyiaXgvL25OsgQrAwgklWB6PWZv0=";
         };
       });
       vpn.enable = true;

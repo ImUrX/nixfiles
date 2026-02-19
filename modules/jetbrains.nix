@@ -33,6 +33,7 @@ with lib;
           }"
         '';
       })
+      jetbrains.rider
     ];
   };
 }

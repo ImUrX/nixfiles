@@ -70,6 +70,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixpkgs-melonloader.url = "github:WillemToorenburgh/nixpkgs-melonloader/add-melonloader-installer";
+
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nix-cachyos-kernel.inputs.nixpkgs.follows = "nixpkgs";
   };

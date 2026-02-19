@@ -72,6 +72,7 @@
       "::1"
     ];
     dhcpcd.extraConfig = "nohook resolv.conf";
+    resolvconf.useLocalResolver = true;
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

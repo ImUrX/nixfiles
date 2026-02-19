@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     ../../modules/vscode.nix
@@ -21,7 +21,6 @@
     anydesk
     # termius
     inkscape-with-extensions
-    xorg.xeyes
     fluffychat
     flatpak-builder
     python3
@@ -41,6 +40,11 @@
     krita
     devenv
     rubyPackages_3_5.ruby-lsp
+    (olympus.override {
+      celesteWrapper = pkgs.steam-run;
+    })
+    archipelago
+    inputs.nixpkgs-melonloader.legacyPackages.${system}.melonloader-installer
   ];
 
   # services.arrpc.enable = true;

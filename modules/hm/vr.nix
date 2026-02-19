@@ -19,7 +19,7 @@ with lib;
       # xrizer
       wayvr
       slimevr
-      eepyxr
+      # eepyxr
 
       bs-manager
     ];

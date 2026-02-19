@@ -45,7 +45,6 @@
         netflix
         blender
         anydesk
-        xorg.xeyes
         r2modman
         imv
         syncthingtray-minimal
