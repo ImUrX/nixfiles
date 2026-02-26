@@ -5,10 +5,10 @@
     lidarr = {
       enable = true;
       package = pkgs.lidarr.overrideAttrs (_: {
-        version = "3.1.1.4901-plugin";
+        version = "3.1.2.4902-develop";
         src = pkgs.fetchurl {
-          url = "https://dev.azure.com/Lidarr/Lidarr/_apis/build/builds/4872/artifacts?artifactName=Packages&fileId=058198D54F6BB70DEE85C89C325D1114E1C932719BBEEFD39BB65605B92EC75902&fileName=Lidarr.merge.3.1.2.4913.linux-core-x64.tar.gz&api-version=5.1";
-          sha256 = "sha256-Hi1gsQTvintVBrAdyiaXgvL25OsgQrAwgklWB6PWZv0=";
+          url = "https://github.com/Lidarr/Lidarr/releases/download/v3.1.2.4902/Lidarr.develop.3.1.2.4902.linux-core-x64.tar.gz";
+          sha256 = "d6848526d43dfc8080085045829da43f37cfd1d2a2b4c83bbea00dee24f42930";
         };
       });
       vpn.enable = true;
