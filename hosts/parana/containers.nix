@@ -69,7 +69,7 @@
         TZ = "America/Argentina/Buenos_Aires";
         BASE_URL = "https://scrobbler.2dgirls.date";
         PLEX_URL = "http://host.containers.internal:32400";
-        JELLYFIN_URL = "http://host.containers.internal:8096";
+        JELLYFIN_URL = "https://jellyfin.2dgirls.date";
       };
       environmentFiles = [ config.age.secrets.scrobbler.path ];
       volumes = [ "/data/scrobbler:/config" ];
