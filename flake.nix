@@ -156,6 +156,7 @@
             ./hosts/minidesk
             ./configuration.nix
             ./users/uri
+            ./modules/niri.nix
             nixos-hardware.nixosModules.framework-13th-gen-intel
             nixpkgs-xr.nixosModules.nixpkgs-xr
             home-manager.nixosModules.home-manager
