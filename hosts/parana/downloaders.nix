@@ -7,16 +7,6 @@
 let
   squidUser = "306";
   squidGroup = "169";
-  old_transmission = pkgs.transmission_4.overrideAttrs (_: rec {
-    version = "4.0.5";
-    src = pkgs.fetchFromGitHub {
-      owner = "transmission";
-      repo = "transmission";
-      rev = version;
-      hash = "sha256-gd1LGAhMuSyC/19wxkoE2mqVozjGPfupIPGojKY0Hn4=";
-      fetchSubmodules = true;
-    };
-  });
 in
 {
   imports = [
@@ -44,7 +34,6 @@ in
     flood.enable = true;
     messageLevel = "info";
     vpn.enable = true;
-    package = old_transmission;
 
     # Doesn't build
     privateTrackers.cross-seed = {

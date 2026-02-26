@@ -16,17 +16,6 @@
     readarr.enable = true;
     sonarr = {
       enable = true;
-      package = pkgs.sonarr.overrideAttrs (_: {
-        dotnetRuntimeDeps = map lib.getLib [
-          (pkgs.sqlite.overrideAttrs (_: {
-            version = "3.51.2";
-            src = pkgs.fetchurl {
-              url = "https://sqlite.org/2026/sqlite-autoconf-3510200.tar.gz";
-              hash = "sha256-+9ifhmsUA7tmoUMGVEAInddhAPIjgxTZInSggtTyt7s=";
-            };
-          }))
-        ];
-      });
     };
     autobrr = {
       enable = true;
