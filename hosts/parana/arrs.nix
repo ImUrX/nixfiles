@@ -7,8 +7,8 @@
       package = pkgs.lidarr.overrideAttrs (_: {
         version = "3.1.2.4902-develop";
         src = pkgs.fetchurl {
-          url = "https://github.com/Lidarr/Lidarr/releases/download/v3.1.2.4902/Lidarr.develop.3.1.2.4902.linux-core-x64.tar.gz";
-          sha256 = "d6848526d43dfc8080085045829da43f37cfd1d2a2b4c83bbea00dee24f42930";
+          url = "https://dev.azure.com/Lidarr/Lidarr/_apis/build/builds/4873/artifacts?artifactName=Packages&fileId=CE73236DB593666413C718979FA61AEB2C3F46760B19AC16C1580919571CB31F02&fileName=Lidarr.develop.3.1.2.4914.linux-core-x64.tar.gz&api-version=5.1";
+          sha256 = "0653a79c1df5d5fd4305c38847c01caea49997157f3fd53f18dd537e41ed4051";
         };
       });
       vpn.enable = true;

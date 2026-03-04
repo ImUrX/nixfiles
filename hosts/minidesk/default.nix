@@ -109,4 +109,5 @@
 
   # Force radv
   networking.hostName = "minidesk"; # Define your hostname.
+  services.tailscale.enable = true;
 }
