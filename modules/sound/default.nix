@@ -83,7 +83,7 @@ with lib;
       in
       {
         environment.systemPackages = with pkgs; [
-          helvum
+          crosspipe
           pulseaudio
         ];
 

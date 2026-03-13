@@ -22,8 +22,9 @@
     # termius
     inkscape-with-extensions
     fluffychat
+    dino
     flatpak-builder
-    python3
+    python312
     r2modman
     imv
     dotnet-sdk_8

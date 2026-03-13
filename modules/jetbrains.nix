@@ -33,6 +33,19 @@ with lib;
           }"
         '';
       })
+      (symlinkJoin {
+        name = "pycharm";
+        paths = [ jetbrains.pycharm ];
+        buildInputs = [ makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/pycharm \
+          --prefix LD_LIBRARY_PATH : "${
+            lib.makeLibraryPath [
+              stdenv.cc.cc.lib
+            ]
+          }"
+        '';
+      })
       jetbrains.rider
     ];
   };
