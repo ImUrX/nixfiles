@@ -49,7 +49,7 @@ with lib;
 
       lfs.enable = true;
       # difftastic.enable = true;
-
+      signing.format = "openpgp";
       settings = {
         user = {
           name = cfg.name;
