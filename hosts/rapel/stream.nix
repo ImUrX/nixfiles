@@ -208,8 +208,8 @@ in
     curPhp.packages.composer
   ];
 
-  # nixarr.enable = true;
-  # nixarr.plex.enable = true;
+  nixarr.enable = true;
+  nixarr.plex.enable = true;
 
   # systemd.services.update-mirror = {
   #   serviceConfig = {
