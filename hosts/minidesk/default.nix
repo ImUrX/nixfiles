@@ -14,7 +14,7 @@
   ];
 
   # boot.initrd.kernelModules = ["amdgpu"];
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v4;
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
