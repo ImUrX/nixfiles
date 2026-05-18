@@ -23,11 +23,16 @@
     "usbhid"
     "usb_storage"
     "sd_mod"
-    "vhba"
   ];
   boot.kernelModules = [
     "kvm-amd"
     "v4l2loopback"
+  ];
+  boot.kernelParams = [
+    "zswap.enabled=1" # enables zswap
+    "zswap.compressor=lzo" # compression algorithm
+    "zswap.max_pool_percent=5" # maximum percentage of RAM that zswap is allowed to use
+    "zswap.shrinker_enabled=1" # whether to shrink the pool proactively on high memory pressure
   ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
   boot.extraModprobeConfig = ''
@@ -41,18 +46,7 @@
   boot.loader.systemd-boot.enable = true;
 
   systemd.tmpfiles.rules =
-    let
-      rocmEnv = pkgs.symlinkJoin {
-        name = "rocm-combined";
-        paths = with pkgs.rocmPackages; [
-          rocblas
-          hipblas
-          clr
-        ];
-      };
-    in
     [
-      "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
       "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
       "Z /sys/class/powercap/intel-rapl:0/energy_uj 0444 root root - -"
     ];
@@ -81,7 +75,12 @@
   #   ];
   # };
 
-  swapDevices = [ ];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024; # 16 GiB
+    }
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

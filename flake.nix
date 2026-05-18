@@ -71,6 +71,7 @@
     };
 
     nixpkgs-melonloader.url = "github:WillemToorenburgh/nixpkgs-melonloader/add-melonloader-installer";
+    nixpkgs-lidarr.url = "github:imurx/nixpkgs/crealityprinter";
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     nix-cachyos-kernel.inputs.nixpkgs.follows = "nixpkgs";

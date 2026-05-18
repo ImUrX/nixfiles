@@ -1,7 +1,7 @@
 { config, ... }:
 {
   services.homepage-dashboard.enable = true;
-  services.homepage-dashboard.environmentFile = config.age.secrets.homepage.path;
+  services.homepage-dashboard.environmentFiles = [ config.age.secrets.homepage.path ];
 
   services.homepage-dashboard.settings = {
     title = "Home";
@@ -85,18 +85,6 @@
               type = "lidarr";
               url = siteMonitor;
               key = "{{HOMEPAGE_VAR_LIDARR}}";
-            };
-          };
-        }
-        {
-          "Readarr" = rec {
-            icon = "readarr";
-            href = "https://readarr.2dgirls.date";
-            siteMonitor = "http://localhost:8787";
-            widget = {
-              type = "readarr";
-              url = siteMonitor;
-              key = "{{HOMEPAGE_VAR_READARR}}";
             };
           };
         }
@@ -194,6 +182,12 @@
           };
         }
         {
+          "Jellyfin" = {
+            icon = "jellyfin";
+            href = "https://jellyfin.2dgirls.date";
+          };
+        }
+        {
           "Tautulli" = rec {
             icon = "tautulli";
             href = "https://tautulli.2dgirls.date";
@@ -225,7 +219,7 @@
           "immich" = rec {
             icon = "immich";
             href = "https://img.2dgirls.date";
-            siteMonitor = "http://192.168.101.11:2283";
+            siteMonitor = "http://192.168.42.70:2283";
             widget = {
               type = "immich";
               url = siteMonitor;

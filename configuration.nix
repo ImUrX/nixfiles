@@ -93,7 +93,7 @@
   };
   programs.corectrl.enable = true;
   cookie.fonts.enable = true;
-  programs.cdemu.enable = true;
+  # programs.cdemu.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -108,8 +108,9 @@
       ];
     })
     piper
-    (vesktop.override {
-      withMiddleClickScroll = true;
+    (discord.override {
+      enableAutoscroll = true;
+      withVencord = true;
     })
     feishin
     mpv
@@ -153,11 +154,11 @@
     dxvk
     protontricks
 
-    (lutris.override {
-      extraLibraries = pkgs: [
-        # List library dependencies here
-      ];
-    })
+    # (lutris.override {
+    #   extraLibraries = pkgs: [
+    #     # List library dependencies here
+    #   ];
+    # })
     heroic
 
     # Apple

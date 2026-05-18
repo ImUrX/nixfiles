@@ -51,6 +51,7 @@ in
   boot.supportedFilesystems = {
     zfs = true;
   };
+  boot.zfs.forceImportRoot = false;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/20367c05-bf86-4291-818b-3884887af5d2";
