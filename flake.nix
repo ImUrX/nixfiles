@@ -3,7 +3,7 @@
   description = "the simplest flake for nixos-rebuild";
 
   inputs = {
-    self.submodules = true;
+    #self.submodules = true;
 
     nixpkgs = {
       # Using the nixos-unstable branch specifically, which is the
@@ -167,6 +167,7 @@
               environment.systemPackages = [
                 agenix.packages.${system}.default
               ];
+              nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ];
             }
             {
               _module.args = {
