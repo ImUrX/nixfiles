@@ -47,6 +47,11 @@
     fsType = "vfat";
   };
 
+  fileSystems."/home/lal1tx/bocchi" = {
+    device = "/dev/disk/by-label/data";
+    fsType = "ext4";
+  };
+
   swapDevices = [
     {
       device = "/dev/disk/by-label/swap";
