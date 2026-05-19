@@ -59,6 +59,26 @@
     }
   ];
 
+  services.fprintd.package = pkgs.fprintd.overrideAttrs (_: {
+    buildInputs = with pkgs; [
+      glib
+      polkit
+      nss
+      pam
+      systemd
+      (libfprint.overrideAttrs (_: {
+        version = "1.94.5-sketchy";
+        src = pkgs.fetchFromGitLab {
+          domain = "gitlab.freedesktop.org";
+          owner = "depau";
+          repo = "libfprint";
+          rev = "elanmoc2";
+          hash = lib.fakeHash;
+        };
+      }))
+    ];
+  });
+
   systemd.tmpfiles.rules = [
     "Z /sys/class/powercap/intel-rapl:0/energy_uj 0444 root root - -"
   ];
