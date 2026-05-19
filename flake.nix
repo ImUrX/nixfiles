@@ -268,8 +268,8 @@
             ./hosts/teto
             ./configuration.nix
             ./users/home-lal1tx.nix
-            nixos-hardware.nixosModules.common-cpu-intel-alder-lake
-            nixos-hardware.nixosModules.common-cpu-intel-intel-alder-lake
+            nixos-hardware.nixosModules.common-cpu-intel
+            nixos-hardware.nixosModules.common-gpu-intel
             nixos-hardware.nixosModules.common-pc-laptop
             nixos-hardware.nixosModules.common-pc-laptop-ssd
             home-manager.nixosModules.home-manager
