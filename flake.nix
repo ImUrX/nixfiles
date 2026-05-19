@@ -268,9 +268,8 @@
             ./hosts/teto
             ./configuration.nix
             ./users/home-lal1tx.nix
-            nixos-hardware.nixosModules.common-cpu-amd
-            nixos-hardware.nixosModules.common-cpu-amd-pstate
-            nixos-hardware.nixosModules.common-gpu-amd
+            nixos-hardware.nixosModules.common-cpu-intel-alder-lake
+            nixos-hardware.nixosModules.common-cpu-intel-intel-alder-lake
             nixos-hardware.nixosModules.common-pc-laptop
             nixos-hardware.nixosModules.common-pc-laptop-ssd
             home-manager.nixosModules.home-manager
@@ -292,6 +291,7 @@
               imports = [ aagl.nixosModules.default ];
               nix.settings = aagl.nixConfig; # Setup cachix
               programs.sleepy-launcher.enable = true;
+              nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ];
             }
             inputs.minegrub-theme.nixosModules.default
           ];

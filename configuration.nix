@@ -84,13 +84,27 @@
     settings = {
       general = {
         renice = 10;
+        igpu_desiredgov = "performance";
+        # softrealtime = "auto";
+        igpu_power_threshold = -1;
       };
 
       gpu = {
         apply_gpu_optimisations = "accept-responsibility";
         amd_performance_level = "high";
       };
+
+      cpu = {
+        pin_cores = "yes";
+        amd_x3d_mode_desired = "frequency";
+        amd_x3d_mode_default = "cache";
+      };
     };
+  };
+  services.scx = {
+    enable = true;
+    scheduler = "scx_lavd";
+    extraArgs = [ "--performance" ];
   };
   programs.corectrl.enable = true;
   cookie.fonts.enable = true;

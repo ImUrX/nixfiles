@@ -14,7 +14,7 @@
   ];
 
   # boot.initrd.kernelModules = ["amdgpu"];
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
@@ -29,19 +29,12 @@
     options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1
   '';
 
-  # Usando GRUB xq tiene skins
-  boot.loader.grub = {
+  # Usando limine xq me gusta cachy
+  boot.loader.limine = {
     enable = true;
-    efiSupport = true;
-    # Detect OS automatically
-    useOSProber = true;
-    device = "nodev";
-    minegrub-theme = {
-      enable = true;
-      splash = "Say gex!";
-      background = "background_options/1.20 - [Trails & Tales].png";
-      # boot-options-count = 3;
-    };
+    style.wallpapers = [
+      pkgs.nixos-artwork.wallpapers.catppuccin-frappe.gnomeFilePath
+    ];
   };
 
   fileSystems."/" = {
@@ -74,7 +67,6 @@
   # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
 
   # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # Bluetooth
   hardware.bluetooth = {
@@ -83,31 +75,28 @@
   };
 
   # hardware.pulseaudio.support32Bit = true;
-  ### AMD STUFF
+  ### Intel Stuff
   hardware.graphics = {
     # Mesa
     enable = true;
-    extraPackages = with pkgs; [
-      mangohud
-      rocmPackages.clr.icd
-    ];
+    extraPackages = with pkgs; [ mangohud ];
     extraPackages32 = with pkgs; [ pkgsi686Linux.mangohud ];
     enable32Bit = true;
-
   };
-  hardware.amdgpu = {
-    overdrive.enable = true;
-  };
+  hardware.enableRedistributableFirmware = true;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   i18n.defaultLocale = "es_CL.UTF-8";
   # Set your time zone.
   time.timeZone = "America/Santiago";
   time.hardwareClockInLocalTime = true;
 
+  # Power saving
+  services.thermald.enable = true;
+
   environment.systemPackages = with pkgs; [
-    nvtopPackages.amd
-    radeontop
-    btop-rocm
+    nvtopPackages.intel
+    btop
   ];
 
   # Force radv
