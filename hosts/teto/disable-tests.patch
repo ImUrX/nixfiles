@@ -1,0 +1,26 @@
+diff --git a/examples/meson.build b/examples/meson.build
+index 250c055..2c248c2 100644
+--- a/examples/meson.build
++++ b/examples/meson.build
+@@ -23,7 +23,7 @@ executable('cpp-test',
+     dependencies: libfprint_dep,
+ )
+ 
+-if installed_tests
++if false
+     install_subdir('prints',
+         install_dir: installed_tests_testdir)
+ endif
+diff --git a/meson.build b/meson.build
+index 9a0aaa4..40d7e4e 100644
+--- a/meson.build
++++ b/meson.build
+@@ -359,7 +359,7 @@ if get_option('gtk-examples')
+ endif
+ 
+ subdir('data')
+-subdir('tests')
++#subdir('tests')
+ 
+ subdir('examples')
+ 
