@@ -128,6 +128,7 @@
       withVencord = true;
     })
     feishin
+    geogebra6
     mpv
     gimp3
     prismlauncher
