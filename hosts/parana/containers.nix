@@ -35,23 +35,6 @@
   ];
 
   virtualisation.oci-containers.containers = {
-    speedtest = {
-      autoStart = true;
-      image = "lscr.io/linuxserver/speedtest-tracker:latest";
-      ports = [ "6814:80" ];
-      volumes = [
-        "/data/speedtest:/config"
-      ];
-      environment = {
-        DB_CONNECTION = "sqlite";
-        PUID = "1000";
-        PGID = "1000";
-      };
-      environmentFiles = [
-        config.age.secrets.speedtest.path
-      ];
-      pull = "newer";
-    };
     flaresolverr = {
       autoStart = true;
       image = "ghcr.io/flaresolverr/flaresolverr:latest";

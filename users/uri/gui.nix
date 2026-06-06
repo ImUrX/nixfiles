@@ -45,10 +45,10 @@
       celesteWrapper = pkgs.steam-run;
     })
     archipelago
-    inputs.nixpkgs-melonloader.legacyPackages.${system}.melonloader-installer
+    melonloader-installer
   ];
 
-  # services.arrpc.enable = true;
+  services.arrpc.enable = true;
   # services.easyeffects.enable = true;
 
   services.syncthing = {

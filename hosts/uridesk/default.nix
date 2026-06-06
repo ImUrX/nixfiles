@@ -45,11 +45,10 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
 
-  systemd.tmpfiles.rules =
-    [
-      "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
-      "Z /sys/class/powercap/intel-rapl:0/energy_uj 0444 root root - -"
-    ];
+  systemd.tmpfiles.rules = [
+    "L+    /opt/amdgpu   -    -    -     -    ${pkgs.libdrm}"
+    "Z /sys/class/powercap/intel-rapl:0/energy_uj 0444 root root - -"
+  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/a1bc418b-85a3-404a-8ac8-2489e0493a90";
@@ -78,7 +77,7 @@
   swapDevices = [
     {
       device = "/var/lib/swapfile";
-      size = 16 * 1024; # 16 GiB
+      size = 32 * 1024; # 16 GiB
     }
   ];
 

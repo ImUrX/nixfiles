@@ -180,4 +180,19 @@ in
   # Plex
   nixarr.plex.enable = true;
   nixarr.jellyfin.enable = true;
+
+  services.navidrome = {
+    group = "media";
+    enable = true;
+    environmentFile = config.age.secrets.navidrome.path;
+    settings = { 
+      MusicFolder = "/data/media/library/music";
+      BaseUrl = "https://navi.2dgirls.date";
+    };
+    plugins = with pkgs.navidromePlugins; [
+      apple-music
+      listenbrainz-daily-playlist
+      (pkgs.callPackage ../../modules/audiomuseai.nix {})
+    ];
+  };
 }

@@ -3,7 +3,7 @@
   description = "the simplest flake for nixos-rebuild";
 
   inputs = {
-    #self.submodules = true;
+    self.submodules = true;
 
     nixpkgs = {
       # Using the nixos-unstable branch specifically, which is the
@@ -70,7 +70,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixpkgs-melonloader.url = "github:WillemToorenburgh/nixpkgs-melonloader/add-melonloader-installer";
     nixpkgs-lidarr.url = "github:imurx/nixpkgs/crealityprinter";
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
@@ -331,6 +330,7 @@
                 vpn-slsk.file = ./secrets/vpn-slsk.age;
                 spotplex.file = ./secrets/spotplex.age;
                 scrobbler.file = ./secrets/scrobbler.age;
+                navidrome.file = ./secrets/navidrome.age;
                 soulseek = {
                   file = ./secrets/soulseek.age;
                   owner = "lidarr";
