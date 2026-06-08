@@ -50,6 +50,7 @@
         syncthingtray-minimal
         davinci-resolve
         pcsx2
+        geogebra6
       ];
 
       # services.easyeffects.enable = true;

@@ -127,12 +127,12 @@
       enableAutoscroll = true;
       withEquicord = true;
       equicord = pkgs.equicord.overrideAttrs (_: rec {
-        version = "2026-05-26";
+        version = "2026-06-08";
         src = pkgs.fetchFromGitHub {
           owner = "Equicord";
           repo = "Equicord";
           tag = version;
-          hash = "sha256-m/BdSErumQrWCSyejRFm5HcSR4FwDS2JkAXvy9PejmI=";
+          hash = "sha256-QaFRPasy2QlJKy28FsDKKPD205AViZLXNSiYSMHCY2U=";
         };
       });
     })
@@ -163,7 +163,6 @@
         '';
       })
     )
-    geogebra6
     mpv
     gimp3
     prismlauncher
