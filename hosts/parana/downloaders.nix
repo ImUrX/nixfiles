@@ -149,29 +149,9 @@ in
     incomplete = "/data/media/soulseek/incomplete";
   };
 
-  virtualisation.oci-containers.containers = {
-    tidlarr = {
-      autoStart = true;
-      image = "ghcr.io/mgthepro/tidlarr-proxy:main";
-      hostname = "tidlarr";
-      environment = {
-        TZ = "ETC/UTC";
-        DOWNLOAD_PATH = "/data/tidlarr";
-        CATEGORY = "music";
-        PORT = "8688";
-        API_KEY = "Testtesttest";
-      };
-      user = "${squidUser}:${squidGroup}";
-      ports = [ "9514:8688" ];
-      volumes = [ "/data/tidlarr:/data/tidlarr" ];
-      pull = "newer";
-    };
-  };
   systemd.tmpfiles.rules = [
     "d /data/media/deez 775 ${squidUser} ${squidGroup}"
     "d /data/media/qo 775 ${squidUser} ${squidGroup}"
-    "d /data/tidlarr 775 ${squidUser} ${squidGroup}"
-    "d /data/tidlarr 775 ${squidUser} ${squidGroup}"
   ];
   environment.shellAliases = {
     chown-squid = "chown -R ${squidUser}:${squidGroup}";
@@ -188,11 +168,13 @@ in
     settings = { 
       MusicFolder = "/data/media/library/music";
       BaseUrl = "https://navi.2dgirls.date";
+      Address = "0.0.0.0";
+      Agents = "apple-music,deezer,lastfm,listenbrainz";
     };
     plugins = with pkgs.navidromePlugins; [
       apple-music
       listenbrainz-daily-playlist
-      (pkgs.callPackage ../../modules/audiomuseai.nix {})
+      audiomuseai
     ];
   };
 }

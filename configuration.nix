@@ -125,6 +125,7 @@
     piper
     (discord.override {
       enableAutoscroll = true;
+      withOpenASAR = true;
       withEquicord = true;
       equicord = pkgs.equicord.overrideAttrs (_: rec {
         version = "2026-06-08";
@@ -136,33 +137,7 @@
         };
       });
     })
-    (
-      (feishin.override {
-        electron_40 = pkgs.electron_41;
-      }).overrideAttrs
-      (old: rec {
-        version = "1.13.0";
-        src = pkgs.fetchFromGitHub {
-          owner = "jeffvli";
-          repo = "feishin";
-          tag = "v${version}";
-          hash = "sha256-v6dWzEB1+IK4bHmDo8Rr5e0Xi3OWKcm+UPBmBiSfdZ0=";
-        };
-        pnpmDeps = pkgs.fetchPnpmDeps {
-          pname = "feishin";
-          src = src;
-          version = version;
-          pnpm = pnpm_10_29_2;
-          fetcherVersion = 3;
-          hash = "sha256-zNOGJ24G0xcgsGK4DmbBm7d1PHTp7IJS+RTALGRtfDg=";
-        };
-        postPatch = ''
-          # release/app dependencies are installed on preConfigure
-          substituteInPlace package.json \
-            --replace-fail '"postinstall": "electron-builder install-app-deps",' ""
-        '';
-      })
-    )
+    feishin
     mpv
     gimp3
     prismlauncher

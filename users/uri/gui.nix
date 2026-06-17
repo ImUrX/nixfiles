@@ -48,7 +48,7 @@
     melonloader-installer
   ];
 
-  services.arrpc.enable = true;
+  # services.arrpc.enable = true;
   # services.easyeffects.enable = true;
 
   services.syncthing = {

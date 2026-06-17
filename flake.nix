@@ -3,7 +3,7 @@
   description = "the simplest flake for nixos-rebuild";
 
   inputs = {
-    self.submodules = true;
+    # self.submodules = true;
 
     nixpkgs = {
       # Using the nixos-unstable branch specifically, which is the
@@ -33,6 +33,7 @@
     ags.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-alien.url = "github:thiagokokada/nix-alien";
     nix-alien.inputs.nixpkgs.follows = "nixpkgs";

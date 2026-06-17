@@ -106,6 +106,7 @@
     extraPackages = with pkgs; [
       mangohud
       rocmPackages.clr.icd
+      (pkgs.callPackage ../../modules/lowlatency.nix {})
     ];
     extraPackages32 = with pkgs; [ pkgsi686Linux.mangohud ];
     enable32Bit = true;

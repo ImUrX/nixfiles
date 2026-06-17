@@ -111,14 +111,14 @@ in
     extraPackages = with pkgs; [ nvidia-vaapi-driver ];
   };
   nixpkgs.config.cudaSupport = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = false;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
 
   services.zfs = {
     autoScrub.enable = true;
     # autoSnapshot.enable = true;
   };
-
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.open = false;
 
   i18n.defaultLocale = "en_US.UTF-8";
   # Set your time zone.

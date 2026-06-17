@@ -64,9 +64,9 @@
           if [ $# -eq 0 ]; then
             echo "No arguments supplied"
           elif [ $# -eq 2 ]; then
-            nixos-rebuild switch --flake ".#$1?submodules=1" --build-host $2 --target-host $2 --sudo --ask-sudo-password --use-substitutes
+            nixos-rebuild switch --flake ".?submodules=1#$1" --build-host $2 --target-host $2 --sudo --ask-sudo-password --use-substitutes
           else
-            nixos-rebuild $3 --flake ".#$1?submodules=1" --build-host $2 --target-host $2 --sudo --ask-sudo-password --use-substitutes
+            nixos-rebuild $3 --flake ".?submodules=1#$1" --build-host $2 --target-host $2 --sudo --ask-sudo-password --use-substitutes
           fi
         }
       '';

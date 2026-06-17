@@ -22,6 +22,11 @@ with lib;
       extraCompatPackages = with pkgs; [
         proton-ge-bin
       ];
+      package = pkgs.steam.override {
+        extraEnv = {
+          LOW_LATENCY_LAYER = "1";
+        };
+      };
     };
 
     security.polkit.extraConfig = mkIf polkitEnabled ''
