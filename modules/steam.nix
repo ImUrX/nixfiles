@@ -21,6 +21,7 @@ with lib;
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         proton-ge-bin
+        proton-ge-rtsp-bin
       ];
       package = pkgs.steam.override {
         extraEnv = {

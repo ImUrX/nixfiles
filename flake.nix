@@ -66,6 +66,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    windows-nix = {
+      url = "git+file:///home/uri/proyects/windows-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -94,6 +99,7 @@
       nixarr,
       nixpkgs-xr,
       nur,
+      windows-nix,
       ...
     }@inputs:
     {
@@ -113,7 +119,8 @@
             musnix.nixosModules.musnix
             nixpkgs-xr.nixosModules.nixpkgs-xr
             nur.modules.nixos.default
-            nixarr.nixosModules.default
+            windows-nix.nixosModules.windows-nix
+            # nixarr.nixosModules.default
             {
               environment.systemPackages = [
                 agenix.packages.${system}.default

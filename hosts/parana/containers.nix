@@ -7,6 +7,9 @@
     ../../modules/misskey.nix
   ];
 
+  hardware.nvidia-container-toolkit.enable = true;
+  virtualisation.docker.daemon.settings.features.cdi = true;
+
   networking.nat = {
     enable = true;
     # Use "ve-*" when using nftables instead of iptables

@@ -78,6 +78,7 @@ in
   nixarr.sabnzbd = {
     enable = true;
     whitelistHostnames = [ "nz.2dgirls.date" ];
+    openFirewall = true;
   };
 
   # Rsync

@@ -59,6 +59,8 @@ with lib;
           vadimcn.vscode-lldb
           # Ruby
           shopify.ruby-lsp
+          # Haskell
+          haskell.haskell
         ]
         ++ (with extensions.open-vsx; [
           floxay.vscode-flatbuffers

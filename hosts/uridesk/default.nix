@@ -166,8 +166,8 @@
   };
 
   services.tailscale.enable = true;
-  nixarr.enable = true;
-  nixarr.plex.enable = false;
+  # nixarr.enable = true;
+  # nixarr.plex.enable = false;
 
   # systemd.services.update-mirror = {
   #   serviceConfig = {
