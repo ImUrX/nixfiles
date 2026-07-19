@@ -9,7 +9,7 @@
     radarr.enable = true;
     lidarr = {
       enable = true;
-      package = inputs.nixpkgs-lidarr.legacyPackages.${pkgs.stdenv.hostPlatform.system}.lidarr;
+      package = pkgs.callPackage ./lidarr/package.nix { };
       vpn.enable = true;
     };
     sonarr = {

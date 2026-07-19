@@ -817,22 +817,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-lidarr": {
-      "locked": {
-        "lastModified": 1782930117,
-        "narHash": "sha256-kn95gNaerF6zHvy86crPwu3stBuUs/E7Qha+tACQ3RU=",
-        "owner": "imurx",
-        "repo": "nixpkgs",
-        "rev": "a22d4b135022433086da98f57283dde34010ce5a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "imurx",
-        "ref": "crealityprinter",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-wine-10": {
       "locked": {
         "lastModified": 1769861202,
@@ -1009,7 +993,6 @@
         "nixarr": "nixarr",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-lidarr": "nixpkgs-lidarr",
         "nixpkgs-xr": "nixpkgs-xr",
         "nur": "nur",
         "rfm": "rfm",
