@@ -79,27 +79,32 @@
   uri.steam.enable = true;
   # 指
   uri.yubi.enable = true;
-  programs.gamemode = {
+  #programs.gamemode = {
+  #  enable = true;
+  #  settings = {
+  #    general = {
+  #      renice = 10;
+  #      igpu_desiredgov = "performance";
+  #      # softrealtime = "auto";
+  #      igpu_power_threshold = -1;
+  #    };
+  #
+  #    gpu = {
+  #      apply_gpu_optimisations = "accept-responsibility";
+  #      amd_performance_level = "high";
+  #    };
+  #
+  #    cpu = {
+  #      pin_cores = "yes";
+  #      amd_x3d_mode_desired = "frequency";
+  #      amd_x3d_mode_default = "cache";
+  #    };
+  #  };
+  #};
+  services.ananicy = {
     enable = true;
-    settings = {
-      general = {
-        renice = 10;
-        igpu_desiredgov = "performance";
-        # softrealtime = "auto";
-        igpu_power_threshold = -1;
-      };
-
-      gpu = {
-        apply_gpu_optimisations = "accept-responsibility";
-        amd_performance_level = "high";
-      };
-
-      cpu = {
-        pin_cores = "yes";
-        amd_x3d_mode_desired = "frequency";
-        amd_x3d_mode_default = "cache";
-      };
-    };
+    package = pkgs.ananicy-cpp;
+    rulesProvider = pkgs.ananicy-rules-cachyos;
   };
   services.scx = {
     enable = true;
