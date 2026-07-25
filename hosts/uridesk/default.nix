@@ -106,7 +106,7 @@
     extraPackages = with pkgs; [
       mangohud
       rocmPackages.clr.icd
-      (pkgs.callPackage ../../modules/lowlatency.nix {})
+      (pkgs.callPackage ../../modules/lowlatency.nix { })
     ];
     extraPackages32 = with pkgs; [ pkgsi686Linux.mangohud ];
     enable32Bit = true;
@@ -162,6 +162,34 @@
         ];
         application = [ pkgs.wayvr ];
       };
+    };
+  };
+
+  power.ups = {
+    enable = true;
+    mode = "netserver";
+    ups."UPS-1" = {
+      description = "Forza 2200VA";
+      driver = "nutdrv_qx";
+      port = "auto";
+    };
+    upsd.listen = [
+      {
+        address = "0.0.0.0";
+      }
+    ];
+    users."nuts" = {
+      passwordFile = config.age.secrets.nut.path;
+      upsmon = "primary";
+      instcmds = [ "ALL" ];
+      actions = [ "SET" ];
+    };
+    upsmon.monitor."UPS-1" = {
+      system = "UPS-1@localhost";
+      powerValue = 1;
+      user = "nuts";
+      passwordFile = config.age.secrets.nut.path;
+      type = "primary";
     };
   };
 

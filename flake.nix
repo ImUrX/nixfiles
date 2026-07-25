@@ -118,6 +118,7 @@
             nixpkgs-xr.nixosModules.nixpkgs-xr
             nur.modules.nixos.default
             windows-nix.nixosModules.windows-nix
+            agenix.nixosModules.default
             # nixarr.nixosModules.default
             {
               environment.systemPackages = [
@@ -138,6 +139,10 @@
               home-manager.extraSpecialArgs = {
                 inherit inputs;
                 headless = false;
+              };
+
+              age.secrets = {
+                nut.file = ./secrets/nut-uridesk.age;
               };
             }
             {

@@ -106,6 +106,7 @@
     package = pkgs.ananicy-cpp;
     rulesProvider = pkgs.ananicy-rules-cachyos;
   };
+  services.bpftune.enable = true;
   services.scx = {
     enable = true;
     scheduler = "scx_lavd";

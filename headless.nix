@@ -118,7 +118,7 @@
   networking.firewall.enable = false;
 
   environment.shellAliases = {
-    "nix-switch" = "sudo nixos-rebuild --flake . switch";
+    "nix-switch" = "sudo nixos-rebuild --flake .?submodules=1 switch";
     "neofetch" = "hyfetch";
     "find" = "fd";
     "traceroute" = "mtr";

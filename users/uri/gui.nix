@@ -48,6 +48,8 @@
     melonloader-installer
   ];
 
+  services.psd.enable = true;
+
   # services.arrpc.enable = true;
   # services.easyeffects.enable = true;
 
