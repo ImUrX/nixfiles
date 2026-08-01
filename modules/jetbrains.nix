@@ -17,11 +17,11 @@ with lib;
     home.packages = with pkgs; [
       # Add GLFW stuff for being able to dev with Minecraft
       (symlinkJoin {
-        name = "idea-oss";
-        paths = [ jetbrains.idea-oss ];
+        name = "idea";
+        paths = [ jetbrains.idea ];
         buildInputs = [ makeWrapper ];
         postBuild = ''
-          wrapProgram $out/bin/idea-oss \
+          wrapProgram $out/bin/idea \
           --prefix LD_LIBRARY_PATH : "${
             lib.makeLibraryPath [
               libpulseaudio
@@ -47,6 +47,7 @@ with lib;
         '';
       })
       jetbrains.rider
+      jetbrains.clion
     ];
   };
 }

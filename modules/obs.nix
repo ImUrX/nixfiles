@@ -18,7 +18,7 @@ with lib;
       ffmpeg_7-full
       gst_all_1.gstreamer
       gst_all_1.gst-plugins-good
-      gst_all_1.gst-vaapi
+      gst_all_1.gst-plugins-bad
     ];
     programs.obs-studio.enable = true;
     programs.obs-studio.plugins = with pkgs.obs-studio-plugins; [

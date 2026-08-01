@@ -205,7 +205,7 @@
 
   services.flatpak.enable = true;
   services.ratbagd.enable = true;
-  services.lact.enable = true;
+  # services.lact.enable = true;
 
   programs.nix-ld.libraries = with pkgs; [
     # List by default

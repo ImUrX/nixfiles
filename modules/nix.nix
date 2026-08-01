@@ -19,9 +19,13 @@
 
       substituters = [
         "https://nix-community.cachix.org"
+        "https://nix-gaming.cachix.org"
+        "https://nix-citizen.cachix.org"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+        "nix-citizen.cachix.org-1:lPMkWc2X8XD4/7YPEEwXKKBg+SVbYTVrAaLA2wQTKCo="
       ];
     };
     nixPath = [

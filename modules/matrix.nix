@@ -24,6 +24,7 @@ with lib;
           "matrix.org"
           "tchncs.de"
           "nixos.org"
+          "kde.org"
         ];
       };
     };

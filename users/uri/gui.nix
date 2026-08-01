@@ -46,6 +46,7 @@
     })
     archipelago
     melonloader-installer
+    inputs.nix-citizen.packages.${system}.rsi-launcher
   ];
 
   services.psd.enable = true;
