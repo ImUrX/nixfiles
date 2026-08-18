@@ -1,7 +1,7 @@
 {
   lib,
   stdenvNoCC,
-  fetchzip,
+  fetchFromGitHub,
   buildDotnetModule,
   dotnetCorePackages,
   sqlite,
@@ -11,18 +11,23 @@
   fixup-yarn-lock,
   nodejs,
   nixosTests,
+  # update script
+  writers,
+  python3Packages,
+  nix,
   prefetch-yarn-deps,
   applyPatches,
 }:
 let
-  version = "3.1.2.4938";
+  version = "3.1.3.4987";
   # The dotnet8 compatibility patches also change `yarn.lock`, so we must pass
   # the already patched lockfile to `fetchYarnDeps`.
   src = applyPatches {
-    src = fetchzip {
-      url = "https://files.catbox.moe/8u2plf.gz";
-      extension = "tar.gz";
-      hash = "sha256-NJagGx7/wkxilA8nomeAqEOIi2/4rOj1ui41yUlWxe4=";
+    src = fetchFromGitHub {
+      owner = "Lidarr";
+      repo = "Lidarr";
+      tag = "v${version}";
+      hash = "sha256-1tdN/RTXxKpyfff4KQk7/Po/kNcp2nS1OL+oxJ15EVw=";
     };
     postPatch = ''
       mv src/NuGet.config NuGet.Config
@@ -149,6 +154,20 @@ buildDotnetModule {
     tests = {
       inherit (nixosTests) lidarr;
     };
+
+    updateScript = writers.writePython3 "lidarr-updater" {
+      libraries = with python3Packages; [ requests ];
+      flakeIgnore = [ "E501" ];
+      makeWrapperArgs = [
+        "--prefix"
+        "PATH"
+        ":"
+        (lib.makeBinPath [
+          nix
+          prefetch-yarn-deps
+        ])
+      ];
+    } ./update.py;
   };
 
   meta = {

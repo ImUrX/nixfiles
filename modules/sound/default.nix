@@ -97,18 +97,18 @@ with lib;
             enable = true;
             support32Bit = true;
           };
-          package = pkgs.pipewire;
+          # package = pkgs.pipewire;
           # wireplumber 0.5.15 is broken for me
-          wireplumber.package = pkgs.wireplumber.overrideAttrs (_: rec {
-            version = "0.5.14";
-            src = pkgs.fetchFromGitLab {
-              domain = "gitlab.freedesktop.org";
-              owner = "pipewire";
-              repo = "wireplumber";
-              tag = version;
-              hash = "sha256-Ap7vrkSxVQFzAJoBN8wWer4gOFc8iknN1A9KyRfdImc=";
-            };
-          });
+          # wireplumber.package = pkgs.wireplumber.overrideAttrs (_: rec {
+          #   version = "0.5.14";
+          #   src = pkgs.fetchFromGitLab {
+          #     domain = "gitlab.freedesktop.org";
+          #     owner = "pipewire";
+          #     repo = "wireplumber";
+          #     tag = version;
+          #     hash = "sha256-Ap7vrkSxVQFzAJoBN8wWer4gOFc8iknN1A9KyRfdImc=";
+          #   };
+          # });
           # used to have lots of config from sctanf, last in a5626226295a08b9c648f8f75594a65a57095f70
           configPackages = [
             (pkgs.writeTextDir "share/pipewire/pipewire.conf.d/50-airplay.conf" ''

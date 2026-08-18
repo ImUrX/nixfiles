@@ -21,9 +21,12 @@ with lib;
       enableSSHSupport = true;
     };
 
-    security.pam.yubico = {
-      enable = true;
-      mode = "challenge-response";
+    security.pam = {
+      yubico = {
+        enable = true;
+        mode = "challenge-response";
+      };
+      services.login.kwallet.enable = true;
     };
     services.pcscd.enable = true;
   };

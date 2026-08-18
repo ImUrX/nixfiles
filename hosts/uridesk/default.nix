@@ -112,7 +112,7 @@
     enable32Bit = true;
   };
   hardware.amdgpu = {
-    overdrive.enable = true;
+    # overdrive.enable = true;
   };
 
   # Audio goes wonkers and seems to go low quality (low sample rate?)

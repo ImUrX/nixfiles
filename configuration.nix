@@ -120,7 +120,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     protonup-qt
-    libreoffice-qt
+    collabora-desktop
     (firefox.override {
       nativeMessagingHosts = [
         # inputs.pipewire-screenaudio.packages.${pkgs.system}.default
@@ -131,15 +131,24 @@
     piper
     (discord.override {
       enableAutoscroll = true;
-      withOpenASAR = true;
+      # withOpenASAR = true;
       withEquicord = true;
-      equicord = pkgs.equicord.overrideAttrs (_: rec {
-        version = "2026-06-08";
+      equicord = pkgs.equicord.overrideAttrs (old: rec {
+        version = "2026-08-11";
         src = pkgs.fetchFromGitHub {
           owner = "Equicord";
           repo = "Equicord";
           tag = version;
-          hash = "sha256-QaFRPasy2QlJKy28FsDKKPD205AViZLXNSiYSMHCY2U=";
+          hash = "sha256-2xzutQoO79CRO+iS3K5Bj5d1/b+Wt5sX+Dpd7NCfbNw=";
+        };
+
+        pnpmDeps = fetchPnpmDeps {
+          inherit (old) pname;
+          version = version;
+          src = src;
+          pnpm = pnpm_10;
+          fetcherVersion = 3;
+          hash = "sha256-WdSowp/yuPokdU7Sv/XBQOo/0JPs9AA5LRq6dx57Uyk=";
         };
       });
     })
@@ -264,7 +273,7 @@
     libxi
     libSM
     libICE
-    gnome2.GConf
+    # gnome2.GConf
     nspr
     nss
     cups

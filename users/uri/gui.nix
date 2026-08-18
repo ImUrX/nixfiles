@@ -16,10 +16,11 @@
   };
 
   home.packages = with pkgs; [
-    pkgsRocm.blender
+    blender
+    # pkgsRocm.blender
     thunderbird
     anydesk
-    # termius
+    termius
     inkscape-with-extensions
     fluffychat
     dino
@@ -46,7 +47,7 @@
     })
     archipelago
     melonloader-installer
-    inputs.nix-citizen.packages.${system}.rsi-launcher
+    # inputs.nix-citizen.packages.${system}.rsi-launcher
   ];
 
   services.psd.enable = true;
