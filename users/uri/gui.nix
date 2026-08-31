@@ -50,7 +50,7 @@
     # inputs.nix-citizen.packages.${system}.rsi-launcher
   ];
 
-  services.psd.enable = true;
+  # services.psd.enable = true;
 
   # services.arrpc.enable = true;
   # services.easyeffects.enable = true;

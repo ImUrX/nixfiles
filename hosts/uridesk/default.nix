@@ -119,6 +119,7 @@
   # cookiecutie.sound.pro = true;
 
   i18n.defaultLocale = "en_US.UTF-8";
+  networking.enableIPv6 = false;
   # Set your time zone.
   time.timeZone = "America/Santiago";
 
