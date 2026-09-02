@@ -67,7 +67,7 @@
     };
 
     windows-nix = {
-      url = "git+file:///home/uri/proyects/windows-nix";
+      url = "github:imurx/windows-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

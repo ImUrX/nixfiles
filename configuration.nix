@@ -50,7 +50,7 @@
   #services.pipewire.enable = true;
   # hardware.pulseaudio.enable = lib.mkForce false;
   hardware.logitech.wireless.enable = true;
-  hardware.logitech.wireless.enableGraphical = true;
+  programs.solaar.enable = true;
   cookiecutie.sound.pipewire.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
