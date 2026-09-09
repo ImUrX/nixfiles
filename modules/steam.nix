@@ -30,9 +30,15 @@ with lib;
     };
 
     environment.systemPackages = with pkgs; [
-      (olympus.override {
-        celesteWrapper = pkgs.steam-run;
-      })
+      # wine-staging (version with experimental features)
+      # wineWowPackages.staging
+      # winetricks (all versions)
+      winetricks
+      # native wayland support (unstable)
+      wineWow64Packages.waylandFull
+      dxvk
+      protontricks
+      heroic
     ];
 
     security.polkit.extraConfig = mkIf polkitEnabled ''

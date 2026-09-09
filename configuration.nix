@@ -186,22 +186,6 @@
     #   defaultGuiType = "qt5";
     # })
 
-    # wine-staging (version with experimental features)
-    # wineWowPackages.staging
-    # winetricks (all versions)
-    winetricks
-    # native wayland support (unstable)
-    wineWow64Packages.waylandFull
-    dxvk
-    protontricks
-
-    # (lutris.override {
-    #   extraLibraries = pkgs: [
-    #     # List library dependencies here
-    #   ];
-    # })
-    heroic
-
     # Apple
     libimobiledevice
     ifuse # optional, to mount using 'ifuse'

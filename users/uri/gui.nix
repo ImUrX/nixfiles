@@ -15,37 +15,50 @@
     };
   };
 
-  home.packages = with pkgs; [
-    blender
-    # pkgsRocm.blender
-    thunderbird
-    anydesk
-    termius
-    inkscape-with-extensions
-    fluffychat
-    dino
-    flatpak-builder
-    python312
-    r2modman
-    imv
-    dotnet-sdk_8
-    mono
-    xivlauncher
-    alsa-scarlett-gui
-    syncthingtray-minimal
-    openmw
-    pupdate
-    calibre
-    platformio
-    dualsensectl
-    wowup-cf
-    krita
-    devenv
-    rubyPackages_3_5.ruby-lsp
-    archipelago
-    melonloader-installer
-    # inputs.nix-citizen.packages.${system}.rsi-launcher
-  ];
+  home.packages =
+    with pkgs;
+    [
+      blender
+      # pkgsRocm.blender
+      thunderbird
+      anydesk
+      termius
+      inkscape-with-extensions
+      fluffychat
+      dino
+      flatpak-builder
+      python312
+      imv
+      dotnet-sdk_8
+      mono
+      alsa-scarlett-gui
+      syncthingtray-minimal
+      openmw
+      pupdate
+      calibre
+      platformio
+      dualsensectl
+      krita
+      devenv
+      rubyPackages_3_5.ruby-lsp
+      archipelago
+      # inputs.nix-citizen.packages.${system}.rsi-launcher
+    ]
+    ++ (
+      if pkgs.system == "x86_64-linux" then
+        with pkgs;
+        [
+          (olympus.override {
+            celesteWrapper = pkgs.steam-run;
+          })
+          xivlauncher
+          melonloader-installer
+          wowup-cf
+          r2modman
+        ]
+      else
+        [ ]
+    );
 
   # services.psd.enable = true;
 
@@ -133,8 +146,8 @@
   uri.jetbrains.enable = true;
   uri.obs.enable = true;
   uri.vscode.enable = true;
-  uri.vrchat.enable = true;
-  uri.vr.enable = true;
+  uri.vrchat.enable = pkgs.system == "x86_64-linux";
+  uri.vr.enable = pkgs.system == "x86_64-linux";
   # uri.hyprland.enable = true;
 
   home.sessionVariables = {

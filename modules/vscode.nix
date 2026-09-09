@@ -26,7 +26,8 @@ with lib;
           mkhl.direnv
           # arrterian.nix-env-selector
           eamodio.gitlens
-          redhat.vscode-xml
+          # no aarch64-linux support
+          # redhat.vscode-xml
           editorconfig.editorconfig
           oderwat.indent-rainbow
           davidanson.vscode-markdownlint
