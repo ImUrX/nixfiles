@@ -93,7 +93,7 @@
     nixos-apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
-    }
+    };
   };
 
   # Outputs can be anything, but the wiki + some commands define their own
