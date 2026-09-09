@@ -42,9 +42,6 @@
     krita
     devenv
     rubyPackages_3_5.ruby-lsp
-    (olympus.override {
-      celesteWrapper = pkgs.steam-run;
-    })
     archipelago
     melonloader-installer
     # inputs.nix-citizen.packages.${system}.rsi-launcher

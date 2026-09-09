@@ -29,6 +29,12 @@ with lib;
       };
     };
 
+    environment.systemPackages = with pkgs; [
+      (olympus.override {
+        celesteWrapper = pkgs.steam-run;
+      })
+    ];
+
     security.polkit.extraConfig = mkIf polkitEnabled ''
       polkit.addRule(function(action, subject) {
         if (action.id === "org.freedesktop.NetworkManager.settings.modify.system") {
