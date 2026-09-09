@@ -47,6 +47,7 @@
   hardware.apple.touchBar = {
     enable = true;
   };
+  uri.steam.enable = lib.mkForce false;
 
   networking.hostName = "manzana";
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
