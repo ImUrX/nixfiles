@@ -89,6 +89,11 @@
 
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
     nix-cachyos-kernel.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixos-apple-silicon = {
+      url = "github:nix-community/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    }
   };
 
   # Outputs can be anything, but the wiki + some commands define their own
@@ -109,6 +114,7 @@
       nixpkgs-xr,
       nur,
       windows-nix,
+      nixos-apple-silicon,
       ...
     }@inputs:
     {
@@ -188,7 +194,7 @@
               environment.systemPackages = [
                 agenix.packages.${system}.default
               ];
-              nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ];
+              # nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ];
             }
             {
               _module.args = {
@@ -400,6 +406,43 @@
             {
               age.secrets = {
                 cloudflared.file = ./secrets/cloudflared-rapel.age;
+              };
+            }
+          ];
+        };
+        manzana = nixpkgs.lib.nixosSystem rec {
+          system = "aarch64-linux";
+          modules = [
+            ./hosts/manzana
+            ./configuration.nix
+            ./users/uri
+            ./modules/niri.nix
+            nixos-hardware.nixosModules.framework-13th-gen-intel
+            nixpkgs-xr.nixosModules.nixpkgs-xr
+            home-manager.nixosModules.home-manager
+            musnix.nixosModules.musnix
+            nur.modules.nixos.default
+            nixos-apple-silicon.nixosModules.default
+            {
+              environment.systemPackages = [
+                agenix.packages.${system}.default
+              ];
+              # nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ];
+            }
+            {
+              _module.args = {
+                inherit inputs;
+              };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "backup";
+              # home-manager.users.uri = import ./home.nix
+
+              # Optionally, use home-manager.extraSpecialArgs to pass
+              # arguments to home.nix
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                headless = false;
               };
             }
           ];
