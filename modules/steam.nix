@@ -39,6 +39,7 @@ with lib;
       dxvk
       protontricks
       heroic
+      protonup-qt
     ];
 
     security.polkit.extraConfig = mkIf polkitEnabled ''

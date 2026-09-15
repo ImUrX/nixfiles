@@ -119,80 +119,94 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    protonup-qt
-    collabora-desktop
-    (firefox.override {
-      nativeMessagingHosts = [
-        # inputs.pipewire-screenaudio.packages.${pkgs.system}.default
-        pkgs.kdePackages.plasma-browser-integration
-        pkgs.fx-cast-bridge
-      ];
-    })
-    piper
-    (discord.override {
-      enableAutoscroll = true;
-      # withOpenASAR = true;
-      withEquicord = true;
-      equicord = pkgs.equicord.overrideAttrs (old: rec {
-        version = "2026-08-11";
-        src = pkgs.fetchFromGitHub {
-          owner = "Equicord";
-          repo = "Equicord";
-          tag = version;
-          hash = "sha256-2xzutQoO79CRO+iS3K5Bj5d1/b+Wt5sX+Dpd7NCfbNw=";
-        };
+  environment.systemPackages =
+    with pkgs;
+    [
+      collabora-desktop
+      (firefox.override {
+        nativeMessagingHosts = [
+          # inputs.pipewire-screenaudio.packages.${pkgs.system}.default
+          pkgs.kdePackages.plasma-browser-integration
+          # pkgs.fx-cast-bridge
+        ];
+      })
+      piper
+      feishin
+      mpv
+      gimp3
+      prismlauncher
+      qbittorrent
+      chromium
+      libayatana-appindicator
+      wl-clipboard
+      wev
+      wl-mirror
+      wl-color-picker
+      gamescope # gamescope-wsi will let me use HDR, but it breaks steam overlay apparently
+      # gnomeExtensions.appindicator
+      # gnome.gnome-tweaks
+      # nur.repos.ataraxiasjel.waydroid-script
+      remmina
+      vulkan-headers
+      vulkan-loader
+      vulkan-tools
+      pavucontrol
+      epiphany
+      lm_sensors
+      xeyes
+      # LSP for Nix
+      nil
+      nixfmt
+      wireshark
+      # Disabled for now https://github.com/NixOS/nixpkgs/issues/404663
+      # (ventoy-full.override {
+      #   defaultGuiType = "qt5";
+      # })
 
-        pnpmDeps = fetchPnpmDeps {
-          inherit (old) pname;
-          version = version;
-          src = src;
-          pnpm = pnpm_10;
-          fetcherVersion = 3;
-          hash = "sha256-WdSowp/yuPokdU7Sv/XBQOo/0JPs9AA5LRq6dx57Uyk=";
-        };
-      });
-    })
-    feishin
-    mpv
-    gimp3
-    prismlauncher
-    qbittorrent
-    spotify
-    chromium
-    libayatana-appindicator
-    wl-clipboard
-    wev
-    wl-mirror
-    wl-color-picker
-    gamescope # gamescope-wsi will let me use HDR, but it breaks steam overlay apparently
-    # gnomeExtensions.appindicator
-    # gnome.gnome-tweaks
-    # nur.repos.ataraxiasjel.waydroid-script
-    remmina
-    vulkan-headers
-    vulkan-loader
-    vulkan-tools
-    pavucontrol
-    epiphany
-    lm_sensors
-    xeyes
-    # LSP for Nix
-    nil
-    nixfmt
-    wireshark
-    # Disabled for now https://github.com/NixOS/nixpkgs/issues/404663
-    # (ventoy-full.override {
-    #   defaultGuiType = "qt5";
-    # })
+      # Apple
+      libimobiledevice
+      ifuse # optional, to mount using 'ifuse'
 
-    # Apple
-    libimobiledevice
-    ifuse # optional, to mount using 'ifuse'
+      psst
+    ]
+    ++ (
+      if pkgs.system == "x86_64-linux" then
+        with pkgs;
+        [
+          (discord.override {
+            enableAutoscroll = true;
+            # withOpenASAR = true;
+            withEquicord = true;
+            equicord = pkgs.equicord.overrideAttrs (old: rec {
+              version = "2026-08-11";
+              src = pkgs.fetchFromGitHub {
+                owner = "Equicord";
+                repo = "Equicord";
+                tag = version;
+                hash = "sha256-2xzutQoO79CRO+iS3K5Bj5d1/b+Wt5sX+Dpd7NCfbNw=";
+              };
 
-    plexamp
-    plex-desktop
-  ];
+              pnpmDeps = fetchPnpmDeps {
+                inherit (old) pname;
+                version = version;
+                src = src;
+                pnpm = pnpm_10;
+                fetcherVersion = 3;
+                hash = "sha256-WdSowp/yuPokdU7Sv/XBQOo/0JPs9AA5LRq6dx57Uyk=";
+              };
+            });
+          })
+
+          spotify
+          plexamp
+          plex-desktop
+        ]
+      else
+        with pkgs;
+        [
+          equibop
+        ]
+    );
 
   # Apple
   services.usbmuxd.enable = true;

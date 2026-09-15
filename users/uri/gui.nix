@@ -22,9 +22,7 @@
       # pkgsRocm.blender
       thunderbird
       anydesk
-      termius
       inkscape-with-extensions
-      fluffychat
       dino
       flatpak-builder
       python312
@@ -55,6 +53,8 @@
           melonloader-installer
           wowup-cf
           r2modman
+          termius
+          fluffychat
         ]
       else
         [ ]
