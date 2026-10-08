@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
 let
@@ -37,7 +38,7 @@ in
     flood.enable = true;
     messageLevel = "info";
     vpn.enable = true;
-    package = pkgs.transmission_4;
+    package = inputs.nixpkgs-transmission.legacyPackages.${pkgs.stdenv.hostPlatform.system}.transmission_4;
 
     # Doesn't build
     privateTrackers.cross-seed = {

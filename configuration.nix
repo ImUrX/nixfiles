@@ -53,12 +53,13 @@
   hardware.logitech.wireless.enable = true;
   programs.solaar.enable = true;
   cookiecutie.sound.pipewire.enable = true;
+  programs.localsend.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
 
   # RGB Addressing
-  # services.hardware.openrgb = {
-  #   enable = true;
+  services.hardware.openrgb = {
+    enable = true;
   #   package = pkgs.openrgb.overrideAttrs (old: {
   #     version = "1.0-experimental";
   #     src = pkgs.fetchFromGitLab {
@@ -74,7 +75,7 @@
   #         --replace "/usr/bin/env chmod" "${pkgs.coreutils}/bin/chmod"
   #     '';
   #   });
-  # };
+  };
 
   uri.kde.enable = true;
   uri.steam.enable = true;
@@ -122,7 +123,7 @@
   environment.systemPackages =
     with pkgs;
     [
-      collabora-desktop
+      libreoffice-qt
       (firefox.override {
         nativeMessagingHosts = [
           # inputs.pipewire-screenaudio.packages.${pkgs.system}.default
@@ -162,6 +163,7 @@
       # (ventoy-full.override {
       #   defaultGuiType = "qt5";
       # })
+      openlogi
 
       # Apple
       libimobiledevice
@@ -178,12 +180,12 @@
             # withOpenASAR = true;
             withEquicord = true;
             equicord = pkgs.equicord.overrideAttrs (old: rec {
-              version = "2026-08-11";
+              version = "2026-09-30";
               src = pkgs.fetchFromGitHub {
                 owner = "Equicord";
                 repo = "Equicord";
                 tag = version;
-                hash = "sha256-2xzutQoO79CRO+iS3K5Bj5d1/b+Wt5sX+Dpd7NCfbNw=";
+                hash = "sha256-hk2/djNmbwIBwVAJ1bj3ayurj85EPfMUgmAr1SpYlvw=";
               };
 
               pnpmDeps = fetchPnpmDeps {
@@ -192,7 +194,7 @@
                 src = src;
                 pnpm = pnpm_10;
                 fetcherVersion = 3;
-                hash = "sha256-WdSowp/yuPokdU7Sv/XBQOo/0JPs9AA5LRq6dx57Uyk=";
+                hash = "sha256-rx8z6PAlAPaZbkmg+3Vvq8OXR/yy5ZP0PmAk97ZDOSQ=";
               };
             });
           })

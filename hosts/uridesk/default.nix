@@ -15,7 +15,7 @@
 
   # boot.initrd.kernelModules = ["amdgpu"];
   virtualisation.libvirtd.enable = true;
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-zen4;
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
@@ -27,6 +27,7 @@
   boot.kernelModules = [
     "kvm-amd"
     "v4l2loopback"
+    "ntsync"
   ];
   boot.kernelParams = [
     "zswap.enabled=1" # enables zswap
@@ -90,7 +91,8 @@
   # networking.interfaces.wlp5s0.useDHCP = lib.mkDefault true;
 
   # nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.enableAllFirmware = true;
+  hardware.cpu.amd.updateMicrocode = true;
 
   # Bluetooth
   hardware.bluetooth = {

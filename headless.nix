@@ -8,6 +8,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./modules/nix.nix
+    ./modules/network-opts.nix
   ];
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -110,6 +111,7 @@
 
   # ssd optimization
   services.fstrim.enable = true;
+  uri.net-opts.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

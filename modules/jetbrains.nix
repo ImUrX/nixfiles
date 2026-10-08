@@ -18,10 +18,10 @@ with lib;
       # Add GLFW stuff for being able to dev with Minecraft
       (symlinkJoin {
         name = "idea";
-        paths = [ jetbrains.idea ];
+        paths = [ intellij-idea ];
         buildInputs = [ makeWrapper ];
         postBuild = ''
-          wrapProgram $out/bin/idea \
+          wrapProgram $out/bin/intellij-idea \
           --prefix LD_LIBRARY_PATH : "${
             lib.makeLibraryPath [
               libpulseaudio
@@ -35,7 +35,7 @@ with lib;
       })
       (symlinkJoin {
         name = "pycharm";
-        paths = [ jetbrains.pycharm ];
+        paths = [ pycharm ];
         buildInputs = [ makeWrapper ];
         postBuild = ''
           wrapProgram $out/bin/pycharm \
@@ -46,8 +46,8 @@ with lib;
           }"
         '';
       })
-      jetbrains.rider
-      jetbrains.clion
+      rider
+      clion
     ];
   };
 }

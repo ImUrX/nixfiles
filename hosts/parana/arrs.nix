@@ -10,7 +10,7 @@
     lidarr = {
       enable = true;
       package = pkgs.callPackage ./lidarr/package.nix { };
-      vpn.enable = true;
+      # vpn.enable = true;
     };
     sonarr = {
       enable = true;

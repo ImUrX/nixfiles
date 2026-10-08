@@ -21,12 +21,14 @@ with lib;
       dedicatedServer.openFirewall = true;
       extraCompatPackages = with pkgs; [
         proton-ge-bin
+        proton-ge-rtsp-bin
       ];
       package = pkgs.steam.override {
         extraEnv = {
           LOW_LATENCY_LAYER = "1";
         };
       };
+      platformOptimizations.enable = true;
     };
 
     environment.systemPackages = with pkgs; [

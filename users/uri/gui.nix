@@ -40,6 +40,7 @@
       devenv
       rubyPackages_3_5.ruby-lsp
       archipelago
+      deadlock-mod-manager
       # inputs.nix-citizen.packages.${system}.rsi-launcher
     ]
     ++ (
@@ -55,6 +56,7 @@
           r2modman
           termius
           fluffychat
+          upscayl
         ]
       else
         [ ]

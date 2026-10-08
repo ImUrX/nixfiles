@@ -11,6 +11,10 @@
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
 
+    nixpkgs-transmission = {
+      url = "github:NixOS/nixpkgs/2c51b55beb3ff7fa587cc94342f10ff80cd57c5b";
+    };
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -115,6 +119,7 @@
       nur,
       windows-nix,
       nixos-apple-silicon,
+      nix-gaming,
       ...
     }@inputs:
     {
@@ -136,6 +141,8 @@
             nur.modules.nixos.default
             windows-nix.nixosModules.windows-nix
             agenix.nixosModules.default
+            nix-gaming.nixosModules.pipewireLowLatency
+            nix-gaming.nixosModules.platformOptimizations
             # nixarr.nixosModules.default
             {
               environment.systemPackages = [
@@ -190,6 +197,8 @@
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
             nur.modules.nixos.default
+            nix-gaming.nixosModules.pipewireLowLatency
+            nix-gaming.nixosModules.platformOptimizations
             {
               environment.systemPackages = [
                 agenix.packages.${system}.default
@@ -232,6 +241,8 @@
             nixos-hardware.nixosModules.common-gpu-nvidia
             nixos-hardware.nixosModules.common-pc-laptop
             nixos-hardware.nixosModules.common-pc-ssd
+            nix-gaming.nixosModules.pipewireLowLatency
+            nix-gaming.nixosModules.platformOptimizations
             {
               _module.args = {
                 inherit inputs;
@@ -265,6 +276,8 @@
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
             nur.modules.nixos.default
+            nix-gaming.nixosModules.pipewireLowLatency
+            nix-gaming.nixosModules.platformOptimizations
             {
               _module.args = {
                 inherit inputs;
@@ -302,6 +315,8 @@
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
             nur.modules.nixos.default
+            nix-gaming.nixosModules.pipewireLowLatency
+            nix-gaming.nixosModules.platformOptimizations
             {
               _module.args = {
                 inherit inputs;
