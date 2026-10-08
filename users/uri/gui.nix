@@ -41,6 +41,7 @@
       rubyPackages_3_5.ruby-lsp
       archipelago
       deadlock-mod-manager
+      autodesk-fusion
       # inputs.nix-citizen.packages.${system}.rsi-launcher
     ]
     ++ (
