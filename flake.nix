@@ -62,9 +62,6 @@
     nixarr.inputs.nixpkgs.follows = "nixpkgs";
     nixarr.inputs.vpnconfinement.follows = "vpn-confinement";
 
-    rfm.url = "github:dsxmachina/rfm";
-    rfm.inputs.nixpkgs.follows = "nixpkgs";
-
     nixpkgs-xr = {
       url = "github:nix-community/nixpkgs-xr";
       inputs.nixpkgs.follows = "nixpkgs";

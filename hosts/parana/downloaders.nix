@@ -173,7 +173,7 @@ in
       Address = "0.0.0.0";
       Agents = "apple-music,deezer,lastfm,listenbrainz";
     };
-    plugins = with pkgs.navidromePlugins; [
+    plugins = with pkgs.pkgsCross.wasi32.navidromePlugins; [
       apple-music
       listenbrainz-daily-playlist
       audiomuseai

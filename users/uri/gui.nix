@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ../../modules/vscode.nix
@@ -145,7 +145,7 @@
   # };
 
   cookiecutie.git.gpg = true;
-  cookiecutie.git.signingkey = "13E59DEACC71A51D";
+  cookiecutie.git.signingkey = "FC190DCC1967F4C5";
   uri.jetbrains.enable = true;
   uri.obs.enable = true;
   uri.vscode.enable = true;

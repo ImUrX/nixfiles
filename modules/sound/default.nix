@@ -105,21 +105,6 @@ with lib;
             quantum = quantum;
             rate = rate;
           };
-          package = pkgs.pipewire.overrideAttrs (old: {
-            version = "1.7.0+90b719ac";
-            src = pkgs.fetchFromGitLab {
-              domain = "gitlab.freedesktop.org";
-              owner = "lorbus";
-              repo = "pipewire";
-              rev = "90b719acbeb2bc5d3181d40c630427b60e694d98";
-              hash = "sha256-CXeqDdU3jBsNy6wogn2lJJ1+Ks1l8TQX12Y/IA6uHkM=";
-            };
-            patches = lib.lists.take 2 old.patches;
-            buildInputs = old.buildInputs ++ [
-              pkgs.libplist
-              (pkgs.callPackage ../../packages/lhdcv5.nix {})
-            ];
-          });
           # wireplumber 0.5.15 is broken for me
           # wireplumber.package = pkgs.wireplumber.overrideAttrs (_: rec {
           #   version = "0.5.14";

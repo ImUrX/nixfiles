@@ -1,7 +1,6 @@
 {
   lib,
   pkgs,
-  inputs,
   ...
 }:
 {
@@ -15,14 +14,14 @@
     sonarr = {
       enable = true;
     };
-    autobrr = {
-      enable = true;
-      vpn.enable = true;
-      settings = {
-        host = lib.mkForce "192.168.15.1";
-        port = 7474;
-      };
-    };
+    # autobrr = {
+    #   enable = true;
+    #   vpn.enable = true;
+    #   settings = {
+    #     host = lib.mkForce "192.168.15.1";
+    #     port = 7474;
+    #   };
+    # };
 
     bazarr.enable = true;
     prowlarr.enable = true;
