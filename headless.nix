@@ -8,6 +8,7 @@
     # Include the results of the hardware scan.
     ./modules/nix.nix
     ./modules/network-opts.nix
+    ./modules/yazi
   ];
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -75,16 +76,18 @@
     caddy # convenient bloated web server
     parallel # --citation
     nix-tree # nix what-depends why-depends who-am-i
-    eza # ls but better
-    ranger # a nice file commander with vim controls
     docker-compose
     bat # a cat alternative
-    tealdeer
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
+
+  programs.starship.enable = true;
+
+  # a nice file commander
+  uri.yazi.enable = true;
 
   # a smarter cd command
   programs.zoxide.enable = true;
@@ -123,22 +126,12 @@
     "neofetch" = "hyfetch";
     "find" = "fd";
     "traceroute" = "mtr";
-    "grep" = "rg";
     "ll" = "ls -l";
-    "ls" = "eza --smart-group --git";
     "cd" = "z";
     "cat" = "bat";
   };
   environment.sessionVariables = {
     _ZO_DOCTOR = "0";
-    TEALDEER_CONFIG_DIR = "/etc/tealdeer";
-  };
-  environment.etc = {
-    "tealdeer/config.toml".source = (pkgs.formats.toml { }).generate "tealdeer.conf" {
-      updates = {
-        auto_update = true;
-      };
-    };
   };
 
   # Copy the NixOS configuration file and link it from the resulting system

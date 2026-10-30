@@ -15,7 +15,7 @@ with lib;
 
   imports = [
     # ./hyprconfig/anyrun.nix
-    ./hyprconfig/starship.nix
+    ./starship.nix
     ./hyprconfig/ags.nix
     ./hyprconfig/theme.nix
   ];

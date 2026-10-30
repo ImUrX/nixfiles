@@ -50,6 +50,20 @@
       programs.direnv.enableBashIntegration = true;
       programs.bash.enable = true;
       programs.distrobox.enable = true;
+      programs.bat.enable = true;
+      programs.ripgrep-all = {
+        enable = true;
+      };
+      programs.eza = {
+        enable = true;
+        git = true;
+        icons = "auto";
+        colors = "auto";
+      };
+      programs.tealdeer = {
+        enable = true;
+        enableAutoUpdates = true;
+      };
 
       cookiecutie.git.enable = true;
       uri.rust.enable = true;
@@ -58,6 +72,7 @@
 
       home.shellAliases = {
         love = "echo 'Edu: Te amo Uri <3'";
+        ls = "eza";
       };
       programs.bash.initExtra = ''
         nixos-remote () {

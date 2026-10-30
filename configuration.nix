@@ -170,6 +170,7 @@
       ifuse # optional, to mount using 'ifuse'
 
       psst
+      vulnix
     ]
     ++ (
       if pkgs.system == "x86_64-linux" then

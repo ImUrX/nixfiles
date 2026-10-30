@@ -13,6 +13,7 @@
     (modulesPath + "/installer/scan/not-detected.nix")
     ./stream.nix
     ../../modules/sdns.nix
+    ../../modules/crowdsec.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -86,4 +87,32 @@
   time.timeZone = "America/Santiago";
 
   networking.hostName = "rapel"; # Define your hostname.
+
+  uri.crowdsec.enable = true;
+  services.crowdsec = {
+    hub.collections = [
+      "crowdsecurity/nginx"
+      "crowdsecurity/mariadb"
+      "lourys/pterodactyl"
+      "crowdsecurity/plex"
+    ];
+    settings.acquisitions = [
+      {
+        source = "file";
+        filenames = [ "/var/log/nginx/*.log" ];
+        labels.type = "nginx";
+      }
+      {
+        source = "journalctl";
+        journalctl_filter = [ "_SYSTEMD_UNIT=mysql.service" ];
+        labels.type = "syslog";
+      }
+      {
+        source = "file";
+        filenames = [ "/var/log/pelican/wings.log" ];
+        labels.type = "pterodactyl";
+      }
+    ];
+  };
+  systemd.services.mysql.serviceConfig.SyslogIdentifier = "mariadbd";
 }

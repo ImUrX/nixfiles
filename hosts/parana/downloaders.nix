@@ -172,11 +172,18 @@ in
       BaseUrl = "https://navi.2dgirls.date";
       Address = "0.0.0.0";
       Agents = "apple-music,deezer,lastfm,listenbrainz";
+      ExtAuth = {
+        # Take the client IP from X-Forwarded-For when it comes through cloudflared
+        TrustedSources = "127.0.0.1/32,::1/128";
+        # Trusted sources may also log in with just a header (Remote-User by default),
+        # which anyone could send through the tunnel, so disable it
+        UserHeader = "";
+      };
     };
-    plugins = with pkgs.pkgsCross.wasi32.navidromePlugins; [
-      apple-music
-      listenbrainz-daily-playlist
-      audiomuseai
+    withPlugins = p: [
+      p.apple-music
+      p.listenbrainz-daily-playlist
+      p.audiomuseai
     ];
   };
 }

@@ -28,6 +28,7 @@ in
     ./homepage.nix
     ./downloaders.nix
     ../../modules/sdns.nix
+    ../../modules/crowdsec.nix
   ];
 
   # Usando GRUB xq tiene skins
@@ -131,4 +132,30 @@ in
 
   # Force radv
   networking.hostName = "parana"; # Define your hostname.
+
+  uri.crowdsec.enable = true;
+  services.crowdsec = {
+    hub.collections = [
+      "crowdsecurity/plex"
+      "LePresidente/jellyfin"
+      "LePresidente/jellyseerr"
+      "sdwilsh/navidrome"
+    ];
+    settings.acquisitions = [
+      {
+        source = "journalctl";
+        journalctl_filter = [
+          "_SYSTEMD_UNIT=jellyfin.service"
+          "_SYSTEMD_UNIT=navidrome.service"
+        ];
+        labels.type = "syslog";
+      }
+      # seerr logs to the journal with colors, which journalctl shows as blobs
+      {
+        source = "file";
+        filenames = [ "${config.nixarr.seerr.stateDir}/logs/*.log" ];
+        labels.type = "jellyseerr";
+      }
+    ];
+  };
 }

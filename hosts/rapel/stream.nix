@@ -81,6 +81,9 @@ in
       ''
         ${realIpsFromList cfipv4}
         ${realIpsFromList cfipv6}
+        # cloudflared
+        set_real_ip_from 127.0.0.1;
+        set_real_ip_from ::1;
         real_ip_header CF-Connecting-IP;
       '';
     virtualHosts."pel.2dgirls.date" = {
@@ -89,7 +92,7 @@ in
         index index.html index.htm index.php;
         charset utf-8;
 
-        access_log off;
+        access_log /var/log/nginx/pelican.app-access.log;
         error_log  /var/log/nginx/pelican.app-error.log error;
 
         client_max_body_size 100m;

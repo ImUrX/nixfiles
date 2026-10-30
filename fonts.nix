@@ -55,6 +55,7 @@ with lib;
         ipaexfont
         mplus-outline-fonts.githubRelease
         twemoji-color-font
+        nerd-fonts.symbols-only
       ];
       fontDir.enable = true;
 
