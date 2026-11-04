@@ -1,5 +1,6 @@
 {
   globals.mapleader = " ";
+  globals.maplocalleader = ",";
 
   keymaps = [
     {
@@ -482,6 +483,13 @@
       action = "<cmd>tabprevious<cr>";
       options = {
         desc = "Previous Tab";
+      };
+    }
+    {
+      key = "<leader>p";
+      action = "<cmd>PasteImage<cr>";
+      options = {
+        desc = "Paste image from system clipboard";
       };
     }
   ];

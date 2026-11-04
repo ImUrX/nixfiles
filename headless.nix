@@ -84,7 +84,10 @@
   # started in user sessions.
   programs.mtr.enable = true;
 
-  programs.starship.enable = true;
+  programs.starship = {
+    enable = true;
+    presets = [ "pastel-powerline" ];
+  };
 
   # a nice file commander
   uri.yazi.enable = true;

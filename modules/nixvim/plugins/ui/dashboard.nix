@@ -71,11 +71,7 @@
             row("", "f", "Find file", ":Telescope find_files"),
             row("", "/", "Find text", ":Telescope live_grep"),
             row("", "e", "File explorer", ":Neotree toggle"),
-            row("󰧑", "b", "notes", function()
-              require("telescope.builtin").find_files({
-                cwd = vim.fn.expand("~/proyects/notes"),
-              })
-            end),
+            row("󰧑", "b", "notes", ":Neorg workspace notes"),
 
             heading("Continue"),
             function()

@@ -60,21 +60,21 @@
   # RGB Addressing
   services.hardware.openrgb = {
     enable = true;
-  #   package = pkgs.openrgb.overrideAttrs (old: {
-  #     version = "1.0-experimental";
-  #     src = pkgs.fetchFromGitLab {
-  #       owner = "CalcProgrammer1";
-  #       repo = "OpenRGB";
-  #       rev = "041c7600b7995173aecbbd9c8e5bfece192030f2";
-  #       hash = "sha256-Vif3b1xRj99uwiF9GoPDZAnX3V/UlEFXSreWhAmqraM=";
-  #     };
+    #   package = pkgs.openrgb.overrideAttrs (old: {
+    #     version = "1.0-experimental";
+    #     src = pkgs.fetchFromGitLab {
+    #       owner = "CalcProgrammer1";
+    #       repo = "OpenRGB";
+    #       rev = "041c7600b7995173aecbbd9c8e5bfece192030f2";
+    #       hash = "sha256-Vif3b1xRj99uwiF9GoPDZAnX3V/UlEFXSreWhAmqraM=";
+    #     };
 
-  #     postPatch = ''
-  #       patchShebangs scripts/build-udev-rules.sh
-  #       substituteInPlace scripts/build-udev-rules.sh \
-  #         --replace "/usr/bin/env chmod" "${pkgs.coreutils}/bin/chmod"
-  #     '';
-  #   });
+    #     postPatch = ''
+    #       patchShebangs scripts/build-udev-rules.sh
+    #       substituteInPlace scripts/build-udev-rules.sh \
+    #         --replace "/usr/bin/env chmod" "${pkgs.coreutils}/bin/chmod"
+    #     '';
+    #   });
   };
 
   uri.kde.enable = true;
@@ -171,6 +171,7 @@
 
       psst
       vulnix
+      kitty
     ]
     ++ (
       if pkgs.system == "x86_64-linux" then
@@ -367,5 +368,9 @@
     "distrobox/distrobox.conf".text = ''
       container_additional_volumes="/nix/store:/nix/store:ro /etc/profiles/per-user:/etc/profiles/per-user:ro"
     '';
+  };
+
+  environment.sessionVariables = {
+    TERMINAL = "kitty";
   };
 }

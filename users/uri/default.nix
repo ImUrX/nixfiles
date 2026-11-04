@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 {
   users.users.uri = {
     isNormalUser = true;
@@ -67,7 +72,7 @@
       };
       programs.nixvim = {
         enable = true;
-        imports = [ ../../modules/nixvim ];
+        imports = [ (lib.modules.importApply ../../modules/nixvim { inherit inputs; }) ];
       };
 
       cookiecutie.git.enable = true;
@@ -78,10 +83,6 @@
       home.shellAliases = {
         love = "echo 'Edu: Te amo Uri <3'";
         ls = "eza";
-      };
-      home.sessionVariables = {
-        EDITOR = "nvim";
-        VISUAL = "nvim";
       };
       programs.bash.initExtra =
         let

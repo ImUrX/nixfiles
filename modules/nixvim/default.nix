@@ -1,4 +1,4 @@
-_: {
+{ inputs }: { lib, ... }: {
   imports = [
     # General Configuration
     ./settings.nix
@@ -20,7 +20,7 @@ _: {
 
     # Editor plugins and configurations
     ./plugins/editor/neo-tree.nix
-    ./plugins/editor/treesitter.nix
+    (lib.modules.importApply ./plugins/editor/treesitter.nix { inherit inputs; })
     ./plugins/editor/undotree.nix
     ./plugins/editor/illuminate.nix
     ./plugins/editor/indent-blankline.nix
@@ -61,5 +61,6 @@ _: {
     ./plugins/utils/toggleterm.nix
     ./plugins/utils/web-devicons.nix
     ./plugins/utils/neorg.nix
+    ./plugins/utils/image.nix
   ];
 }

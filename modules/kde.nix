@@ -24,13 +24,16 @@ with lib;
       kdePackages.kdeconnect-kde
       kdePackages.kleopatra
       kdePackages.filelight
-      kdePackages.yakuake
       kdePackages.kcalc
       kdePackages.partitionmanager
       kdePackages.konversation
       kdePackages.skanpage
       kdePackages.fcitx5-configtool
       kdePackages.akregator
+    ];
+
+    environment.plasma6.excludePackages = with pkgs.kdePackages; [
+      konsole
     ];
 
     xdg = {

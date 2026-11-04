@@ -23,6 +23,7 @@
           ];
         };
         sources = [
+          { name = "neorg"; }
           { name = "git"; }
           { name = "nvim_lsp"; }
           {

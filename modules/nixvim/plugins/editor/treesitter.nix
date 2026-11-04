@@ -1,5 +1,15 @@
+{ inputs }:
 { pkgs, ... }:
+let
+  norg = inputs.tree-sitter-norg.packages.${pkgs.system}.default;
+  norg-meta = pkgs.callPackage ../../packages/tree-sitter-norg-meta.nix { };
+in
 {
+  extraPlugins = [
+    norg
+    norg-meta
+  ];
+
   dependencies.tree-sitter.enable = true;
   plugins.treesitter = {
     enable = true;
@@ -49,6 +59,11 @@
       vimdoc
       yaml
       latex
+      query
+      c
+      tree-sitter-lua
+      norg
+      norg-meta
     ];
   };
 

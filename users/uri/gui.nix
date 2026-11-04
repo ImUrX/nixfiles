@@ -15,6 +15,17 @@
     };
   };
 
+  programs.kitty = {
+    enable = true;
+    enableGitIntegration = true;
+    themeFile = "Yotei_Midnight";
+    settings = {
+      scrollback_lines = 10000;
+      custom_shaders = "cursor-trail-motion-blur dim-inactive-windows";
+      cursor_trail = 1;
+    };
+  };
+
   home.packages =
     with pkgs;
     [
