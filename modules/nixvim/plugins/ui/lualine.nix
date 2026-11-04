@@ -1,0 +1,95 @@
+{ lib, ... }:
+{
+  extraFiles."lua/vcs_status.lua".source = ./vcs_status.lua;
+
+  plugins.lualine = {
+    enable = true;
+    settings = {
+      options = {
+        globalstatus = true;
+        extensions = [
+          "fzf"
+          "neo-tree"
+        ];
+        disabled_filetypes = {
+          statusline = [
+            "alpha"
+            "snacks_dashboard"
+          ];
+        };
+        theme = "catppuccin-nvim";
+      };
+      sections = {
+        lualine_a = [
+          {
+            __unkeyed-1 = "mode";
+            icon = "";
+          }
+        ];
+        lualine_b = [
+          {
+            __unkeyed-1 = "branch";
+            icon = "";
+          }
+          {
+            __unkeyed-1 = lib.nixvim.mkRaw "require('vcs_status').jj";
+            icon = "󱗆";
+          }
+          {
+            __unkeyed-1 = "diff";
+            source = lib.nixvim.mkRaw "require('vcs_status').diff";
+            symbols = {
+              added = " ";
+              modified = " ";
+              removed = " ";
+            };
+          }
+        ];
+        lualine_c = [
+          {
+            __unkeyed-1 = "diagnostics";
+            sources = [ "nvim_lsp" ];
+            symbols = {
+              error = " ";
+              warn = " ";
+              info = " ";
+              hint = "󰝶 ";
+            };
+          }
+          {
+            __unkeyed-1 = "navic";
+          }
+        ];
+        lualine_x = [
+          {
+            __unkeyed-1 = lib.nixvim.mkRaw "require('vcs_status').forges";
+            icon = "󰛳";
+          }
+          {
+            __unkeyed-1 = "filetype";
+            icon_only = true;
+            separator = "";
+            padding = {
+              left = 1;
+              right = 0;
+            };
+          }
+          {
+            __unkeyed-1 = "filename";
+            path = 1;
+          }
+        ];
+        lualine_y = [
+          {
+            __unkeyed-1 = "progress";
+          }
+        ];
+        lualine_z = [
+          {
+            __unkeyed-1 = "location";
+          }
+        ];
+      };
+    };
+  };
+}

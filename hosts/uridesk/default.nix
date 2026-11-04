@@ -140,6 +140,16 @@
   services.wivrn = {
     enable = true;
 
+    package = pkgs.wivrn.overrideAttrs (_: {
+      patches = [
+        (pkgs.fetchpatch {
+          name = "solarxr-rewrite.patch";
+          url = "https://github.com/WiVRn/WiVRn/commit/f91896273346ea6ad5099f33cf2fc0ddab1edc52.patch";
+          hash = "sha256-Sc4bNm+GvDcolfUYTWKuKMzZwm6/4qfnY2xqCckVciE=";
+        })
+      ];
+    });
+
     # Run WiVRn as a systemd service on startup
     autoStart = true;
     highPriority = true;

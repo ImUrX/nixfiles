@@ -43,25 +43,27 @@ with lib;
           btop = "${btop}/bin/btop";
         });
       # "${pkgs.xrizer}/lib/xrizer"
-      "openvr/openvrpaths.vrpath".text = ''
-        {
-          "config" :
-          [
-            "~/.local/share/Steam/config"
-          ],
-          "external_drivers" : null,
-          "jsonid" : "vrpathreg",
-          "log" :
-          [
-            "~/.local/share/Steam/logs"
-          ],
-          "runtime" :
-          [
-            "${pkgs.opencomposite}/lib/opencomposite"
-          ],
-          "version" : 1
-        }
-      '';
+      "openvr/openvrpaths.vrpath".text =
+        let
+          steam = "${config.xdg.dataHome}/Steam";
+        in
+        builtins.toJSON {
+          version = 1;
+          jsonid = "vrpathreg";
+
+          external_drivers = null;
+          config = [ "${steam}/config" ];
+
+          log = [ "${steam}/logs" ];
+
+          runtime = [
+            "${pkgs.xrizer}/lib/xrizer"
+            # OR
+            #"${pkgs.opencomposite}/lib/opencomposite"
+            # OR (using nixpkgs-xr)
+            # "${pkgs.vapor}/lib/VapoR"
+          ];
+        };
     };
   };
 }
