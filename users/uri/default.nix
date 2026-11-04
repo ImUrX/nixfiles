@@ -110,7 +110,7 @@
             video_bitrate=$total_bitrate
             ${pkgs.libva-utils}/bin/vainfo | ${pkgs.ripgrep}/bin/rg "AV1Profile.+VAEntrypointEncSlice" && \
               ${pkgs.ffmpeg}/bin/ffmpeg -init_hw_device vaapi=foo:/dev/dri/renderD128 -hwaccel vaapi -hwaccel_output_format vaapi -hwaccel_device foo -i "$file" \
-                -filter_hw_device foo -vf "deinterlace_vaapi=rate=field:auto=1,scale_vaapi=w='min(2560,iw)':h='min(1440,ih)',format=nv12|vaapi,hwupload" \
+                -filter_hw_device foo -vf "scale_vaapi=w='min(2560,iw)':h='min(1440,ih)',format=nv12|vaapi,hwupload" \
                 -c:v av1_vaapi -b:v $video_bitrate -maxrate:v $video_bitrate -bufsize:v $(( $target_size / 20 )) $target_file || \
               ${pkgs.ffmpeg}/bin/ffmpeg -i "$file" -c:v libsvtav1 -crf 35 -svtav1-params rc=2:pred-struct=1 -vf "scale='min(2560,iw)':'min(1440,ih)'" \
                 -b:v $video_bitrate -maxrate:v $video_bitrate -bufsize:v $(( $target_size / 20 )) $target_file
@@ -120,11 +120,11 @@
           steam_clip () {
             declare -A maps=( ["cs2"]="730" ["tf2"]="440" ["l4d2"]="550" )
             appid=
-            if [[ "$2" ]]; then
-              if [[ "''${maps["$2"]}" ]]; then
-                appid="clip_''${maps["$2"]}"
+            if [[ "$1" ]]; then
+              if [[ "''${maps["$1"]}" ]]; then
+                appid="clip_''${maps["$1"]}"
               else
-                appid=$( ${pkgs.gnugrep}/bin/grep -li "\"$2\"" '${steam}/steamapps/appmanifest_*.acf' || return )
+                appid=$( ${pkgs.gnugrep}/bin/grep -li "\"$1\"" '${steam}/steamapps/appmanifest_*.acf' || return )
                 appid="clip_''${appid:${builtins.toString (builtins.stringLength "${steam}/steamapps/appmanifest_")}:-4}"
               fi
               
@@ -136,8 +136,8 @@
 
             ${pkgs.xmlstarlet}/bin/xmlstarlet ed -d '//_:Period/@start' "$most_recent_clip"session.mpd > "$most_recent_clip"fix.mpd
             trap '{ rm -f -- "$most_recent_clip"fix.mpd; }' RETURN
-            if [[ "$1" ]]; then
-              ffmpeg_resize "$most_recent_clip"fix.mpd $1 "clip-$( date +%Y%m%d-%H%M%S ).mp4"
+            if [[ "$2" ]]; then
+              ffmpeg_resize "$most_recent_clip"fix.mpd $2 "clip-$( date +%Y%m%d-%H%M%S ).mp4"
             else
               ${pkgs.ffmpeg}/bin/ffmpeg -i "$most_recent_clip"fix.mpd -codec copy "clip-$( date +%Y%m%d-%H%M%S ).mp4"
             fi
