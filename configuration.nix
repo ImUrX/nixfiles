@@ -9,7 +9,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./headless.nix
-    ./modules/kde.nix
+    ./modules/kde
     ./modules/sound
     ./fonts.nix
     ./modules/steam.nix
@@ -164,6 +164,9 @@
       #   defaultGuiType = "qt5";
       # })
       openlogi
+      # needed by mission-center network stuff
+      nethogs
+      mission-center
 
       # Apple
       libimobiledevice
@@ -182,21 +185,21 @@
             # withOpenASAR = true;
             withEquicord = true;
             equicord = pkgs.equicord.overrideAttrs (old: rec {
-              version = "2026-09-30";
+              version = "2026-11-04";
               src = pkgs.fetchFromGitHub {
                 owner = "Equicord";
                 repo = "Equicord";
                 tag = version;
-                hash = "sha256-hk2/djNmbwIBwVAJ1bj3ayurj85EPfMUgmAr1SpYlvw=";
+                hash = "sha256-BfthELkW+p0sF8A0zywJVT2Y6XBSyS0PJK5HjOLSr0c=";
               };
 
               pnpmDeps = fetchPnpmDeps {
                 inherit (old) pname;
                 version = version;
                 src = src;
-                pnpm = pnpm_10;
-                fetcherVersion = 3;
-                hash = "sha256-rx8z6PAlAPaZbkmg+3Vvq8OXR/yy5ZP0PmAk97ZDOSQ=";
+                pnpm = pnpm_12;
+                fetcherVersion = 5;
+                hash = "sha256-l19oMNqFMva7m8DAe9x+IJLM2O87GVwZayyE1ci7HvM=";
               };
             });
           })
@@ -211,6 +214,13 @@
           equibop
         ]
     );
+
+  security.wrappers.nethogs = {
+    owner = "root";
+    group = "root";
+    source = "${pkgs.nethogs}/bin/nethogs";
+    capabilities = "cap_net_admin,cap_net_raw,cap_dac_read_search,cap_sys_ptrace+pe";
+  };
 
   # Apple
   services.usbmuxd.enable = true;
@@ -316,7 +326,6 @@
     freeglut
     libjpeg
     libpng
-    libpng12
     libsamplerate
     libmikmod
     libtheora

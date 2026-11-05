@@ -38,7 +38,8 @@ in
     flood.enable = true;
     messageLevel = "info";
     vpn.enable = true;
-    package = inputs.nixpkgs-transmission.legacyPackages.${pkgs.stdenv.hostPlatform.system}.transmission_4;
+    package =
+      inputs.nixpkgs-transmission.legacyPackages.${pkgs.stdenv.hostPlatform.system}.transmission_4;
 
     # Doesn't build
     privateTrackers.cross-seed = {
@@ -167,7 +168,7 @@ in
     group = "media";
     enable = true;
     environmentFile = config.age.secrets.navidrome.path;
-    settings = { 
+    settings = {
       MusicFolder = "/data/media/library/music";
       BaseUrl = "https://navi.2dgirls.date";
       Address = "0.0.0.0";

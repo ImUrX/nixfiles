@@ -79,6 +79,7 @@
       uri.rust.enable = true;
       uri.java.enable = true;
       uri.javascript.enable = true;
+      home.file.".face.icon".source = ./damnpic.png;
 
       home.shellAliases = {
         love = "echo 'Edu: Te amo Uri <3'";
@@ -125,7 +126,7 @@
                 appid="clip_''${maps["$1"]}"
               else
                 appid=$( ${pkgs.gnugrep}/bin/grep -li "\"$1\"" '${steam}/steamapps/appmanifest_*.acf' || return )
-                appid="clip_''${appid:${builtins.toString (builtins.stringLength "${steam}/steamapps/appmanifest_")}:-4}"
+                appid="clip_''${appid:${toString (builtins.stringLength "${steam}/steamapps/appmanifest_")}:-4}"
               fi
               
               echo "$2 is $appid"

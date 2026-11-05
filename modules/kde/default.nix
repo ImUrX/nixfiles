@@ -16,24 +16,28 @@ with lib;
   config = mkIf cfg.enable {
     programs.xwayland.enable = true;
 
-    services.displayManager.plasma-login-manager.enable = true;
+    services.displayManager.plasma-login-manager = {
+      enable = true;
+    };
+
     services.desktopManager.plasma6.enable = true;
     services.displayManager.defaultSession = "plasma";
 
-    environment.systemPackages = with pkgs; [
-      kdePackages.kdeconnect-kde
-      kdePackages.kleopatra
-      kdePackages.filelight
-      kdePackages.kcalc
-      kdePackages.partitionmanager
-      kdePackages.konversation
-      kdePackages.skanpage
-      kdePackages.fcitx5-configtool
-      kdePackages.akregator
+    environment.systemPackages = with pkgs.kdePackages; [
+      kdeconnect-kde
+      kleopatra
+      filelight
+      kcalc
+      partitionmanager
+      konversation
+      skanpage
+      fcitx5-configtool
+      akregator
     ];
 
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
       konsole
+      plasma-systemmonitor
     ];
 
     xdg = {

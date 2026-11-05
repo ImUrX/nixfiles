@@ -29,7 +29,10 @@ in
       # Here it's from https://github.com/DNSCrypt/dnscrypt-resolvers/blob/master/v3/public-resolvers.md
       # If you don't specify any, dnscrypt-proxy will automatically rank servers
       # that match your criteria and choose the best one.
-      server_names = [ "cloudflare" "google" ];
+      server_names = [
+        "cloudflare"
+        "google"
+      ];
     };
   };
 

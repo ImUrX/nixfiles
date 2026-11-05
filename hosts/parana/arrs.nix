@@ -1,14 +1,9 @@
 {
-  lib,
-  pkgs,
-  ...
-}:
-{
   nixarr = {
     radarr.enable = true;
     lidarr = {
       enable = true;
-      package = pkgs.callPackage ./lidarr/package.nix { };
+      # package = pkgs.callPackage ./lidarr/package.nix { };
       # vpn.enable = true;
     };
     sonarr = {

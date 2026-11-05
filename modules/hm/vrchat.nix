@@ -18,7 +18,6 @@ with lib;
       unityhub
       vrc-get
       alcom
-      
 
     ];
     home.file."proyects/unityhub".source = pkgs.unityhub;
