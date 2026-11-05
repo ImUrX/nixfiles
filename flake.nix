@@ -128,10 +128,21 @@
       nix-gaming,
       ...
     }@inputs:
+    let
+      hm = {
+        useGlobalPkgs = true;
+        useUserPackages = true;
+        backupFileExtension = "bak";
+        extraSpecialArgs = {
+          inherit inputs;
+          headless = false;
+        };
+      };
+    in
     {
       # nixosConfigurations is the key that nixos-rebuild looks for.
       nixosConfigurations = {
-        uridesk = nixpkgs.lib.nixosSystem rec {
+        uridesk = nixpkgs.lib.nixosSystem {
           # A lot of times online you will see the use of flake-utils + a
           # function which iterates over many possible systems. My system
           # is x86_64-linux, so I'm only going to define that
@@ -151,43 +162,24 @@
             nix-gaming.nixosModules.platformOptimizations
             # nixarr.nixosModules.default
             {
-              environment.systemPackages = [
-                agenix.packages.${system}.default
-              ];
-            }
-            {
               _module.args = {
                 inherit inputs;
               };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "bak";
-              # home-manager.users.uri = import ./home.nix
-
-              # Optionally, use home-manager.extraSpecialArgs to pass
-              # arguments to home.nix
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                headless = false;
-              };
+              home-manager = hm;
 
               age.secrets = {
                 nut.file = ./secrets/nut-uridesk.age;
               };
-            }
-            {
+
+              nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ];
               imports = [ aagl.nixosModules.default ];
               nix.settings = aagl.nixConfig; # Setup cachix
               programs.anime-game-launcher.enable = true;
               programs.sleepy-launcher.enable = true;
             }
-            {
-              environment.systemPackages = [ nix-alien.packages.${system}.nix-alien ];
-              nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ];
-            }
           ];
         };
-        minidesk = nixpkgs.lib.nixosSystem rec {
+        minidesk = nixpkgs.lib.nixosSystem {
           # A lot of times online you will see the use of flake-utils + a
           # function which iterates over many possible systems. My system
           # is x86_64-linux, so I'm only going to define that
@@ -197,7 +189,6 @@
             ./hosts/minidesk
             ./configuration.nix
             ./users/uri
-            ./modules/niri.nix
             nixos-hardware.nixosModules.framework-13th-gen-intel
             nixpkgs-xr.nixosModules.nixpkgs-xr
             home-manager.nixosModules.home-manager
@@ -206,26 +197,10 @@
             nix-gaming.nixosModules.pipewireLowLatency
             nix-gaming.nixosModules.platformOptimizations
             {
-              environment.systemPackages = [
-                agenix.packages.${system}.default
-              ];
-              # nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ];
-            }
-            {
               _module.args = {
                 inherit inputs;
               };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              # home-manager.users.uri = import ./home.nix
-
-              # Optionally, use home-manager.extraSpecialArgs to pass
-              # arguments to home.nix
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                headless = false;
-              };
+              home-manager = hm;
             }
           ];
         };
@@ -239,7 +214,6 @@
             ./hosts/lal1tx
             ./configuration.nix
             ./users/home-lal1tx.nix
-            ./modules/niri.nix
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
             nur.modules.nixos.default
@@ -249,24 +223,17 @@
             nixos-hardware.nixosModules.common-pc-ssd
             nix-gaming.nixosModules.pipewireLowLatency
             nix-gaming.nixosModules.platformOptimizations
+            inputs.minegrub-theme.nixosModules.default
             {
               _module.args = {
                 inherit inputs;
               };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                headless = false;
-              };
-              home-manager.backupFileExtension = "bak";
-            }
-            {
+              home-manager = hm;
+
               imports = [ aagl.nixosModules.default ];
               nix.settings = aagl.nixConfig; # Setup cachix
               programs.sleepy-launcher.enable = true;
             }
-            inputs.minegrub-theme.nixosModules.default
           ];
         };
         atrii-trans = nixpkgs.lib.nixosSystem {
@@ -284,24 +251,17 @@
             nur.modules.nixos.default
             nix-gaming.nixosModules.pipewireLowLatency
             nix-gaming.nixosModules.platformOptimizations
+            inputs.minegrub-theme.nixosModules.default
             {
               _module.args = {
                 inherit inputs;
               };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                headless = false;
-              };
-              home-manager.backupFileExtension = "bak";
-            }
-            {
+              home-manager = hm;
+
               imports = [ aagl.nixosModules.default ];
               nix.settings = aagl.nixConfig; # Setup cachix
               programs.sleepy-launcher.enable = true;
             }
-            inputs.minegrub-theme.nixosModules.default
           ];
         };
         teto = nixpkgs.lib.nixosSystem {
@@ -323,25 +283,18 @@
             nur.modules.nixos.default
             nix-gaming.nixosModules.pipewireLowLatency
             nix-gaming.nixosModules.platformOptimizations
-            {
-              _module.args = {
-                inherit inputs;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                headless = false;
-              };
-              home-manager.backupFileExtension = "bak";
-            }
+            inputs.minegrub-theme.nixosModules.default
             {
               imports = [ aagl.nixosModules.default ];
               nix.settings = aagl.nixConfig; # Setup cachix
               programs.sleepy-launcher.enable = true;
               nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ];
+
+              _module.args = {
+                inherit inputs;
+              };
+              home-manager = hm;
             }
-            inputs.minegrub-theme.nixosModules.default
           ];
         };
         parana = nixpkgs.lib.nixosSystem {
@@ -364,13 +317,9 @@
               _module.args = {
                 inherit inputs;
               };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                headless = true;
+              home-manager = hm // {
+                extraSpecialArgs.headless = true;
               };
-              home-manager.backupFileExtension = "bak";
 
               age.secrets = {
                 homepage.file = ./secrets/homepage.age;
@@ -416,22 +365,17 @@
               _module.args = {
                 inherit inputs;
               };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                headless = true;
+              home-manager = hm // {
+                extraSpecialArgs.headless = true;
               };
-              home-manager.backupFileExtension = "bak";
-            }
-            {
+
               age.secrets = {
                 cloudflared.file = ./secrets/cloudflared-rapel.age;
               };
             }
           ];
         };
-        manzana = nixpkgs.lib.nixosSystem rec {
+        manzana = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
           modules = [
             ./hosts/manzana
@@ -444,26 +388,10 @@
             nur.modules.nixos.default
             nixos-apple-silicon.nixosModules.default
             {
-              environment.systemPackages = [
-                agenix.packages.${system}.default
-              ];
-              # nixpkgs.overlays = [ nix-cachyos-kernel.overlays.default ];
-            }
-            {
               _module.args = {
                 inherit inputs;
               };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              # home-manager.users.uri = import ./home.nix
-
-              # Optionally, use home-manager.extraSpecialArgs to pass
-              # arguments to home.nix
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                headless = false;
-              };
+              home-manager = hm;
             }
           ];
         };

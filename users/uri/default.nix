@@ -1,7 +1,6 @@
 {
   pkgs,
   inputs,
-  lib,
   ...
 }:
 {
@@ -36,10 +35,10 @@
     {
       imports = [
         inputs.nixvim.homeModules.nixvim
-        ../../modules/git.nix
-        ../../modules/js.nix
-        ../../modules/java.nix
-        ../../modules/rust.nix
+        ../../modules/hm/git.nix
+        ../../modules/hm/js.nix
+        ../../modules/hm/java.nix
+        ../../modules/hm/rust.nix
       ]
       ++ lib.optional (!headless) ./gui.nix;
 
@@ -52,6 +51,9 @@
         };
       };
 
+      home.file.".face.icon".source = ./damnpic.png;
+
+      # Shell helpers
       programs.direnv.enable = true;
       programs.direnv.enableBashIntegration = true;
       programs.bash.enable = true;
@@ -75,11 +77,11 @@
         imports = [ (lib.modules.importApply ../../modules/nixvim { inherit inputs; }) ];
       };
 
+      # Dev
       cookiecutie.git.enable = true;
       uri.rust.enable = true;
       uri.java.enable = true;
       uri.javascript.enable = true;
-      home.file.".face.icon".source = ./damnpic.png;
 
       home.shellAliases = {
         love = "echo 'Edu: Te amo Uri <3'";

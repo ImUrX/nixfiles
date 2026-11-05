@@ -32,6 +32,22 @@ with lib;
       };
     };
 
+    environment.systemPackages = with pkgs; [
+      # KDE Spellcheck (Sonnet)
+      aspell
+      aspellDicts.en
+      aspellDicts.es
+      hunspell
+      hunspellDicts.en-us
+      hunspellDicts.en-us-large
+      hunspellDicts.es-ar
+      hunspellDicts.es-cl
+      # Spellcheck for LibreOffice
+      hyphenDicts.en-gb
+      hyphenDicts.en-us
+      hyphenDicts.es-es
+    ];
+
     fonts = {
       enableDefaultPackages = true;
       packages = with pkgs; [

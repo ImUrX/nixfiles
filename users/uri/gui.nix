@@ -1,64 +1,57 @@
 { pkgs, ... }:
 {
   imports = [
-    ../../modules/vscode.nix
-    ../../modules/jetbrains.nix
-    ../../modules/obs.nix
+    ../../modules/hm/vscode.nix
+    ../../modules/hm/jetbrains.nix
+    ../../modules/hm/obs.nix
     ../../modules/hm/vrchat.nix
     ../../modules/hm/vr.nix
   ];
-
-  systemd.user.targets.tray = {
-    Unit = {
-      Description = "Home Manager System Tray";
-      Requires = [ "graphical-session-pre.target" ];
-    };
-  };
-
-  programs.kitty = {
-    enable = true;
-    enableGitIntegration = true;
-    themeFile = "Yotei_Midnight";
-    settings = {
-      scrollback_lines = 10000;
-      custom_shaders = "cursor-trail-motion-blur dim-inactive-windows";
-      cursor_trail = 1;
-    };
-  };
-
   home.packages =
     with pkgs;
     [
-      blender
+      # Art
       # pkgsRocm.blender
-      thunderbird
-      anydesk
+      blender
       inkscape-with-extensions
+      krita
+      autodesk-fusion
+
+      # Social
+      thunderbird
       dino
+
+      # Dev
       flatpak-builder
-      python312
-      imv
       dotnet-sdk_8
+      python312
       mono
-      alsa-scarlett-gui
-      syncthingtray-minimal
+      rubyPackages_3_5.ruby-lsp
+      devenv
+      platformio
+
+      # Game
       openmw
       pupdate
-      calibre
-      platformio
-      dualsensectl
-      krita
-      devenv
-      rubyPackages_3_5.ruby-lsp
       archipelago
+      dualsensectl
       deadlock-mod-manager
-      autodesk-fusion
-      # inputs.nix-citizen.packages.${system}.rsi-launcher
+
+      # Util
+      anydesk
+      imv
+      alsa-scarlett-gui
+      syncthingtray-minimal
+      calibre
     ]
     ++ (
       if pkgs.system == "x86_64-linux" then
         with pkgs;
         [
+          # Social
+          fluffychat
+
+          # Game
           (olympus.override {
             celesteWrapper = pkgs.steam-run;
           })
@@ -66,19 +59,23 @@
           melonloader-installer
           wowup-cf
           r2modman
+          # inputs.nix-citizen.packages.${system}.rsi-launcher
+
+          # Util
           termius
-          fluffychat
           upscayl
         ]
       else
         [ ]
     );
 
-  # services.psd.enable = true;
-
-  # services.arrpc.enable = true;
-  # services.easyeffects.enable = true;
-
+  # Add service for syncthing to be able to load
+  systemd.user.targets.tray = {
+    Unit = {
+      Description = "Home Manager System Tray";
+      Requires = [ "graphical-session-pre.target" ];
+    };
+  };
   services.syncthing = {
     enable = true;
     tray = {
@@ -109,57 +106,28 @@
     };
   };
 
-  # dconf.settings = {
-  #   "org/gnome/desktop/input-sources" = {
-  #     show-all-sources = true;
-  #     sources = [
-  #       (lib.hm.gvariant.mkTuple ["xkb" "us+altgr-intl"])
-  #       (lib.hm.gvariant.mkTuple ["xkb" "latam"])
-  #     ];
-  #     xkb-options = ["terminate:ctrl_alt_bksp"];
-  #   };
-  #   "org/gnome/shell" = {
-  #     disable-user-extensions = false;
-
-  #     # `gnome-extensions list` for a list
-  #     enabled-extensions = [
-  #       "appindicatorsupport@rgcjonas.gmail.com"
-  #     ];
-  #   };
-  # };
-
   qt.platformTheme = "kde";
 
   xdg.enable = true;
-  # xdg.mimeApps = {
-  #   enable = true;
-  #   defaultApplications = {
-  #     "image" = ["imv.desktop"];
-  #     "video" = ["mpv.desktop"];
-  #     "text/html" = ["firefox.desktop"];
-  #     "x-scheme-handler/http" = ["firefox.desktop"];
-  #     "x-scheme-handler/https" = ["firefox.desktop"];
-  #     "x-scheme-handler/humble" = ["Humble-scheme-handler.desktop"];
-  #     "x-scheme-handler/ror2mm" = ["r2modman.desktop"];
-  #     "x-scheme-handler/termius" = ["Termius.desktop"];
-  #     "x-scheme-handler/ssh" = ["ktelnetservice5.desktop"];
-  #     "x-scheme-handler/heroic" = ["com.heroicgameslauncher.hgl.desktop"];
-  #   };
-  # };
 
-  # programs.doom-emacs = {
-  #   # emacsPackages = with inputs.emacs-overlay.packages.${config.nixpkgs.system};
-  #   #   emacsPackagesFor emacsGit;
-  #   enable = true;
-  #   doomPrivateDir = ./doom.d; # Directory containing your config.el, init.el
-  #   # and packages.el files
-  # };
-
+  # Dev stuff
+  programs.kitty = {
+    enable = true;
+    enableGitIntegration = true;
+    themeFile = "Yotei_Midnight";
+    settings = {
+      scrollback_lines = 10000;
+      custom_shaders = "cursor-trail-motion-blur dim-inactive-windows";
+      cursor_trail = 1;
+    };
+  };
+  uri.jetbrains.enable = true;
+  uri.vscode.enable = true;
   cookiecutie.git.gpg = true;
   cookiecutie.git.signingkey = "FC190DCC1967F4C5";
-  uri.jetbrains.enable = true;
+
+  # Game stuff
   uri.obs.enable = true;
-  uri.vscode.enable = true;
   uri.vrchat.enable = pkgs.system == "x86_64-linux";
   uri.vr.enable = pkgs.system == "x86_64-linux";
   # uri.hyprland.enable = true;

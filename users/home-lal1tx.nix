@@ -24,11 +24,11 @@
     }:
     {
       imports = [
-        ../modules/git.nix
-        ../modules/vscode.nix
-        ../modules/js.nix
-        ../modules/java.nix
-        ../modules/obs.nix
+        ../modules/hm/git.nix
+        ../modules/hm/vscode.nix
+        ../modules/hm/js.nix
+        ../modules/hm/java.nix
+        ../modules/hm/obs.nix
       ];
 
       home.stateVersion = "23.05";

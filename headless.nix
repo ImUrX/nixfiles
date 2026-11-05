@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }:
 {
@@ -23,80 +24,91 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
+  # System services
+  security.polkit.enable = true;
   programs.dconf.enable = true;
+  virtualisation.docker.enable = true;
 
+  # mDNS
   services.avahi = {
     enable = true;
     nssmdns4 = true;
   };
-  virtualisation.docker.enable = true;
+
+  # Ambient sensor
   hardware.sensor.iio.enable = true;
 
-  security.polkit.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
-  # programs.cnping.enable = true;
-
-  programs.nix-ld = {
-    enable = true;
-  };
 
   environment.systemPackages = with pkgs; [
-    appimage-run
-    vim-full # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    tree
-    hyfetch
-    fastfetch
-    killall
-    htop
+    # Files
+    vim-full
     file
-    inetutils
-    binutils-unwrapped
-    psmisc
-    pciutils
-    usbutils
-    dig
-    asciinema
+    binutils
+    tree
     ripgrep # a better grep
+    ncdu_1 # _2 only supports modern microarchs
+    fd # a better find
+    bat # a cat alternative
+
+    # Compress
     zip
     unzip
     unrar
-    ncdu_1 # _2 only supports modern microarchs
-    fd # a better find
-    hyperfine # a better time
+
+    # Network
+    wget
+    inetutils
+    dig
     mtr # a better traceroute
-    tmux # when you can't afford i3
+    caddy # convenient bloated web server
+    docker-compose
+    nethogs
+
+    # Nix
+    appimage-run
+    nix-tree # nix what-depends why-depends who-am-i
+    inputs.agenix.packages.${pkgs.system}.default
+    vulnix
+
+    # Cool
+    hyfetch
+    fastfetch
+    asciinema
     yt-dlp # do some pretendin' and fetch videos
     jq # like 'node -e' but nicer
-    # btop # htop on steroids
+
+    # Processes
+    htop
+    killall
+    pciutils
+
+    # /sys/ inspects
+    psmisc
+    usbutils
+    hyperfine # a better time
+
+    # TTY stuff
+    tmux # when you can't afford i3
     expect # color capture, galore
-    caddy # convenient bloated web server
     parallel # --citation
-    nix-tree # nix what-depends why-depends who-am-i
-    docker-compose
-    bat # a cat alternative
+
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
+  # beauty looking traceroute
   programs.mtr.enable = true;
-
+  # Cool looking shell
   programs.starship = {
     enable = true;
     presets = [ "pastel-powerline" ];
   };
-
   # a nice file commander
   uri.yazi.enable = true;
-
   # a smarter cd command
   programs.zoxide.enable = true;
+  # The unsung hero
   programs.screen.enable = true;
-
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh = {
@@ -105,8 +117,11 @@
       PasswordAuthentication = false;
     };
   };
+
+  # Hardware firmware updates
   services.fwupd.enable = true;
 
+  # udev but for energy
   services.upower.enable = true;
   # services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
   services.udev.extraRules = ''
@@ -116,6 +131,7 @@
 
   # ssd optimization
   services.fstrim.enable = true;
+  # net optimization
   uri.net-opts.enable = true;
 
   # Open ports in the firewall.
