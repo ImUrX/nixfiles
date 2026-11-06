@@ -11,6 +11,8 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    ../../configuration.nix
+    ../../users/home-lal1tx.nix
   ];
 
   # Use the systemd-boot EFI boot loader.

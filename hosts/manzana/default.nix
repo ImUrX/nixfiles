@@ -2,9 +2,7 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
-  config,
   lib,
-  pkgs,
   modulesPath,
   ...
 }:
@@ -12,6 +10,8 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    ../../configuration.nix
+    ../../users/uri
   ];
 
   boot.initrd.availableKernelModules = [ "usb_storage" ];

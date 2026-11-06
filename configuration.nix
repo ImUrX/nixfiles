@@ -149,7 +149,7 @@
       vulkan-headers
       vulkan-loader
       vulkan-tools
-      nil # LSP for Nix
+      nixd # LSP for Nix
       nixfmt
 
       # Apple

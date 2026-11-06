@@ -14,6 +14,8 @@
     ./stream.nix
     ../../modules/sdns.nix
     ../../modules/crowdsec.nix
+    ../../headless.nix
+    ../../users/uri
   ];
 
   boot.loader.systemd-boot.enable = true;

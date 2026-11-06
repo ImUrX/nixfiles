@@ -150,8 +150,6 @@
           # Import our old system configuration.nix
           modules = [
             ./hosts/uridesk
-            ./configuration.nix
-            ./users/uri
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
             nixpkgs-xr.nixosModules.nixpkgs-xr
@@ -187,8 +185,6 @@
           # Import our old system configuration.nix
           modules = [
             ./hosts/minidesk
-            ./configuration.nix
-            ./users/uri
             nixos-hardware.nixosModules.framework-13th-gen-intel
             nixpkgs-xr.nixosModules.nixpkgs-xr
             home-manager.nixosModules.home-manager
@@ -212,8 +208,6 @@
           # Import our old system configuration.nix
           modules = [
             ./hosts/lal1tx
-            ./configuration.nix
-            ./users/home-lal1tx.nix
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
             nur.modules.nixos.default
@@ -244,8 +238,6 @@
           # Import our old system configuration.nix
           modules = [
             ./hosts/atrii-trans
-            ./configuration.nix
-            ./users/home-lal1tx.nix
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
             nur.modules.nixos.default
@@ -272,8 +264,6 @@
           # Import our old system configuration.nix
           modules = [
             ./hosts/teto
-            ./configuration.nix
-            ./users/home-lal1tx.nix
             nixos-hardware.nixosModules.common-cpu-intel
             nixos-hardware.nixosModules.common-gpu-intel
             nixos-hardware.nixosModules.common-pc-laptop
@@ -305,8 +295,6 @@
           # Import our old system configuration.nix
           modules = [
             ./hosts/parana
-            ./headless.nix
-            ./users/uri
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
             agenix.nixosModules.default
@@ -353,8 +341,6 @@
           # Import our old system configuration.nix
           modules = [
             ./hosts/rapel
-            ./headless.nix
-            ./users/uri
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix
             agenix.nixosModules.default
@@ -379,9 +365,6 @@
           system = "aarch64-linux";
           modules = [
             ./hosts/manzana
-            ./configuration.nix
-            ./users/uri
-            ./modules/niri.nix
             nixpkgs-xr.nixosModules.nixpkgs-xr
             home-manager.nixosModules.home-manager
             musnix.nixosModules.musnix

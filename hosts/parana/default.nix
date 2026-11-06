@@ -29,6 +29,8 @@ in
     ./downloaders.nix
     ../../modules/sdns.nix
     ../../modules/crowdsec.nix
+    ../../headless.nix
+    ../../users/uri
   ];
 
   # Usando GRUB xq tiene skins

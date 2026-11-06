@@ -11,6 +11,8 @@
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+    ../../configuration.nix
+    ../../users/home-lal1tx.nix
   ];
 
   # boot.initrd.kernelModules = ["amdgpu"];
