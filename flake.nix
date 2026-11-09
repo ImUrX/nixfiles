@@ -317,6 +317,7 @@
                 spotplex.file = ./secrets/spotplex.age;
                 scrobbler.file = ./secrets/scrobbler.age;
                 navidrome.file = ./secrets/navidrome.age;
+                nsd.file = ./secrets/nsd.age;
                 soulseek = {
                   file = ./secrets/soulseek.age;
                   owner = "lidarr";
@@ -357,6 +358,7 @@
 
               age.secrets = {
                 cloudflared.file = ./secrets/cloudflared-rapel.age;
+                nsd.file = ./secrets/nsd.age;
               };
             }
           ];

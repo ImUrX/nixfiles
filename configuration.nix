@@ -74,6 +74,7 @@
   };
 
   uri.kde.enable = true;
+  cookie.fonts.enable = true;
   uri.steam.enable = true;
   # 指
   uri.yubi.enable = true;
@@ -92,7 +93,6 @@
   };
   programs.corectrl.enable = true;
 
-  cookie.fonts.enable = true;
   # programs.cdemu.enable = true;
 
   # List packages installed in system profile. To search, run:

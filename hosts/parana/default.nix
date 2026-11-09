@@ -31,6 +31,7 @@ in
     ../../modules/crowdsec.nix
     ../../headless.nix
     ../../users/uri
+    ../../secrets/slave.nix
   ];
 
   # Usando GRUB xq tiene skins
@@ -97,8 +98,7 @@ in
 
     # Use secure DNS
     nameservers = [
-      "127.0.0.1"
-      "::1"
+      "127.0.0.52"
     ];
     dhcpcd.extraConfig = "nohook resolv.conf";
     hostId = "2ed1995c";
@@ -158,6 +158,23 @@ in
         filenames = [ "${config.nixarr.seerr.stateDir}/logs/*.log" ];
         labels.type = "jellyseerr";
       }
+    ];
+  };
+
+  services.nsd = {
+    enable = true;
+    verbosity = 2;
+    statistics = 60;
+    identity = "";
+    bind8Stats = true;
+    keys.sec_key = {
+      keyFile = config.age.secrets.nsd.path;
+    };
+    ratelimit.enable = true;
+    serverCount = 4;
+    interfaces = [
+      "192.168.42.69"
+      "100.79.230.14"
     ];
   };
 }

@@ -24,6 +24,19 @@
     useXkbConfig = true; # use xkbOptions in tty.
   };
 
+  services.resolved = {
+    enable = true;
+    # settings.Resolve = {
+    #   DNSSEC = "true";
+    #   Domains = [ "~." ];
+    #   DNSOverTLS = "true";
+    #   FallbackDNS = [
+    #     "1.1.1.1"
+    #     "1.0.0.1"
+    #   ];
+    # };
+  };
+
   # System services
   security.polkit.enable = true;
   programs.dconf.enable = true;
@@ -39,7 +52,6 @@
   hardware.sensor.iio.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-
 
   environment.systemPackages = with pkgs; [
     # Files
@@ -93,7 +105,7 @@
     tmux # when you can't afford i3
     expect # color capture, galore
     parallel # --citation
-
+    kitty # for TERMINFO
   ];
 
   # beauty looking traceroute

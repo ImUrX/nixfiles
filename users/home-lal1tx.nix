@@ -18,8 +18,6 @@
 
   home-manager.users.lal1tx =
     {
-      config,
-      lib,
       ...
     }:
     {

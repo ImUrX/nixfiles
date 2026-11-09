@@ -11,7 +11,7 @@
       '';
 
     clipboard = {
-      providers.wl-copy.enable = pkgs.stdenv.isLinux;
+      providers.wl-copy.enable = pkgs.stdenv.hostPlatform.isLinux;
     };
 
     viAlias = true;

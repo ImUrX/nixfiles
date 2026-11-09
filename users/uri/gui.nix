@@ -16,6 +16,7 @@
       inkscape-with-extensions
       krita
       autodesk-fusion
+      pixelorama
 
       # Social
       thunderbird

@@ -19,7 +19,9 @@ in
 
       # Use servers reachable over IPv6 -- Do not enable if you don't have IPv6 connectivity
       ipv6_servers = hasIPv6Internet;
-      block_ipv6 = !(hasIPv6Internet);
+      block_ipv6 = !hasIPv6Internet;
+
+      listen_addresses = ["127.0.0.52:53"];
 
       require_dnssec = true;
       require_nolog = false;

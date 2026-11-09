@@ -1,0 +1,22 @@
+# beets-import-script.yaml
+library: /tmp/beets-lidarr-$$.db   # $$ = PID; unique per invocation, discarded after
+directory: /tmp/beets-lidarr-tmp
+import:
+  move: no       # critical: Lidarr has already placed the files
+  copy: no       # critical: same reason
+  write: yes     # this is the point: write tags only
+  quiet: yes
+  timid: no
+  autotag: yes
+  languages: en jp es
+plugins:
+  - musicbrainz
+  - replaygain
+  - lastgenre
+  - chroma
+  - autobpm
+  # list your desired plugins here, e.g.:
+  # - acousticbrainz
+  # - lyrics
+replaygain:
+  backend: gstreamer

@@ -1,9 +1,13 @@
-{
+{ pkgs, ... }: {
   nixarr = {
     radarr.enable = true;
     lidarr = {
       enable = true;
-      # package = pkgs.callPackage ./lidarr/package.nix { };
+      package = pkgs.lidarr.overrideAttrs (_: {
+        runtimeDeps = with pkgs; [
+          ffmpeg
+        ];
+      });
       # vpn.enable = true;
     };
     sonarr = {
@@ -23,6 +27,20 @@
 
     seerr.enable = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    (writeShellScriptBin "beets-lidarr" ''
+      set -euo pipefail
+      
+      if [ "$lidarr_eventtype" = "Test" ]; then exit 0; fi
+      if [ "$lidarr_eventtype" != "TrackRetag" ]; then exit 0; fi
+
+      BEETS_CONFIG="${./beets-import-script.yml}"
+
+      dir="$(dirname "$lidarr_trackfile_path")"
+      ${beets}/bin/beet --config="$BEETS_CONFIG" import --quiet "$dir"
+    '')
+  ];
 
   services.tautulli.enable = true;
 

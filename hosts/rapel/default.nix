@@ -16,6 +16,7 @@
     ../../modules/crowdsec.nix
     ../../headless.nix
     ../../users/uri
+    ../../secrets/zones.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -71,8 +72,7 @@
     };
     # Use secure DNS
     nameservers = [
-      "127.0.0.1"
-      "::1"
+      "127.0.0.52"
     ];
     dhcpcd.extraConfig = "nohook resolv.conf";
     resolvconf.useLocalResolver = true;
@@ -117,4 +117,20 @@
     ];
   };
   systemd.services.mysql.serviceConfig.SyslogIdentifier = "mariadbd";
+
+  services.nsd = {
+    enable = true;
+    verbosity = 2;
+    statistics = 60;
+    identity = "";
+    bind8Stats = true;
+    keys.sec_key = {
+      keyFile = config.age.secrets.nsd.path;
+    };
+    ratelimit.enable = true;
+    interfaces = [
+      "192.168.41.69"
+      "100.115.121.2"
+    ];
+  };
 }
